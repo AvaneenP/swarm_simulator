@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<launch>
+
+  <arg name="uavName" default="uav" />
+
+  <node pkg="sensor_simulation" type="pressure.py" name="pressure_node_$(arg uavName)" output="screen">
+    <param name="uavName" type="string" value="$(arg uavName)" />
+  </node>
+
+</launch>

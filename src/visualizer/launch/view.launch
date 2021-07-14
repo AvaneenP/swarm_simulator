@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<launch>
+
+  <arg name="uavName1" default="uav" />
+  <arg name="uavName2" default="uav" />
+  <arg name="uavName3" default="uav" />
+
+  <node pkg="visualizer" type="gui_controller.py" name="GUI_Controller_Node" output="screen">
+    <param name="uavName1" type="string" value="$(arg uavName1)" />
+    <param name="uavName2" type="string" value="$(arg uavName2)" />
+    <param name="uavName3" type="string" value="$(arg uavName3)" />
+  </node>
+
+</launch>

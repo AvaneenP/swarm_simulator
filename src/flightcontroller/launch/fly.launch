@@ -1,0 +1,93 @@
+<?xml version="1.0"?>
+<launch>
+
+  <arg name="name1" default="uav1" />
+  <arg name="name2" default="uav2" />
+  <arg name="name3" default="uav3" />
+
+  <!-- Drone 1 -->
+  <group>
+    <include file="$(find flightgoggles)/launch/core.launch">
+      <arg name="uavName" value="$(arg name1)" />
+      <arg name="clock_control" value="true" />
+    </include>
+
+    <include file="$(find flightcontroller)/launch/angle.launch">
+      <arg name="uavName" value="$(arg name1)" />
+    </include>
+
+    <include file="$(find flightcontroller)/launch/velocity.launch">
+      <arg name="uavName" value="$(arg name1)" />
+    </include>
+
+    <include file="$(find flightcontroller)/launch/position.launch">
+      <arg name="uavName" value="$(arg name1)" />
+    </include>
+
+    <include file="$(find sensor_simulation)/launch/sensors.launch">
+      <arg name="uavName" value="$(arg name1)" />
+    </include>
+  </group>
+
+
+  <!-- Drone 2 -->
+  <group>
+    <include file="$(find flightgoggles)/launch/core.launch">
+      <arg name="uavName" value="$(arg name2)" />
+      <arg name="clock_control" value="false" />
+    </include>
+
+    <include file="$(find flightcontroller)/launch/angle.launch">
+      <arg name="uavName" value="$(arg name2)" />
+    </include>
+
+    <include file="$(find flightcontroller)/launch/velocity.launch">
+      <arg name="uavName" value="$(arg name2)" />
+    </include>
+
+    <include file="$(find flightcontroller)/launch/position.launch">
+      <arg name="uavName" value="$(arg name2)" />
+    </include>
+
+    <include file="$(find sensor_simulation)/launch/sensors.launch">
+      <arg name="uavName" value="$(arg name2)" />
+    </include>
+  </group>
+
+
+  <!-- Drone 3 -->
+  <group>
+    <include file="$(find flightgoggles)/launch/core.launch">
+      <arg name="uavName" value="$(arg name3)" />
+      <arg name="clock_control" value="false" />
+    </include>
+
+    <include file="$(find flightcontroller)/launch/angle.launch">
+      <arg name="uavName" value="$(arg name3)" />
+    </include>
+
+    <include file="$(find flightcontroller)/launch/velocity.launch">
+      <arg name="uavName" value="$(arg name3)" />
+    </include>
+
+    <include file="$(find flightcontroller)/launch/position.launch">
+      <arg name="uavName" value="$(arg name3)" />
+    </include>
+
+    <include file="$(find sensor_simulation)/launch/sensors.launch">
+      <arg name="uavName" value="$(arg name3)" />
+    </include>
+  </group>
+
+  <!--Static transform for ENU to NED world-->
+  <node pkg="tf2_ros" type="static_transform_publisher" name="world_ned_link" args="0 0 0 1.57079632679 3.14159265359 0 'world' 'world/ned'"/>
+
+  <include file="$(find visualizer)/launch/view.launch">
+    <arg name="uavName1" value="$(arg name1)" />
+    <arg name="uavName2" value="$(arg name2)" />
+    <arg name="uavName3" value="$(arg name3)" />
+  </include>
+
+  <node pkg="mission_waypoints" type="waypoint_publisher.py" name="waypoint_reader_node"></node>
+
+</launch>
