@@ -28,28 +28,28 @@ The CXX compiler identification is GNU, found in "/home/lesslab5/Documents/simul
 Determining if the C compiler works passed with the following output:
 Change Dir: /home/lesslab5/Documents/simulator_ws/build/flightgoggles/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_b8005/fast"
-/usr/bin/make -f CMakeFiles/cmTC_b8005.dir/build.make CMakeFiles/cmTC_b8005.dir/build
+Run Build Command:"/usr/bin/make" "cmTC_6c536/fast"
+/usr/bin/make -f CMakeFiles/cmTC_6c536.dir/build.make CMakeFiles/cmTC_6c536.dir/build
 make[1]: Entering directory '/home/lesslab5/Documents/simulator_ws/build/flightgoggles/CMakeFiles/CMakeTmp'
-Building C object CMakeFiles/cmTC_b8005.dir/testCCompiler.c.o
-/usr/bin/cc    -o CMakeFiles/cmTC_b8005.dir/testCCompiler.c.o   -c /home/lesslab5/Documents/simulator_ws/build/flightgoggles/CMakeFiles/CMakeTmp/testCCompiler.c
-Linking C executable cmTC_b8005
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_b8005.dir/link.txt --verbose=1
-/usr/bin/cc      -rdynamic CMakeFiles/cmTC_b8005.dir/testCCompiler.c.o  -o cmTC_b8005 
+Building C object CMakeFiles/cmTC_6c536.dir/testCCompiler.c.o
+/usr/bin/cc    -o CMakeFiles/cmTC_6c536.dir/testCCompiler.c.o   -c /home/lesslab5/Documents/simulator_ws/build/flightgoggles/CMakeFiles/CMakeTmp/testCCompiler.c
+Linking C executable cmTC_6c536
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_6c536.dir/link.txt --verbose=1
+/usr/bin/cc      -rdynamic CMakeFiles/cmTC_6c536.dir/testCCompiler.c.o  -o cmTC_6c536 
 make[1]: Leaving directory '/home/lesslab5/Documents/simulator_ws/build/flightgoggles/CMakeFiles/CMakeTmp'
 
 
 Detecting C compiler ABI info compiled with the following output:
 Change Dir: /home/lesslab5/Documents/simulator_ws/build/flightgoggles/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_1efdb/fast"
-/usr/bin/make -f CMakeFiles/cmTC_1efdb.dir/build.make CMakeFiles/cmTC_1efdb.dir/build
+Run Build Command:"/usr/bin/make" "cmTC_fc6fb/fast"
+/usr/bin/make -f CMakeFiles/cmTC_fc6fb.dir/build.make CMakeFiles/cmTC_fc6fb.dir/build
 make[1]: Entering directory '/home/lesslab5/Documents/simulator_ws/build/flightgoggles/CMakeFiles/CMakeTmp'
-Building C object CMakeFiles/cmTC_1efdb.dir/CMakeCCompilerABI.c.o
-/usr/bin/cc    -o CMakeFiles/cmTC_1efdb.dir/CMakeCCompilerABI.c.o   -c /usr/share/cmake-3.10/Modules/CMakeCCompilerABI.c
-Linking C executable cmTC_1efdb
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_1efdb.dir/link.txt --verbose=1
-/usr/bin/cc     -v -rdynamic CMakeFiles/cmTC_1efdb.dir/CMakeCCompilerABI.c.o  -o cmTC_1efdb 
+Building C object CMakeFiles/cmTC_fc6fb.dir/CMakeCCompilerABI.c.o
+/usr/bin/cc    -o CMakeFiles/cmTC_fc6fb.dir/CMakeCCompilerABI.c.o   -c /usr/share/cmake-3.10/Modules/CMakeCCompilerABI.c
+Linking C executable cmTC_fc6fb
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_fc6fb.dir/link.txt --verbose=1
+/usr/bin/cc     -v -rdynamic CMakeFiles/cmTC_fc6fb.dir/CMakeCCompilerABI.c.o  -o cmTC_fc6fb 
 Using built-in specs.
 COLLECT_GCC=/usr/bin/cc
 COLLECT_LTO_WRAPPER=/usr/lib/gcc/x86_64-linux-gnu/7/lto-wrapper
@@ -61,9 +61,9 @@ Thread model: posix
 gcc version 7.5.0 (Ubuntu 7.5.0-3ubuntu1~18.04) 
 COMPILER_PATH=/usr/lib/gcc/x86_64-linux-gnu/7/:/usr/lib/gcc/x86_64-linux-gnu/7/:/usr/lib/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/7/:/usr/lib/gcc/x86_64-linux-gnu/
 LIBRARY_PATH=/usr/lib/gcc/x86_64-linux-gnu/7/:/usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/7/../../../../lib/:/lib/x86_64-linux-gnu/:/lib/../lib/:/usr/lib/x86_64-linux-gnu/:/usr/lib/../lib/:/usr/lib/gcc/x86_64-linux-gnu/7/../../../:/lib/:/usr/lib/
-COLLECT_GCC_OPTIONS='-v' '-rdynamic' '-o' 'cmTC_1efdb' '-mtune=generic' '-march=x86-64'
- /usr/lib/gcc/x86_64-linux-gnu/7/collect2 -plugin /usr/lib/gcc/x86_64-linux-gnu/7/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-linux-gnu/7/lto-wrapper -plugin-opt=-fresolution=/tmp/ccJ4mPRY.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -export-dynamic -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -z now -z relro -o cmTC_1efdb /usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/7/crtbeginS.o -L/usr/lib/gcc/x86_64-linux-gnu/7 -L/usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/7/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/7/../../.. CMakeFiles/cmTC_1efdb.dir/CMakeCCompilerABI.c.o -lgcc --push-state --as-needed -lgcc_s --pop-state -lc -lgcc --push-state --as-needed -lgcc_s --pop-state /usr/lib/gcc/x86_64-linux-gnu/7/crtendS.o /usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/crtn.o
-COLLECT_GCC_OPTIONS='-v' '-rdynamic' '-o' 'cmTC_1efdb' '-mtune=generic' '-march=x86-64'
+COLLECT_GCC_OPTIONS='-v' '-rdynamic' '-o' 'cmTC_fc6fb' '-mtune=generic' '-march=x86-64'
+ /usr/lib/gcc/x86_64-linux-gnu/7/collect2 -plugin /usr/lib/gcc/x86_64-linux-gnu/7/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-linux-gnu/7/lto-wrapper -plugin-opt=-fresolution=/tmp/ccw098Hk.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -export-dynamic -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -z now -z relro -o cmTC_fc6fb /usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/7/crtbeginS.o -L/usr/lib/gcc/x86_64-linux-gnu/7 -L/usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/7/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/7/../../.. CMakeFiles/cmTC_fc6fb.dir/CMakeCCompilerABI.c.o -lgcc --push-state --as-needed -lgcc_s --pop-state -lc -lgcc --push-state --as-needed -lgcc_s --pop-state /usr/lib/gcc/x86_64-linux-gnu/7/crtendS.o /usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/crtn.o
+COLLECT_GCC_OPTIONS='-v' '-rdynamic' '-o' 'cmTC_fc6fb' '-mtune=generic' '-march=x86-64'
 make[1]: Leaving directory '/home/lesslab5/Documents/simulator_ws/build/flightgoggles/CMakeFiles/CMakeTmp'
 
 
@@ -71,14 +71,14 @@ Parsed C implicit link information from above output:
   link line regex: [^( *|.*[/\])(ld|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\]+-)?ld|collect2)[^/\]*( |$)]
   ignore line: [Change Dir: /home/lesslab5/Documents/simulator_ws/build/flightgoggles/CMakeFiles/CMakeTmp]
   ignore line: []
-  ignore line: [Run Build Command:"/usr/bin/make" "cmTC_1efdb/fast"]
-  ignore line: [/usr/bin/make -f CMakeFiles/cmTC_1efdb.dir/build.make CMakeFiles/cmTC_1efdb.dir/build]
+  ignore line: [Run Build Command:"/usr/bin/make" "cmTC_fc6fb/fast"]
+  ignore line: [/usr/bin/make -f CMakeFiles/cmTC_fc6fb.dir/build.make CMakeFiles/cmTC_fc6fb.dir/build]
   ignore line: [make[1]: Entering directory '/home/lesslab5/Documents/simulator_ws/build/flightgoggles/CMakeFiles/CMakeTmp']
-  ignore line: [Building C object CMakeFiles/cmTC_1efdb.dir/CMakeCCompilerABI.c.o]
-  ignore line: [/usr/bin/cc    -o CMakeFiles/cmTC_1efdb.dir/CMakeCCompilerABI.c.o   -c /usr/share/cmake-3.10/Modules/CMakeCCompilerABI.c]
-  ignore line: [Linking C executable cmTC_1efdb]
-  ignore line: [/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_1efdb.dir/link.txt --verbose=1]
-  ignore line: [/usr/bin/cc     -v -rdynamic CMakeFiles/cmTC_1efdb.dir/CMakeCCompilerABI.c.o  -o cmTC_1efdb ]
+  ignore line: [Building C object CMakeFiles/cmTC_fc6fb.dir/CMakeCCompilerABI.c.o]
+  ignore line: [/usr/bin/cc    -o CMakeFiles/cmTC_fc6fb.dir/CMakeCCompilerABI.c.o   -c /usr/share/cmake-3.10/Modules/CMakeCCompilerABI.c]
+  ignore line: [Linking C executable cmTC_fc6fb]
+  ignore line: [/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_fc6fb.dir/link.txt --verbose=1]
+  ignore line: [/usr/bin/cc     -v -rdynamic CMakeFiles/cmTC_fc6fb.dir/CMakeCCompilerABI.c.o  -o cmTC_fc6fb ]
   ignore line: [Using built-in specs.]
   ignore line: [COLLECT_GCC=/usr/bin/cc]
   ignore line: [COLLECT_LTO_WRAPPER=/usr/lib/gcc/x86_64-linux-gnu/7/lto-wrapper]
@@ -90,13 +90,13 @@ Parsed C implicit link information from above output:
   ignore line: [gcc version 7.5.0 (Ubuntu 7.5.0-3ubuntu1~18.04) ]
   ignore line: [COMPILER_PATH=/usr/lib/gcc/x86_64-linux-gnu/7/:/usr/lib/gcc/x86_64-linux-gnu/7/:/usr/lib/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/7/:/usr/lib/gcc/x86_64-linux-gnu/]
   ignore line: [LIBRARY_PATH=/usr/lib/gcc/x86_64-linux-gnu/7/:/usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/7/../../../../lib/:/lib/x86_64-linux-gnu/:/lib/../lib/:/usr/lib/x86_64-linux-gnu/:/usr/lib/../lib/:/usr/lib/gcc/x86_64-linux-gnu/7/../../../:/lib/:/usr/lib/]
-  ignore line: [COLLECT_GCC_OPTIONS='-v' '-rdynamic' '-o' 'cmTC_1efdb' '-mtune=generic' '-march=x86-64']
-  link line: [ /usr/lib/gcc/x86_64-linux-gnu/7/collect2 -plugin /usr/lib/gcc/x86_64-linux-gnu/7/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-linux-gnu/7/lto-wrapper -plugin-opt=-fresolution=/tmp/ccJ4mPRY.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -export-dynamic -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -z now -z relro -o cmTC_1efdb /usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/7/crtbeginS.o -L/usr/lib/gcc/x86_64-linux-gnu/7 -L/usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/7/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/7/../../.. CMakeFiles/cmTC_1efdb.dir/CMakeCCompilerABI.c.o -lgcc --push-state --as-needed -lgcc_s --pop-state -lc -lgcc --push-state --as-needed -lgcc_s --pop-state /usr/lib/gcc/x86_64-linux-gnu/7/crtendS.o /usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/crtn.o]
+  ignore line: [COLLECT_GCC_OPTIONS='-v' '-rdynamic' '-o' 'cmTC_fc6fb' '-mtune=generic' '-march=x86-64']
+  link line: [ /usr/lib/gcc/x86_64-linux-gnu/7/collect2 -plugin /usr/lib/gcc/x86_64-linux-gnu/7/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-linux-gnu/7/lto-wrapper -plugin-opt=-fresolution=/tmp/ccw098Hk.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -export-dynamic -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -z now -z relro -o cmTC_fc6fb /usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/7/crtbeginS.o -L/usr/lib/gcc/x86_64-linux-gnu/7 -L/usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/7/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/7/../../.. CMakeFiles/cmTC_fc6fb.dir/CMakeCCompilerABI.c.o -lgcc --push-state --as-needed -lgcc_s --pop-state -lc -lgcc --push-state --as-needed -lgcc_s --pop-state /usr/lib/gcc/x86_64-linux-gnu/7/crtendS.o /usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/crtn.o]
     arg [/usr/lib/gcc/x86_64-linux-gnu/7/collect2] ==> ignore
     arg [-plugin] ==> ignore
     arg [/usr/lib/gcc/x86_64-linux-gnu/7/liblto_plugin.so] ==> ignore
     arg [-plugin-opt=/usr/lib/gcc/x86_64-linux-gnu/7/lto-wrapper] ==> ignore
-    arg [-plugin-opt=-fresolution=/tmp/ccJ4mPRY.res] ==> ignore
+    arg [-plugin-opt=-fresolution=/tmp/ccw098Hk.res] ==> ignore
     arg [-plugin-opt=-pass-through=-lgcc] ==> ignore
     arg [-plugin-opt=-pass-through=-lgcc_s] ==> ignore
     arg [-plugin-opt=-pass-through=-lc] ==> ignore
@@ -115,7 +115,7 @@ Parsed C implicit link information from above output:
     arg [-znow] ==> ignore
     arg [-zrelro] ==> ignore
     arg [-o] ==> ignore
-    arg [cmTC_1efdb] ==> ignore
+    arg [cmTC_fc6fb] ==> ignore
     arg [/usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/Scrt1.o] ==> ignore
     arg [/usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/crti.o] ==> ignore
     arg [/usr/lib/gcc/x86_64-linux-gnu/7/crtbeginS.o] ==> ignore
@@ -127,7 +127,7 @@ Parsed C implicit link information from above output:
     arg [-L/usr/lib/x86_64-linux-gnu] ==> dir [/usr/lib/x86_64-linux-gnu]
     arg [-L/usr/lib/../lib] ==> dir [/usr/lib/../lib]
     arg [-L/usr/lib/gcc/x86_64-linux-gnu/7/../../..] ==> dir [/usr/lib/gcc/x86_64-linux-gnu/7/../../..]
-    arg [CMakeFiles/cmTC_1efdb.dir/CMakeCCompilerABI.c.o] ==> ignore
+    arg [CMakeFiles/cmTC_fc6fb.dir/CMakeCCompilerABI.c.o] ==> ignore
     arg [-lgcc] ==> lib [gcc]
     arg [--push-state] ==> ignore
     arg [--as-needed] ==> ignore
@@ -159,14 +159,14 @@ Parsed C implicit link information from above output:
 Detecting C [-std=c11] compiler features compiled with the following output:
 Change Dir: /home/lesslab5/Documents/simulator_ws/build/flightgoggles/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_be21a/fast"
-/usr/bin/make -f CMakeFiles/cmTC_be21a.dir/build.make CMakeFiles/cmTC_be21a.dir/build
+Run Build Command:"/usr/bin/make" "cmTC_d87b3/fast"
+/usr/bin/make -f CMakeFiles/cmTC_d87b3.dir/build.make CMakeFiles/cmTC_d87b3.dir/build
 make[1]: Entering directory '/home/lesslab5/Documents/simulator_ws/build/flightgoggles/CMakeFiles/CMakeTmp'
-Building C object CMakeFiles/cmTC_be21a.dir/feature_tests.c.o
-/usr/bin/cc   -std=c11 -o CMakeFiles/cmTC_be21a.dir/feature_tests.c.o   -c /home/lesslab5/Documents/simulator_ws/build/flightgoggles/CMakeFiles/feature_tests.c
-Linking C executable cmTC_be21a
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_be21a.dir/link.txt --verbose=1
-/usr/bin/cc      -rdynamic CMakeFiles/cmTC_be21a.dir/feature_tests.c.o  -o cmTC_be21a 
+Building C object CMakeFiles/cmTC_d87b3.dir/feature_tests.c.o
+/usr/bin/cc   -std=c11 -o CMakeFiles/cmTC_d87b3.dir/feature_tests.c.o   -c /home/lesslab5/Documents/simulator_ws/build/flightgoggles/CMakeFiles/feature_tests.c
+Linking C executable cmTC_d87b3
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_d87b3.dir/link.txt --verbose=1
+/usr/bin/cc      -rdynamic CMakeFiles/cmTC_d87b3.dir/feature_tests.c.o  -o cmTC_d87b3 
 make[1]: Leaving directory '/home/lesslab5/Documents/simulator_ws/build/flightgoggles/CMakeFiles/CMakeTmp'
 
 
@@ -179,14 +179,14 @@ make[1]: Leaving directory '/home/lesslab5/Documents/simulator_ws/build/flightgo
 Detecting C [-std=c99] compiler features compiled with the following output:
 Change Dir: /home/lesslab5/Documents/simulator_ws/build/flightgoggles/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_9bf38/fast"
-/usr/bin/make -f CMakeFiles/cmTC_9bf38.dir/build.make CMakeFiles/cmTC_9bf38.dir/build
+Run Build Command:"/usr/bin/make" "cmTC_23d4a/fast"
+/usr/bin/make -f CMakeFiles/cmTC_23d4a.dir/build.make CMakeFiles/cmTC_23d4a.dir/build
 make[1]: Entering directory '/home/lesslab5/Documents/simulator_ws/build/flightgoggles/CMakeFiles/CMakeTmp'
-Building C object CMakeFiles/cmTC_9bf38.dir/feature_tests.c.o
-/usr/bin/cc   -std=c99 -o CMakeFiles/cmTC_9bf38.dir/feature_tests.c.o   -c /home/lesslab5/Documents/simulator_ws/build/flightgoggles/CMakeFiles/feature_tests.c
-Linking C executable cmTC_9bf38
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_9bf38.dir/link.txt --verbose=1
-/usr/bin/cc      -rdynamic CMakeFiles/cmTC_9bf38.dir/feature_tests.c.o  -o cmTC_9bf38 
+Building C object CMakeFiles/cmTC_23d4a.dir/feature_tests.c.o
+/usr/bin/cc   -std=c99 -o CMakeFiles/cmTC_23d4a.dir/feature_tests.c.o   -c /home/lesslab5/Documents/simulator_ws/build/flightgoggles/CMakeFiles/feature_tests.c
+Linking C executable cmTC_23d4a
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_23d4a.dir/link.txt --verbose=1
+/usr/bin/cc      -rdynamic CMakeFiles/cmTC_23d4a.dir/feature_tests.c.o  -o cmTC_23d4a 
 make[1]: Leaving directory '/home/lesslab5/Documents/simulator_ws/build/flightgoggles/CMakeFiles/CMakeTmp'
 
 
@@ -199,14 +199,14 @@ make[1]: Leaving directory '/home/lesslab5/Documents/simulator_ws/build/flightgo
 Detecting C [-std=c90] compiler features compiled with the following output:
 Change Dir: /home/lesslab5/Documents/simulator_ws/build/flightgoggles/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_4c9aa/fast"
-/usr/bin/make -f CMakeFiles/cmTC_4c9aa.dir/build.make CMakeFiles/cmTC_4c9aa.dir/build
+Run Build Command:"/usr/bin/make" "cmTC_02205/fast"
+/usr/bin/make -f CMakeFiles/cmTC_02205.dir/build.make CMakeFiles/cmTC_02205.dir/build
 make[1]: Entering directory '/home/lesslab5/Documents/simulator_ws/build/flightgoggles/CMakeFiles/CMakeTmp'
-Building C object CMakeFiles/cmTC_4c9aa.dir/feature_tests.c.o
-/usr/bin/cc   -std=c90 -o CMakeFiles/cmTC_4c9aa.dir/feature_tests.c.o   -c /home/lesslab5/Documents/simulator_ws/build/flightgoggles/CMakeFiles/feature_tests.c
-Linking C executable cmTC_4c9aa
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_4c9aa.dir/link.txt --verbose=1
-/usr/bin/cc      -rdynamic CMakeFiles/cmTC_4c9aa.dir/feature_tests.c.o  -o cmTC_4c9aa 
+Building C object CMakeFiles/cmTC_02205.dir/feature_tests.c.o
+/usr/bin/cc   -std=c90 -o CMakeFiles/cmTC_02205.dir/feature_tests.c.o   -c /home/lesslab5/Documents/simulator_ws/build/flightgoggles/CMakeFiles/feature_tests.c
+Linking C executable cmTC_02205
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_02205.dir/link.txt --verbose=1
+/usr/bin/cc      -rdynamic CMakeFiles/cmTC_02205.dir/feature_tests.c.o  -o cmTC_02205 
 make[1]: Leaving directory '/home/lesslab5/Documents/simulator_ws/build/flightgoggles/CMakeFiles/CMakeTmp'
 
 
@@ -217,28 +217,28 @@ make[1]: Leaving directory '/home/lesslab5/Documents/simulator_ws/build/flightgo
 Determining if the CXX compiler works passed with the following output:
 Change Dir: /home/lesslab5/Documents/simulator_ws/build/flightgoggles/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_f2032/fast"
-/usr/bin/make -f CMakeFiles/cmTC_f2032.dir/build.make CMakeFiles/cmTC_f2032.dir/build
+Run Build Command:"/usr/bin/make" "cmTC_b6f63/fast"
+/usr/bin/make -f CMakeFiles/cmTC_b6f63.dir/build.make CMakeFiles/cmTC_b6f63.dir/build
 make[1]: Entering directory '/home/lesslab5/Documents/simulator_ws/build/flightgoggles/CMakeFiles/CMakeTmp'
-Building CXX object CMakeFiles/cmTC_f2032.dir/testCXXCompiler.cxx.o
-/usr/bin/c++     -o CMakeFiles/cmTC_f2032.dir/testCXXCompiler.cxx.o -c /home/lesslab5/Documents/simulator_ws/build/flightgoggles/CMakeFiles/CMakeTmp/testCXXCompiler.cxx
-Linking CXX executable cmTC_f2032
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_f2032.dir/link.txt --verbose=1
-/usr/bin/c++       -rdynamic CMakeFiles/cmTC_f2032.dir/testCXXCompiler.cxx.o  -o cmTC_f2032 
+Building CXX object CMakeFiles/cmTC_b6f63.dir/testCXXCompiler.cxx.o
+/usr/bin/c++     -o CMakeFiles/cmTC_b6f63.dir/testCXXCompiler.cxx.o -c /home/lesslab5/Documents/simulator_ws/build/flightgoggles/CMakeFiles/CMakeTmp/testCXXCompiler.cxx
+Linking CXX executable cmTC_b6f63
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_b6f63.dir/link.txt --verbose=1
+/usr/bin/c++       -rdynamic CMakeFiles/cmTC_b6f63.dir/testCXXCompiler.cxx.o  -o cmTC_b6f63 
 make[1]: Leaving directory '/home/lesslab5/Documents/simulator_ws/build/flightgoggles/CMakeFiles/CMakeTmp'
 
 
 Detecting CXX compiler ABI info compiled with the following output:
 Change Dir: /home/lesslab5/Documents/simulator_ws/build/flightgoggles/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_c94a9/fast"
-/usr/bin/make -f CMakeFiles/cmTC_c94a9.dir/build.make CMakeFiles/cmTC_c94a9.dir/build
+Run Build Command:"/usr/bin/make" "cmTC_066be/fast"
+/usr/bin/make -f CMakeFiles/cmTC_066be.dir/build.make CMakeFiles/cmTC_066be.dir/build
 make[1]: Entering directory '/home/lesslab5/Documents/simulator_ws/build/flightgoggles/CMakeFiles/CMakeTmp'
-Building CXX object CMakeFiles/cmTC_c94a9.dir/CMakeCXXCompilerABI.cpp.o
-/usr/bin/c++     -o CMakeFiles/cmTC_c94a9.dir/CMakeCXXCompilerABI.cpp.o -c /usr/share/cmake-3.10/Modules/CMakeCXXCompilerABI.cpp
-Linking CXX executable cmTC_c94a9
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_c94a9.dir/link.txt --verbose=1
-/usr/bin/c++      -v -rdynamic CMakeFiles/cmTC_c94a9.dir/CMakeCXXCompilerABI.cpp.o  -o cmTC_c94a9 
+Building CXX object CMakeFiles/cmTC_066be.dir/CMakeCXXCompilerABI.cpp.o
+/usr/bin/c++     -o CMakeFiles/cmTC_066be.dir/CMakeCXXCompilerABI.cpp.o -c /usr/share/cmake-3.10/Modules/CMakeCXXCompilerABI.cpp
+Linking CXX executable cmTC_066be
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_066be.dir/link.txt --verbose=1
+/usr/bin/c++      -v -rdynamic CMakeFiles/cmTC_066be.dir/CMakeCXXCompilerABI.cpp.o  -o cmTC_066be 
 Using built-in specs.
 COLLECT_GCC=/usr/bin/c++
 COLLECT_LTO_WRAPPER=/usr/lib/gcc/x86_64-linux-gnu/7/lto-wrapper
@@ -250,9 +250,9 @@ Thread model: posix
 gcc version 7.5.0 (Ubuntu 7.5.0-3ubuntu1~18.04) 
 COMPILER_PATH=/usr/lib/gcc/x86_64-linux-gnu/7/:/usr/lib/gcc/x86_64-linux-gnu/7/:/usr/lib/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/7/:/usr/lib/gcc/x86_64-linux-gnu/
 LIBRARY_PATH=/usr/lib/gcc/x86_64-linux-gnu/7/:/usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/7/../../../../lib/:/lib/x86_64-linux-gnu/:/lib/../lib/:/usr/lib/x86_64-linux-gnu/:/usr/lib/../lib/:/usr/lib/gcc/x86_64-linux-gnu/7/../../../:/lib/:/usr/lib/
-COLLECT_GCC_OPTIONS='-v' '-rdynamic' '-o' 'cmTC_c94a9' '-shared-libgcc' '-mtune=generic' '-march=x86-64'
- /usr/lib/gcc/x86_64-linux-gnu/7/collect2 -plugin /usr/lib/gcc/x86_64-linux-gnu/7/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-linux-gnu/7/lto-wrapper -plugin-opt=-fresolution=/tmp/cclhrLkn.res -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -export-dynamic -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -z now -z relro -o cmTC_c94a9 /usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/7/crtbeginS.o -L/usr/lib/gcc/x86_64-linux-gnu/7 -L/usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/7/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/7/../../.. CMakeFiles/cmTC_c94a9.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /usr/lib/gcc/x86_64-linux-gnu/7/crtendS.o /usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/crtn.o
-COLLECT_GCC_OPTIONS='-v' '-rdynamic' '-o' 'cmTC_c94a9' '-shared-libgcc' '-mtune=generic' '-march=x86-64'
+COLLECT_GCC_OPTIONS='-v' '-rdynamic' '-o' 'cmTC_066be' '-shared-libgcc' '-mtune=generic' '-march=x86-64'
+ /usr/lib/gcc/x86_64-linux-gnu/7/collect2 -plugin /usr/lib/gcc/x86_64-linux-gnu/7/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-linux-gnu/7/lto-wrapper -plugin-opt=-fresolution=/tmp/ccADXfRJ.res -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -export-dynamic -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -z now -z relro -o cmTC_066be /usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/7/crtbeginS.o -L/usr/lib/gcc/x86_64-linux-gnu/7 -L/usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/7/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/7/../../.. CMakeFiles/cmTC_066be.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /usr/lib/gcc/x86_64-linux-gnu/7/crtendS.o /usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/crtn.o
+COLLECT_GCC_OPTIONS='-v' '-rdynamic' '-o' 'cmTC_066be' '-shared-libgcc' '-mtune=generic' '-march=x86-64'
 make[1]: Leaving directory '/home/lesslab5/Documents/simulator_ws/build/flightgoggles/CMakeFiles/CMakeTmp'
 
 
@@ -260,14 +260,14 @@ Parsed CXX implicit link information from above output:
   link line regex: [^( *|.*[/\])(ld|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\]+-)?ld|collect2)[^/\]*( |$)]
   ignore line: [Change Dir: /home/lesslab5/Documents/simulator_ws/build/flightgoggles/CMakeFiles/CMakeTmp]
   ignore line: []
-  ignore line: [Run Build Command:"/usr/bin/make" "cmTC_c94a9/fast"]
-  ignore line: [/usr/bin/make -f CMakeFiles/cmTC_c94a9.dir/build.make CMakeFiles/cmTC_c94a9.dir/build]
+  ignore line: [Run Build Command:"/usr/bin/make" "cmTC_066be/fast"]
+  ignore line: [/usr/bin/make -f CMakeFiles/cmTC_066be.dir/build.make CMakeFiles/cmTC_066be.dir/build]
   ignore line: [make[1]: Entering directory '/home/lesslab5/Documents/simulator_ws/build/flightgoggles/CMakeFiles/CMakeTmp']
-  ignore line: [Building CXX object CMakeFiles/cmTC_c94a9.dir/CMakeCXXCompilerABI.cpp.o]
-  ignore line: [/usr/bin/c++     -o CMakeFiles/cmTC_c94a9.dir/CMakeCXXCompilerABI.cpp.o -c /usr/share/cmake-3.10/Modules/CMakeCXXCompilerABI.cpp]
-  ignore line: [Linking CXX executable cmTC_c94a9]
-  ignore line: [/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_c94a9.dir/link.txt --verbose=1]
-  ignore line: [/usr/bin/c++      -v -rdynamic CMakeFiles/cmTC_c94a9.dir/CMakeCXXCompilerABI.cpp.o  -o cmTC_c94a9 ]
+  ignore line: [Building CXX object CMakeFiles/cmTC_066be.dir/CMakeCXXCompilerABI.cpp.o]
+  ignore line: [/usr/bin/c++     -o CMakeFiles/cmTC_066be.dir/CMakeCXXCompilerABI.cpp.o -c /usr/share/cmake-3.10/Modules/CMakeCXXCompilerABI.cpp]
+  ignore line: [Linking CXX executable cmTC_066be]
+  ignore line: [/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_066be.dir/link.txt --verbose=1]
+  ignore line: [/usr/bin/c++      -v -rdynamic CMakeFiles/cmTC_066be.dir/CMakeCXXCompilerABI.cpp.o  -o cmTC_066be ]
   ignore line: [Using built-in specs.]
   ignore line: [COLLECT_GCC=/usr/bin/c++]
   ignore line: [COLLECT_LTO_WRAPPER=/usr/lib/gcc/x86_64-linux-gnu/7/lto-wrapper]
@@ -279,13 +279,13 @@ Parsed CXX implicit link information from above output:
   ignore line: [gcc version 7.5.0 (Ubuntu 7.5.0-3ubuntu1~18.04) ]
   ignore line: [COMPILER_PATH=/usr/lib/gcc/x86_64-linux-gnu/7/:/usr/lib/gcc/x86_64-linux-gnu/7/:/usr/lib/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/7/:/usr/lib/gcc/x86_64-linux-gnu/]
   ignore line: [LIBRARY_PATH=/usr/lib/gcc/x86_64-linux-gnu/7/:/usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/7/../../../../lib/:/lib/x86_64-linux-gnu/:/lib/../lib/:/usr/lib/x86_64-linux-gnu/:/usr/lib/../lib/:/usr/lib/gcc/x86_64-linux-gnu/7/../../../:/lib/:/usr/lib/]
-  ignore line: [COLLECT_GCC_OPTIONS='-v' '-rdynamic' '-o' 'cmTC_c94a9' '-shared-libgcc' '-mtune=generic' '-march=x86-64']
-  link line: [ /usr/lib/gcc/x86_64-linux-gnu/7/collect2 -plugin /usr/lib/gcc/x86_64-linux-gnu/7/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-linux-gnu/7/lto-wrapper -plugin-opt=-fresolution=/tmp/cclhrLkn.res -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -export-dynamic -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -z now -z relro -o cmTC_c94a9 /usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/7/crtbeginS.o -L/usr/lib/gcc/x86_64-linux-gnu/7 -L/usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/7/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/7/../../.. CMakeFiles/cmTC_c94a9.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /usr/lib/gcc/x86_64-linux-gnu/7/crtendS.o /usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/crtn.o]
+  ignore line: [COLLECT_GCC_OPTIONS='-v' '-rdynamic' '-o' 'cmTC_066be' '-shared-libgcc' '-mtune=generic' '-march=x86-64']
+  link line: [ /usr/lib/gcc/x86_64-linux-gnu/7/collect2 -plugin /usr/lib/gcc/x86_64-linux-gnu/7/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-linux-gnu/7/lto-wrapper -plugin-opt=-fresolution=/tmp/ccADXfRJ.res -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -export-dynamic -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -z now -z relro -o cmTC_066be /usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/7/crtbeginS.o -L/usr/lib/gcc/x86_64-linux-gnu/7 -L/usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/7/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/7/../../.. CMakeFiles/cmTC_066be.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /usr/lib/gcc/x86_64-linux-gnu/7/crtendS.o /usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/crtn.o]
     arg [/usr/lib/gcc/x86_64-linux-gnu/7/collect2] ==> ignore
     arg [-plugin] ==> ignore
     arg [/usr/lib/gcc/x86_64-linux-gnu/7/liblto_plugin.so] ==> ignore
     arg [-plugin-opt=/usr/lib/gcc/x86_64-linux-gnu/7/lto-wrapper] ==> ignore
-    arg [-plugin-opt=-fresolution=/tmp/cclhrLkn.res] ==> ignore
+    arg [-plugin-opt=-fresolution=/tmp/ccADXfRJ.res] ==> ignore
     arg [-plugin-opt=-pass-through=-lgcc_s] ==> ignore
     arg [-plugin-opt=-pass-through=-lgcc] ==> ignore
     arg [-plugin-opt=-pass-through=-lc] ==> ignore
@@ -304,7 +304,7 @@ Parsed CXX implicit link information from above output:
     arg [-znow] ==> ignore
     arg [-zrelro] ==> ignore
     arg [-o] ==> ignore
-    arg [cmTC_c94a9] ==> ignore
+    arg [cmTC_066be] ==> ignore
     arg [/usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/Scrt1.o] ==> ignore
     arg [/usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/crti.o] ==> ignore
     arg [/usr/lib/gcc/x86_64-linux-gnu/7/crtbeginS.o] ==> ignore
@@ -316,7 +316,7 @@ Parsed CXX implicit link information from above output:
     arg [-L/usr/lib/x86_64-linux-gnu] ==> dir [/usr/lib/x86_64-linux-gnu]
     arg [-L/usr/lib/../lib] ==> dir [/usr/lib/../lib]
     arg [-L/usr/lib/gcc/x86_64-linux-gnu/7/../../..] ==> dir [/usr/lib/gcc/x86_64-linux-gnu/7/../../..]
-    arg [CMakeFiles/cmTC_c94a9.dir/CMakeCXXCompilerABI.cpp.o] ==> ignore
+    arg [CMakeFiles/cmTC_066be.dir/CMakeCXXCompilerABI.cpp.o] ==> ignore
     arg [-lstdc++] ==> lib [stdc++]
     arg [-lm] ==> lib [m]
     arg [-lgcc_s] ==> lib [gcc_s]
@@ -344,14 +344,14 @@ Parsed CXX implicit link information from above output:
 Detecting CXX [-std=c++1z] compiler features compiled with the following output:
 Change Dir: /home/lesslab5/Documents/simulator_ws/build/flightgoggles/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_4348d/fast"
-/usr/bin/make -f CMakeFiles/cmTC_4348d.dir/build.make CMakeFiles/cmTC_4348d.dir/build
+Run Build Command:"/usr/bin/make" "cmTC_fc7a3/fast"
+/usr/bin/make -f CMakeFiles/cmTC_fc7a3.dir/build.make CMakeFiles/cmTC_fc7a3.dir/build
 make[1]: Entering directory '/home/lesslab5/Documents/simulator_ws/build/flightgoggles/CMakeFiles/CMakeTmp'
-Building CXX object CMakeFiles/cmTC_4348d.dir/feature_tests.cxx.o
-/usr/bin/c++    -std=c++1z -o CMakeFiles/cmTC_4348d.dir/feature_tests.cxx.o -c /home/lesslab5/Documents/simulator_ws/build/flightgoggles/CMakeFiles/feature_tests.cxx
-Linking CXX executable cmTC_4348d
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_4348d.dir/link.txt --verbose=1
-/usr/bin/c++       -rdynamic CMakeFiles/cmTC_4348d.dir/feature_tests.cxx.o  -o cmTC_4348d 
+Building CXX object CMakeFiles/cmTC_fc7a3.dir/feature_tests.cxx.o
+/usr/bin/c++    -std=c++1z -o CMakeFiles/cmTC_fc7a3.dir/feature_tests.cxx.o -c /home/lesslab5/Documents/simulator_ws/build/flightgoggles/CMakeFiles/feature_tests.cxx
+Linking CXX executable cmTC_fc7a3
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_fc7a3.dir/link.txt --verbose=1
+/usr/bin/c++       -rdynamic CMakeFiles/cmTC_fc7a3.dir/feature_tests.cxx.o  -o cmTC_fc7a3 
 make[1]: Leaving directory '/home/lesslab5/Documents/simulator_ws/build/flightgoggles/CMakeFiles/CMakeTmp'
 
 
@@ -417,14 +417,14 @@ make[1]: Leaving directory '/home/lesslab5/Documents/simulator_ws/build/flightgo
 Detecting CXX [-std=c++14] compiler features compiled with the following output:
 Change Dir: /home/lesslab5/Documents/simulator_ws/build/flightgoggles/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_c4671/fast"
-/usr/bin/make -f CMakeFiles/cmTC_c4671.dir/build.make CMakeFiles/cmTC_c4671.dir/build
+Run Build Command:"/usr/bin/make" "cmTC_b8f8a/fast"
+/usr/bin/make -f CMakeFiles/cmTC_b8f8a.dir/build.make CMakeFiles/cmTC_b8f8a.dir/build
 make[1]: Entering directory '/home/lesslab5/Documents/simulator_ws/build/flightgoggles/CMakeFiles/CMakeTmp'
-Building CXX object CMakeFiles/cmTC_c4671.dir/feature_tests.cxx.o
-/usr/bin/c++    -std=c++14 -o CMakeFiles/cmTC_c4671.dir/feature_tests.cxx.o -c /home/lesslab5/Documents/simulator_ws/build/flightgoggles/CMakeFiles/feature_tests.cxx
-Linking CXX executable cmTC_c4671
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_c4671.dir/link.txt --verbose=1
-/usr/bin/c++       -rdynamic CMakeFiles/cmTC_c4671.dir/feature_tests.cxx.o  -o cmTC_c4671 
+Building CXX object CMakeFiles/cmTC_b8f8a.dir/feature_tests.cxx.o
+/usr/bin/c++    -std=c++14 -o CMakeFiles/cmTC_b8f8a.dir/feature_tests.cxx.o -c /home/lesslab5/Documents/simulator_ws/build/flightgoggles/CMakeFiles/feature_tests.cxx
+Linking CXX executable cmTC_b8f8a
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_b8f8a.dir/link.txt --verbose=1
+/usr/bin/c++       -rdynamic CMakeFiles/cmTC_b8f8a.dir/feature_tests.cxx.o  -o cmTC_b8f8a 
 make[1]: Leaving directory '/home/lesslab5/Documents/simulator_ws/build/flightgoggles/CMakeFiles/CMakeTmp'
 
 
@@ -490,14 +490,14 @@ make[1]: Leaving directory '/home/lesslab5/Documents/simulator_ws/build/flightgo
 Detecting CXX [-std=c++11] compiler features compiled with the following output:
 Change Dir: /home/lesslab5/Documents/simulator_ws/build/flightgoggles/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_65696/fast"
-/usr/bin/make -f CMakeFiles/cmTC_65696.dir/build.make CMakeFiles/cmTC_65696.dir/build
+Run Build Command:"/usr/bin/make" "cmTC_4b3eb/fast"
+/usr/bin/make -f CMakeFiles/cmTC_4b3eb.dir/build.make CMakeFiles/cmTC_4b3eb.dir/build
 make[1]: Entering directory '/home/lesslab5/Documents/simulator_ws/build/flightgoggles/CMakeFiles/CMakeTmp'
-Building CXX object CMakeFiles/cmTC_65696.dir/feature_tests.cxx.o
-/usr/bin/c++    -std=c++11 -o CMakeFiles/cmTC_65696.dir/feature_tests.cxx.o -c /home/lesslab5/Documents/simulator_ws/build/flightgoggles/CMakeFiles/feature_tests.cxx
-Linking CXX executable cmTC_65696
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_65696.dir/link.txt --verbose=1
-/usr/bin/c++       -rdynamic CMakeFiles/cmTC_65696.dir/feature_tests.cxx.o  -o cmTC_65696 
+Building CXX object CMakeFiles/cmTC_4b3eb.dir/feature_tests.cxx.o
+/usr/bin/c++    -std=c++11 -o CMakeFiles/cmTC_4b3eb.dir/feature_tests.cxx.o -c /home/lesslab5/Documents/simulator_ws/build/flightgoggles/CMakeFiles/feature_tests.cxx
+Linking CXX executable cmTC_4b3eb
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_4b3eb.dir/link.txt --verbose=1
+/usr/bin/c++       -rdynamic CMakeFiles/cmTC_4b3eb.dir/feature_tests.cxx.o  -o cmTC_4b3eb 
 make[1]: Leaving directory '/home/lesslab5/Documents/simulator_ws/build/flightgoggles/CMakeFiles/CMakeTmp'
 
 
@@ -563,14 +563,14 @@ make[1]: Leaving directory '/home/lesslab5/Documents/simulator_ws/build/flightgo
 Detecting CXX [-std=c++98] compiler features compiled with the following output:
 Change Dir: /home/lesslab5/Documents/simulator_ws/build/flightgoggles/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_94cff/fast"
-/usr/bin/make -f CMakeFiles/cmTC_94cff.dir/build.make CMakeFiles/cmTC_94cff.dir/build
+Run Build Command:"/usr/bin/make" "cmTC_86f73/fast"
+/usr/bin/make -f CMakeFiles/cmTC_86f73.dir/build.make CMakeFiles/cmTC_86f73.dir/build
 make[1]: Entering directory '/home/lesslab5/Documents/simulator_ws/build/flightgoggles/CMakeFiles/CMakeTmp'
-Building CXX object CMakeFiles/cmTC_94cff.dir/feature_tests.cxx.o
-/usr/bin/c++    -std=c++98 -o CMakeFiles/cmTC_94cff.dir/feature_tests.cxx.o -c /home/lesslab5/Documents/simulator_ws/build/flightgoggles/CMakeFiles/feature_tests.cxx
-Linking CXX executable cmTC_94cff
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_94cff.dir/link.txt --verbose=1
-/usr/bin/c++       -rdynamic CMakeFiles/cmTC_94cff.dir/feature_tests.cxx.o  -o cmTC_94cff 
+Building CXX object CMakeFiles/cmTC_86f73.dir/feature_tests.cxx.o
+/usr/bin/c++    -std=c++98 -o CMakeFiles/cmTC_86f73.dir/feature_tests.cxx.o -c /home/lesslab5/Documents/simulator_ws/build/flightgoggles/CMakeFiles/feature_tests.cxx
+Linking CXX executable cmTC_86f73
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_86f73.dir/link.txt --verbose=1
+/usr/bin/c++       -rdynamic CMakeFiles/cmTC_86f73.dir/feature_tests.cxx.o  -o cmTC_86f73 
 make[1]: Leaving directory '/home/lesslab5/Documents/simulator_ws/build/flightgoggles/CMakeFiles/CMakeTmp'
 
 
@@ -634,28 +634,28 @@ make[1]: Leaving directory '/home/lesslab5/Documents/simulator_ws/build/flightgo
 Determining if the include file pthread.h exists passed with the following output:
 Change Dir: /home/lesslab5/Documents/simulator_ws/build/flightgoggles/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_80874/fast"
-/usr/bin/make -f CMakeFiles/cmTC_80874.dir/build.make CMakeFiles/cmTC_80874.dir/build
+Run Build Command:"/usr/bin/make" "cmTC_92abf/fast"
+/usr/bin/make -f CMakeFiles/cmTC_92abf.dir/build.make CMakeFiles/cmTC_92abf.dir/build
 make[1]: Entering directory '/home/lesslab5/Documents/simulator_ws/build/flightgoggles/CMakeFiles/CMakeTmp'
-Building C object CMakeFiles/cmTC_80874.dir/CheckIncludeFile.c.o
-/usr/bin/cc    -o CMakeFiles/cmTC_80874.dir/CheckIncludeFile.c.o   -c /home/lesslab5/Documents/simulator_ws/build/flightgoggles/CMakeFiles/CMakeTmp/CheckIncludeFile.c
-Linking C executable cmTC_80874
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_80874.dir/link.txt --verbose=1
-/usr/bin/cc      -rdynamic CMakeFiles/cmTC_80874.dir/CheckIncludeFile.c.o  -o cmTC_80874 
+Building C object CMakeFiles/cmTC_92abf.dir/CheckIncludeFile.c.o
+/usr/bin/cc    -o CMakeFiles/cmTC_92abf.dir/CheckIncludeFile.c.o   -c /home/lesslab5/Documents/simulator_ws/build/flightgoggles/CMakeFiles/CMakeTmp/CheckIncludeFile.c
+Linking C executable cmTC_92abf
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_92abf.dir/link.txt --verbose=1
+/usr/bin/cc      -rdynamic CMakeFiles/cmTC_92abf.dir/CheckIncludeFile.c.o  -o cmTC_92abf 
 make[1]: Leaving directory '/home/lesslab5/Documents/simulator_ws/build/flightgoggles/CMakeFiles/CMakeTmp'
 
 
 Determining if the function pthread_create exists in the pthread passed with the following output:
 Change Dir: /home/lesslab5/Documents/simulator_ws/build/flightgoggles/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_4e8dc/fast"
-/usr/bin/make -f CMakeFiles/cmTC_4e8dc.dir/build.make CMakeFiles/cmTC_4e8dc.dir/build
+Run Build Command:"/usr/bin/make" "cmTC_aefa6/fast"
+/usr/bin/make -f CMakeFiles/cmTC_aefa6.dir/build.make CMakeFiles/cmTC_aefa6.dir/build
 make[1]: Entering directory '/home/lesslab5/Documents/simulator_ws/build/flightgoggles/CMakeFiles/CMakeTmp'
-Building C object CMakeFiles/cmTC_4e8dc.dir/CheckFunctionExists.c.o
-/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=pthread_create   -o CMakeFiles/cmTC_4e8dc.dir/CheckFunctionExists.c.o   -c /usr/share/cmake-3.10/Modules/CheckFunctionExists.c
-Linking C executable cmTC_4e8dc
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_4e8dc.dir/link.txt --verbose=1
-/usr/bin/cc  -DCHECK_FUNCTION_EXISTS=pthread_create    -rdynamic CMakeFiles/cmTC_4e8dc.dir/CheckFunctionExists.c.o  -o cmTC_4e8dc -lpthread 
+Building C object CMakeFiles/cmTC_aefa6.dir/CheckFunctionExists.c.o
+/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=pthread_create   -o CMakeFiles/cmTC_aefa6.dir/CheckFunctionExists.c.o   -c /usr/share/cmake-3.10/Modules/CheckFunctionExists.c
+Linking C executable cmTC_aefa6
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_aefa6.dir/link.txt --verbose=1
+/usr/bin/cc  -DCHECK_FUNCTION_EXISTS=pthread_create    -rdynamic CMakeFiles/cmTC_aefa6.dir/CheckFunctionExists.c.o  -o cmTC_aefa6 -lpthread 
 make[1]: Leaving directory '/home/lesslab5/Documents/simulator_ws/build/flightgoggles/CMakeFiles/CMakeTmp'
 
 

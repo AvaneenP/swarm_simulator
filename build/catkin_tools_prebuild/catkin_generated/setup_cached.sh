@@ -12,4 +12,4 @@ export LD_LIBRARY_PATH='/opt/ros/melodic/lib'
 export PKG_CONFIG_PATH='/opt/ros/melodic/lib/pkgconfig'
 export PWD='/home/lesslab5/Documents/simulator_ws/build/catkin_tools_prebuild'
 export ROSLISP_PACKAGE_DIRECTORIES="/home/lesslab5/Documents/simulator_ws/devel/.private/catkin_tools_prebuild/share/common-lisp:$ROSLISP_PACKAGE_DIRECTORIES"
-export ROS_PACKAGE_PATH='/home/lesslab5/Documents/simulator_ws/build/catkin_tools_prebuild:/home/lesslab5/Documents/simulator_ws/src/flightcontroller:/home/lesslab5/Documents/simulator_ws/src/flightgoggles/flightgoggles:/home/lesslab5/Documents/simulator_ws/src/flightgoggles/flightgoggles_uav_dynamics:/home/lesslab5/Documents/simulator_ws/src/mission_waypoints:/home/lesslab5/Documents/simulator_ws/src/sensor_simulation:/home/lesslab5/Documents/simulator_ws/src/visualizer:/opt/ros/melodic/share'
+export ROS_PACKAGE_PATH="/home/lesslab5/Documents/simulator_ws/build/catkin_tools_prebuild:$ROS_PACKAGE_PATH"

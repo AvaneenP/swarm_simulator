@@ -88,6 +88,6 @@
     <arg name="uavName3" value="$(arg name3)" />
   </include>
 
-  <node pkg="mission_waypoints" type="waypoint_publisher.py" name="waypoint_reader_node"></node>
+  <node pkg="mission_waypoints" type="waypoint_publisher.py" name="waypoint_reader_node" output="screen"></node>
 
 </launch>

@@ -21,21 +21,34 @@ class WaypointReader():
     self.curr_pos2 = PoseStamped()
     self.curr_pos3 = PoseStamped()
 
-    self.waypoint_file = open('/home/lesslab5/Documents/simulator_ws/src/mission_waypoints/src/mission_waypoints.txt', 'r')
+    waypoint_file = open('/home/lesslab5/Documents/simulator_ws/src/mission_waypoints/src/mission_waypoints.txt', 'r')
+
+    self.coordinates = []
+
+    for c in waypoint_file:
+      c = c[1:len(c)-2]
+      temp = c.split(',')
+      # print(temp)
+      self.coordinates.append(float(temp[0]))
+      self.coordinates.append(float(temp[1]))
+      self.coordinates.append(float(temp[2]))
+
 
     # Create the position messages we are going to be sending
     self.waypoint1 = Vector3()
     self.waypoint1.x = 0
     self.waypoint1.y = 0
-    self.waypoint1.z = 3
+    self.waypoint1.z = 2
     self.waypoint2 = Vector3()
     self.waypoint2.x = 0
     self.waypoint2.y = 0
-    self.waypoint2.z = 3
+    self.waypoint2.z = 4
     self.waypoint3 = Vector3()
     self.waypoint3.x = 0
     self.waypoint3.y = 0
-    self.waypoint3.z = 3
+    self.waypoint3.z = 6
+
+    self.waypoint_file = open('/home/lesslab5/Documents/simulator_ws/src/mission_waypoints/src/mission_waypoints.txt', 'r')
 
     # Call the mainloop of our class
     self.mainloop()
@@ -62,53 +75,56 @@ class WaypointReader():
     # Set the rate of this loop
     rate = rospy.Rate(20)
 
-    self.position_pub1.publish(self.waypoint1)
-    self.position_pub2.publish(self.waypoint2)
-    self.position_pub3.publish(self.waypoint3)
-
+    count = 0
 
     # While ROS is still running
     while not rospy.is_shutdown():
-      for c in self.waypoint_file:
-        c = c[1:len(c)-2]
-        if c=="/":
-          continue
-        coordinates = c.split(',')
-        
-        x_diff1 = pow(self.curr_pos1.pose.position.x - self.waypoint1.x, 2)
-        y_diff1 = pow(self.curr_pos1.pose.position.y - self.waypoint1.y, 2)
-        z_diff1 = pow(self.curr_pos1.pose.position.z - self.waypoint1.z, 2)
-        diff1 = math.sqrt(x_diff1 + y_diff1 + z_diff1)
+      # print(self.waypoint1)
+      # print(self.waypoint2)
+      # print(self.waypoint3)
+      
+      self.position_pub1.publish(self.waypoint1)
+      self.position_pub2.publish(self.waypoint2)
+      self.position_pub3.publish(self.waypoint3)
 
-        x_diff2 = pow(self.curr_pos2.pose.position.x - self.waypoint2.x, 2)
-        y_diff2 = pow(self.curr_pos2.pose.position.y - self.waypoint2.y, 2)
-        z_diff2 = pow(self.curr_pos2.pose.position.z - self.waypoint2.z, 2)
-        diff2 = math.sqrt(x_diff2 + y_diff2 + z_diff2)
+      x_diff1 = pow(self.curr_pos1.pose.position.x - self.waypoint1.x, 2)
+      y_diff1 = pow(self.curr_pos1.pose.position.y - self.waypoint1.y, 2)
+      z_diff1 = pow(self.curr_pos1.pose.position.z - self.waypoint1.z, 2)
+      diff1 = math.sqrt(x_diff1 + y_diff1 + z_diff1)
 
-        x_diff3 = pow(self.curr_pos3.pose.position.x - self.waypoint3.x, 2)
-        y_diff3 = pow(self.curr_pos3.pose.position.y - self.waypoint3.y, 2)
-        z_diff3 = pow(self.curr_pos3.pose.position.z - self.waypoint3.z, 2)
-        diff3 = math.sqrt(x_diff3 + y_diff3 + z_diff3)
+      x_diff2 = pow(self.curr_pos2.pose.position.x - self.waypoint2.x, 2)
+      y_diff2 = pow(self.curr_pos2.pose.position.y - self.waypoint2.y, 2)
+      z_diff2 = pow(self.curr_pos2.pose.position.z - self.waypoint2.z, 2)
+      diff2 = math.sqrt(x_diff2 + y_diff2 + z_diff2)
 
-        if diff1 < 0.3 and diff2 < 0.3 and diff3 < 0.3:
-          self.waypoint1.x = coordinates[0]
-          self.waypoint1.y = coordinates[1]
-          self.waypoint1.z = coordinates[2]
-          self.waypoint2.x = coordinates[3]
-          self.waypoint2.y = coordinates[4]
-          self.waypoint2.z = coordinates[5]
-          self.waypoint3.x = coordinates[6]
-          self.waypoint3.y = coordinates[7]
-          self.waypoint3.z = coordinates[8]
-        
-        self.position_pub1.publish(self.waypoint1)
-        self.position_pub2.publish(self.waypoint2)
-        self.position_pub3.publish(self.waypoint3)
+      x_diff3 = pow(self.curr_pos3.pose.position.x - self.waypoint3.x, 2)
+      y_diff3 = pow(self.curr_pos3.pose.position.y - self.waypoint3.y, 2)
+      z_diff3 = pow(self.curr_pos3.pose.position.z - self.waypoint3.z, 2)
+      diff3 = math.sqrt(x_diff3 + y_diff3 + z_diff3)
+
+      if diff1 < 0.3 and diff2 < 0.3 and diff3 < 0.3 and count != len(self.coordinates):
+        self.waypoint1.x = self.coordinates[count]
+        count += 1
+        self.waypoint1.y = self.coordinates[count]
+        count += 1
+        self.waypoint1.z = self.coordinates[count]
+        count += 1
+        self.waypoint2.x = self.coordinates[count]
+        count += 1
+        self.waypoint2.y = self.coordinates[count]
+        count += 1
+        self.waypoint2.z = self.coordinates[count]
+        count += 1
+        self.waypoint3.x = self.coordinates[count]
+        count += 1
+        self.waypoint3.y = self.coordinates[count]
+        count += 1
+        self.waypoint3.z = self.coordinates[count]
+        count += 1
+
 
       # Sleep for the remainder of the loop
       rate.sleep()
-
-
 
 if __name__ == '__main__':
   rospy.init_node('waypoint_reader_node')

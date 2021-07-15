@@ -1,22 +1,22 @@
 Determining if the pthread_create exist failed with the following output:
 Change Dir: /home/lesslab5/Documents/simulator_ws/build/mission_waypoints/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_d36eb/fast"
-/usr/bin/make -f CMakeFiles/cmTC_d36eb.dir/build.make CMakeFiles/cmTC_d36eb.dir/build
+Run Build Command:"/usr/bin/make" "cmTC_98c49/fast"
+/usr/bin/make -f CMakeFiles/cmTC_98c49.dir/build.make CMakeFiles/cmTC_98c49.dir/build
 make[1]: Entering directory '/home/lesslab5/Documents/simulator_ws/build/mission_waypoints/CMakeFiles/CMakeTmp'
-Building C object CMakeFiles/cmTC_d36eb.dir/CheckSymbolExists.c.o
-/usr/bin/cc    -o CMakeFiles/cmTC_d36eb.dir/CheckSymbolExists.c.o   -c /home/lesslab5/Documents/simulator_ws/build/mission_waypoints/CMakeFiles/CMakeTmp/CheckSymbolExists.c
-Linking C executable cmTC_d36eb
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_d36eb.dir/link.txt --verbose=1
-/usr/bin/cc      -rdynamic CMakeFiles/cmTC_d36eb.dir/CheckSymbolExists.c.o  -o cmTC_d36eb 
-CMakeFiles/cmTC_d36eb.dir/CheckSymbolExists.c.o: In function `main':
+Building C object CMakeFiles/cmTC_98c49.dir/CheckSymbolExists.c.o
+/usr/bin/cc    -o CMakeFiles/cmTC_98c49.dir/CheckSymbolExists.c.o   -c /home/lesslab5/Documents/simulator_ws/build/mission_waypoints/CMakeFiles/CMakeTmp/CheckSymbolExists.c
+Linking C executable cmTC_98c49
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_98c49.dir/link.txt --verbose=1
+/usr/bin/cc      -rdynamic CMakeFiles/cmTC_98c49.dir/CheckSymbolExists.c.o  -o cmTC_98c49 
+CMakeFiles/cmTC_98c49.dir/CheckSymbolExists.c.o: In function `main':
 CheckSymbolExists.c:(.text+0x1b): undefined reference to `pthread_create'
 collect2: error: ld returned 1 exit status
-CMakeFiles/cmTC_d36eb.dir/build.make:97: recipe for target 'cmTC_d36eb' failed
-make[1]: *** [cmTC_d36eb] Error 1
+CMakeFiles/cmTC_98c49.dir/build.make:97: recipe for target 'cmTC_98c49' failed
+make[1]: *** [cmTC_98c49] Error 1
 make[1]: Leaving directory '/home/lesslab5/Documents/simulator_ws/build/mission_waypoints/CMakeFiles/CMakeTmp'
-Makefile:126: recipe for target 'cmTC_d36eb/fast' failed
-make: *** [cmTC_d36eb/fast] Error 2
+Makefile:126: recipe for target 'cmTC_98c49/fast' failed
+make: *** [cmTC_98c49/fast] Error 2
 
 File /home/lesslab5/Documents/simulator_ws/build/mission_waypoints/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
 /* */
@@ -36,20 +36,20 @@ int main(int argc, char** argv)
 Determining if the function pthread_create exists in the pthreads failed with the following output:
 Change Dir: /home/lesslab5/Documents/simulator_ws/build/mission_waypoints/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_bf371/fast"
-/usr/bin/make -f CMakeFiles/cmTC_bf371.dir/build.make CMakeFiles/cmTC_bf371.dir/build
+Run Build Command:"/usr/bin/make" "cmTC_65ac9/fast"
+/usr/bin/make -f CMakeFiles/cmTC_65ac9.dir/build.make CMakeFiles/cmTC_65ac9.dir/build
 make[1]: Entering directory '/home/lesslab5/Documents/simulator_ws/build/mission_waypoints/CMakeFiles/CMakeTmp'
-Building C object CMakeFiles/cmTC_bf371.dir/CheckFunctionExists.c.o
-/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=pthread_create   -o CMakeFiles/cmTC_bf371.dir/CheckFunctionExists.c.o   -c /usr/share/cmake-3.10/Modules/CheckFunctionExists.c
-Linking C executable cmTC_bf371
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_bf371.dir/link.txt --verbose=1
-/usr/bin/cc  -DCHECK_FUNCTION_EXISTS=pthread_create    -rdynamic CMakeFiles/cmTC_bf371.dir/CheckFunctionExists.c.o  -o cmTC_bf371 -lpthreads 
+Building C object CMakeFiles/cmTC_65ac9.dir/CheckFunctionExists.c.o
+/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=pthread_create   -o CMakeFiles/cmTC_65ac9.dir/CheckFunctionExists.c.o   -c /usr/share/cmake-3.10/Modules/CheckFunctionExists.c
+Linking C executable cmTC_65ac9
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_65ac9.dir/link.txt --verbose=1
+/usr/bin/cc  -DCHECK_FUNCTION_EXISTS=pthread_create    -rdynamic CMakeFiles/cmTC_65ac9.dir/CheckFunctionExists.c.o  -o cmTC_65ac9 -lpthreads 
 /usr/bin/ld: cannot find -lpthreads
 collect2: error: ld returned 1 exit status
-CMakeFiles/cmTC_bf371.dir/build.make:97: recipe for target 'cmTC_bf371' failed
-make[1]: *** [cmTC_bf371] Error 1
+CMakeFiles/cmTC_65ac9.dir/build.make:97: recipe for target 'cmTC_65ac9' failed
+make[1]: *** [cmTC_65ac9] Error 1
 make[1]: Leaving directory '/home/lesslab5/Documents/simulator_ws/build/mission_waypoints/CMakeFiles/CMakeTmp'
-Makefile:126: recipe for target 'cmTC_bf371/fast' failed
-make: *** [cmTC_bf371/fast] Error 2
+Makefile:126: recipe for target 'cmTC_65ac9/fast' failed
+make: *** [cmTC_65ac9/fast] Error 2
 
 
