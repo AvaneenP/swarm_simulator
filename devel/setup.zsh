@@ -1,1 +1,0 @@
-/home/lesslab5/Documents/simulator_ws/devel/.private/catkin_tools_prebuild/setup.zsh

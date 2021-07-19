@@ -1,1 +1,0 @@
-/home/lesslab5/Documents/simulator_ws/devel/.private/flightcontroller/share/flightcontroller/cmake/flightcontrollerConfig-version.cmake

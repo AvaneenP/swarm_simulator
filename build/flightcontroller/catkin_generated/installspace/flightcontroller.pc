@@ -1,8 +1,0 @@
-prefix=/home/lesslab5/Documents/simulator_ws/install
-
-Name: flightcontroller
-Description: Description of flightcontroller
-Version: 0.0.0
-Cflags: 
-Libs: -L${prefix}/lib 
-Requires: 

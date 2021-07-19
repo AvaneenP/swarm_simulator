@@ -1,8 +1,0 @@
-prefix=/home/lesslab5/Documents/simulator_ws/install
-
-Name: mission_waypoints
-Description: Description of mission_waypoints
-Version: 0.0.0
-Cflags: 
-Libs: -L${prefix}/lib 
-Requires: 

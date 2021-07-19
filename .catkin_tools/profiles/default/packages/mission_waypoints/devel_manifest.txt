@@ -1,5 +1,0 @@
-mission_waypoints
-/home/lesslab5/Documents/simulator_ws/devel/.private/mission_waypoints/cmake.lock /home/lesslab5/Documents/simulator_ws/devel/./cmake.lock
-/home/lesslab5/Documents/simulator_ws/devel/.private/mission_waypoints/share/mission_waypoints/cmake/mission_waypointsConfig-version.cmake /home/lesslab5/Documents/simulator_ws/devel/share/mission_waypoints/cmake/mission_waypointsConfig-version.cmake
-/home/lesslab5/Documents/simulator_ws/devel/.private/mission_waypoints/share/mission_waypoints/cmake/mission_waypointsConfig.cmake /home/lesslab5/Documents/simulator_ws/devel/share/mission_waypoints/cmake/mission_waypointsConfig.cmake
-/home/lesslab5/Documents/simulator_ws/devel/.private/mission_waypoints/lib/pkgconfig/mission_waypoints.pc /home/lesslab5/Documents/simulator_ws/devel/lib/pkgconfig/mission_waypoints.pc
