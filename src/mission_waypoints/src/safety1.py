@@ -43,18 +43,27 @@ class SafetyCage():
     # While ROS is still running
     while not rospy.is_shutdown():
       
-      if self.curr_loc.pose.position.x < 10 and self.curr_loc.pose.position.x > -10 and self.curr_loc.pose.position.y < 10 and self.curr_loc.pose.position.y > -10 and self.curr_loc.pose.position.z < 10 and self.curr_loc.pose.position.z >= 0:
-        self.velocity_waypoints = self.velocity_waypoints_unverified
-        self.velocity_pub.publish(self.velocity_waypoints)
+      potential_x_pos = self.curr_loc.pose.position.x + self.velocity_waypoints_unverified.x
+      potential_y_pos = self.curr_loc.pose.position.y + self.velocity_waypoints_unverified.y
+      potential_z_pos = self.curr_loc.pose.position.z + self.velocity_waypoints_unverified.z
+
+      if potential_x_pos > -10 and potential_x_pos < 10:
+        self.velocity_waypoints.x = self.velocity_waypoints_unverified.x
       else:
-        # self.velocity_waypoints.x = -1 * self.velocity_waypoints.x
-        # self.velocity_waypoints.y = -1 * self.velocity_waypoints.y
-        # self.velocity_waypoints.z = -1 * self.velocity_waypoints.z
-        self.velocity_waypoints.x = 0
-        self.velocity_waypoints.y = 0
-        self.velocity_waypoints.z = 0
-        self.velocity_pub.publish(self.velocity_waypoints)
-        # rospy.sleep(5.)
+        self.velocity_waypoints.x = -1 * self.velocity_waypoints_unverified.x
+
+      if potential_y_pos > -10 and potential_y_pos < 10:
+        self.velocity_waypoints.y = self.velocity_waypoints_unverified.y
+      else:
+        self.velocity_waypoints.y = -1 * self.velocity_waypoints_unverified.y
+
+      if potential_z_pos > 1 and potential_z_pos < 10:
+        self.velocity_waypoints.z = self.velocity_waypoints_unverified.z
+      else:
+        self.velocity_waypoints.z = -1 * self.velocity_waypoints_unverified.z
+
+      self.velocity_pub.publish(self.velocity_waypoints)
+      self.velocity_unver_pub.publish(self.velocity_waypoints)
 
       # Sleep for the remainder of the loop
       rate.sleep()

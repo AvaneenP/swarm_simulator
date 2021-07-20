@@ -88,10 +88,11 @@
     <arg name="uavName3" value="$(arg name3)" />
   </include>
 
-  <!-- <node pkg="mission_waypoints" type="waypoint_publisher.py" name="waypoint_reader_node" output="screen"></node> -->
+  <node pkg="mission_waypoints" type="waypoint_publisher.py" name="waypoint_reader_node" output="screen"></node>
 
   <node name="keyboard" pkg="keyboard" type="keyboard"></node>
   <node pkg="mission_waypoints" type="vel_controller.py" name="keyboard_velocity_node" output="screen"></node>
   <node pkg="mission_waypoints" type="safety1.py" name="safety_cage_node" output="screen"></node>
+  <node pkg="mission_waypoints" type="sphere1.py" name="sphere_of_influence_node1" output="screen"></node>
 
 </launch>

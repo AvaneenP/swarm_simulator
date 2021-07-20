@@ -11,13 +11,17 @@ class KeyboardVelocity():
   def __init__(self):
     # Create the publisher and subscriber
     self.keyboard_sub = rospy.Subscriber('/keyboard/keydown', Key, self.get_key, queue_size = 1)
+    self.velocity_wayp_sub = rospy.Subscriber('/uav1/input/velocity', Vector3, self.get_wayp, queue_size = 1)
 
     self.velocity_pub = rospy.Publisher('/uav1/input/unverified_velocity', Vector3, queue_size=1)
 
     self.velocity_waypoints = Vector3()
-    self.velocity_waypoints.x = 0
-    self.velocity_waypoints.y = 0
-    self.velocity_waypoints.z = 0
+    self.velocity_waypoints.x = random.randrange(-3, 4)
+    self.velocity_waypoints.y = random.randrange(-3, 4)
+    self.velocity_waypoints.z = random.randrange(-3, 4)
+    # self.velocity_waypoints.x = 0
+    # self.velocity_waypoints.y = 0
+    # self.velocity_waypoints.z = 0
 
     # Create a variable we will use to hold the key code
     self.key_code = -1
@@ -29,18 +33,19 @@ class KeyboardVelocity():
   def get_key(self, msg):
     self.key_code = msg.code
 
+  def get_wayp(self, msg):
+    self.velocity_waypoints = copy.deepcopy(msg)
+
   def mainloop(self):
     # Set the rate of this loop
-    rate = rospy.Rate(5)
+    rate = rospy.Rate(20)
 
     # While ROS is still running
     while not rospy.is_shutdown():
 
-      self.velocity_pub.publish(self.velocity_waypoints)
-
-      self.velocity_waypoints.x = random.randint(-10,10)
-      self.velocity_waypoints.y = random.randint(-10,10)
-      self.velocity_waypoints.z = random.randint(-5,5)
+      # self.velocity_waypoints.x = random.randrange(-3, 4)
+      # self.velocity_waypoints.y = random.randrange(-3, 4)
+      # self.velocity_waypoints.z = random.randrange(-3, 4)
 
       # West
       if self.key_code == Key.KEY_LEFT or self.key_code == Key.KEY_a:
@@ -67,6 +72,7 @@ class KeyboardVelocity():
         print("velocity z -1")
         self.velocity_waypoints.z -= 1
       
+      self.velocity_pub.publish(self.velocity_waypoints)
 
       # Reset the code
       if self.key_code != -1:
