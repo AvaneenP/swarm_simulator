@@ -18,7 +18,7 @@ class KeyboardVelocity():
     self.velocity_waypoints = Vector3()
     self.velocity_waypoints.x = random.randrange(-3, 4)
     self.velocity_waypoints.y = random.randrange(-3, 4)
-    self.velocity_waypoints.z = random.randrange(-3, 4)
+    self.velocity_waypoints.z = random.randrange(1, 4)
     # self.velocity_waypoints.x = 0
     # self.velocity_waypoints.y = 0
     # self.velocity_waypoints.z = 0

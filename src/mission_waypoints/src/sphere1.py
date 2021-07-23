@@ -55,10 +55,10 @@ class InfluenceSphere1():
       diff_1and2 = math.sqrt( pow(self.curr_loc1.pose.position.x - self.curr_loc2.pose.position.x, 2) + pow(self.curr_loc1.pose.position.y - self.curr_loc2.pose.position.y, 2) + pow(self.curr_loc1.pose.position.z - self.curr_loc2.pose.position.z, 2) )
 
       if diff_1and2 < 1:
-        self.obj_detected.data = "uav2 is within the sphere of influence of uav1"
+        self.obj_detected.data = "uav2"
 
       if diff_1and3 < 1:
-        self.obj_detected.data = "uav3 is within the sphere of influence of uav1"
+        self.obj_detected.data = "uav3"
         
       self.sphere1.publish(self.obj_detected)
       self.obj_detected.data = ""
