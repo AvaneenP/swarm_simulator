@@ -16,12 +16,10 @@ class KeyboardVelocity():
     self.velocity_pub = rospy.Publisher('/uav1/input/unverified_velocity', Vector3, queue_size=1)
 
     self.velocity_waypoints = Vector3()
-    self.velocity_waypoints.x = random.randrange(-3, 4)
-    self.velocity_waypoints.y = random.randrange(-3, 4)
-    self.velocity_waypoints.z = random.randrange(1, 4)
-    # self.velocity_waypoints.x = 0
-    # self.velocity_waypoints.y = 0
-    # self.velocity_waypoints.z = 0
+
+    self.velocity_waypoints.x = 0
+    self.velocity_waypoints.y = 0
+    self.velocity_waypoints.z = 0
 
     # Create a variable we will use to hold the key code
     self.key_code = -1

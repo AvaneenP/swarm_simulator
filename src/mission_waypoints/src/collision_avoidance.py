@@ -8,6 +8,10 @@ from std_msgs.msg import String
 from geometry_msgs.msg import Vector3
 from geometry_msgs.msg import PoseStamped
 
+from matplotlib import pyplot
+from shapely.geometry import LineString, Polygon
+from shapely.figures import SIZE, set_limits, plot_coords, plot_bounds, plot_line_issimple
+
 class CollisionAvoid():
   def __init__(self):
     # Create the publisher and subscriber
@@ -73,6 +77,44 @@ class CollisionAvoid():
     # While ROS is still running
     while not rospy.is_shutdown():        
 
+      if self.obj_detected.data == "uav2":
+        # check if uav2 and uav1 are on a collision course
+        uav1_pos = LineString([[self.curr_loc1.pose.position.x, self.curr_loc1.pose.position.y, self.curr_loc1.pose.position.z],[self.curr_loc1.pose.position.x + self.vel_wayp1.x, self.curr_loc1.pose.position.y + self.vel_wayp1.y, self.curr_loc1.pose.position.z + self.vel_wayp1.z]])
+
+        uav2_pos = LineString([[self.curr_loc2.pose.position.x, self.curr_loc2.pose.position.y, self.curr_loc2.pose.position.z],[self.curr_loc2.pose.position.x + self.vel_wayp2.x, self.curr_loc2.pose.position.y + self.vel_wayp2.y, self.curr_loc2.pose.position.z + self.vel_wayp2.z]])
+
+        print("uav2 is in sphere; collision:", uav1_pos.intersects(uav2_pos))
+        print(uav1_pos.intersection(uav2_pos))
+
+        if uav1_pos.intersects(uav2_pos):
+          self.vel_wayp1.x = -1 * self.vel_wayp1.x
+          self.vel_wayp1.y = -1 * self.vel_wayp1.y
+          self.vel_wayp1.z = -1 * self.vel_wayp1.z
+          self.vel_wayp2.x = -1 * self.vel_wayp2.x
+          self.vel_wayp2.y = -1 * self.vel_wayp2.y
+          self.vel_wayp2.z = -1 * self.vel_wayp2.z
+          self.velocity1_pub.publish(self.vel_wayp1)
+          self.velocity2_pub.publish(self.vel_wayp2)
+
+
+      if self.obj_detected.data == "uav3":
+        # check if uav3 and uav1 are on a collision course
+        uav1_pos = LineString([[self.curr_loc1.pose.position.x, self.curr_loc1.pose.position.y, self.curr_loc1.pose.position.z],[self.curr_loc1.pose.position.x + self.vel_wayp1.x, self.curr_loc1.pose.position.y + self.vel_wayp1.y, self.curr_loc1.pose.position.z + self.vel_wayp1.z]])
+
+        uav3_pos = LineString([[self.curr_loc3.pose.position.x, self.curr_loc3.pose.position.y, self.curr_loc3.pose.position.z],[self.curr_loc3.pose.position.x + self.vel_wayp3.x, self.curr_loc3.pose.position.y + self.vel_wayp3.y, self.curr_loc3.pose.position.z + self.vel_wayp3.z]])
+
+        print("uav3 is in sphere; collision:", uav1_pos.intersects(uav3_pos))
+        print(uav1_pos.intersection(uav3_pos))
+
+        if uav1_pos.intersects(uav3_pos):
+          self.vel_wayp1.x = -1 * self.vel_wayp1.x
+          self.vel_wayp1.y = -1 * self.vel_wayp1.y
+          self.vel_wayp1.z = -1 * self.vel_wayp1.z
+          self.vel_wayp3.x = -1 * self.vel_wayp2.x
+          self.vel_wayp3.y = -1 * self.vel_wayp2.y
+          self.vel_wayp3.z = -1 * self.vel_wayp2.z
+          self.velocity1_pub.publish(self.vel_wayp1)
+          self.velocity3_pub.publish(self.vel_wayp3)
 
       # Sleep for the remainder of the loop
       rate.sleep()

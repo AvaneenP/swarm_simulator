@@ -45,9 +45,9 @@
       <arg name="uavName" value="$(arg name2)" />
     </include>
 
-    <include file="$(find flightcontroller)/launch/position.launch">
+    <!-- <include file="$(find flightcontroller)/launch/position.launch">
       <arg name="uavName" value="$(arg name2)" />
-    </include>
+    </include> -->
 
     <include file="$(find sensor_simulation)/launch/sensors.launch">
       <arg name="uavName" value="$(arg name2)" />
@@ -70,9 +70,9 @@
       <arg name="uavName" value="$(arg name3)" />
     </include>
 
-    <include file="$(find flightcontroller)/launch/position.launch">
+    <!-- <include file="$(find flightcontroller)/launch/position.launch">
       <arg name="uavName" value="$(arg name3)" />
-    </include>
+    </include> -->
 
     <include file="$(find sensor_simulation)/launch/sensors.launch">
       <arg name="uavName" value="$(arg name3)" />
@@ -90,9 +90,10 @@
 
   <node pkg="mission_waypoints" type="waypoint_publisher.py" name="waypoint_reader_node" output="screen"></node>
 
-  <node name="keyboard" pkg="keyboard" type="keyboard"></node>
+  <!-- <node name="keyboard" pkg="keyboard" type="keyboard"></node>
   <node pkg="mission_waypoints" type="vel_controller.py" name="keyboard_velocity_node" output="screen"></node>
   <node pkg="mission_waypoints" type="safety1.py" name="safety_cage_node" output="screen"></node>
   <node pkg="mission_waypoints" type="sphere1.py" name="sphere_of_influence_node1" output="screen"></node>
+  <node pkg="mission_waypoints" type="collision_avoidance.py" name="collision_avoid_node" output="screen"></node> -->
 
 </launch>
