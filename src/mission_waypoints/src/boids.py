@@ -19,6 +19,9 @@ class BoidsVectors():
 
     self.away_vel1 = Vector3()
     self.away_vel2 = Vector3()
+    self.away_vel3 = Vector3()
+
+    self.align_vel1 = Vector3()
     self.align_vel2 = Vector3()
     self.align_vel3 = Vector3()
 
@@ -61,7 +64,10 @@ class BoidsVectors():
   def get_goal_vec2(self, msg):
     self.goal_vel2 = copy.deepcopy(msg)
 
-  def get_goal_vec3(self, msg):curr_pos1
+  def get_goal_vec3(self, msg):
+    self.goal_vel3 = copy.deepcopy(msg)
+
+  def get_pos_vec1(self, msg):
     self.pos_vel1 = copy.deepcopy(msg)
 
   def get_pos_vec2(self, msg):
@@ -74,10 +80,10 @@ class BoidsVectors():
     self.away_vel1 = copy.deepcopy(msg)
 
   def get_away_vec2(self, msg):
-    self.away_vel1 = copy.deepcopy(msg)
+    self.away_vel2 = copy.deepcopy(msg)
 
   def get_away_vec3(self, msg):
-    self.away_vel1 = copy.deepcopy(msg)
+    self.away_vel3 = copy.deepcopy(msg)
 
   def get_align_vec1(self, msg):
     self.align_vel1 = copy.deepcopy(msg)

@@ -95,21 +95,22 @@
     <param name="goal_v_w" type="double" value="$(arg goal_v_w)"/>
   </node>
 
-  <node pkg="mission_waypoints" type="boids.py" name="boids_node" output="screen"></node>
-
   <arg name="pos_v_w" default="0.5" />
   <node pkg="mission_waypoints" type="swarm_cohesion.py" name="cohesion_node" output="screen">
     <param name="pos_v_w" type="double" value="$(arg pos_v_w)"/>
   </node>
 
-  <arg name="sep_v_w" default="0.5" />
+  <!-- <arg name="sep_v_w" default="0.5" />
   <node pkg="mission_waypoints" type="swarm_separation.py" name="separation_node" output="screen">
     <param name="sep_v_w" type="double" value="$(arg sep_v_w)"/>
-  </node>
+  </node> -->
 
-  <arg name="align_v_w" default="0.5" />
+  <!-- <arg name="align_v_w" default="0.5" />
   <node pkg="mission_waypoints" type="swarm_alignment.py" name="alignment_node" output="screen">
     <param name="align_v_w" type="double" value="$(arg align_v_w)"/>
-  </node>
+  </node> -->
+
+  <node pkg="mission_waypoints" type="boids.py" name="boids_node" output="screen"></node>
+
 
 </launch>

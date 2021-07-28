@@ -21,7 +21,8 @@ class WaypointReader():
     self.curr_pos2 = PoseStamped()
     self.curr_pos3 = PoseStamped()
 
-    waypoint_file = open('/home/lesslab5/Documents/simulator_ws/src/mission_waypoints/src/mission_waypoints.txt', 'r')
+    # waypoint_file = open('/home/lesslab5/Documents/simulator_ws/src/mission_waypoints/src/mission_waypoints.txt', 'r')
+    waypoint_file = open('/home/avaneenpinninti/Documents/swarm_simulator/src/mission_waypoints/src/mission_waypoints.txt', 'r')
 
     self.coordinates = []
 

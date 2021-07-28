@@ -9,6 +9,15 @@ from geometry_msgs.msg import PoseStamped
 
 class PositionCohesion():
   def __init__(self):
+    
+    self.curr_pos1 = PoseStamped()
+    self.curr_pos2 = PoseStamped()
+    self.curr_pos3 = PoseStamped()
+
+    self.pos_vel1 = Vector3()
+    self.pos_vel2 = Vector3()
+    self.pos_vel3 = Vector3()
+
     # Create the publisher and subscriber
     self.position_sub1 = rospy.Subscriber('/uav1/sensors/gps', PoseStamped, self.get_pos1, queue_size = 1)
     self.position_sub2 = rospy.Subscriber('/uav2/sensors/gps', PoseStamped, self.get_pos2, queue_size = 1)
@@ -18,13 +27,7 @@ class PositionCohesion():
     self.position_velocity_pub2 = rospy.Publisher('/uav2/input/unverified_position_velocity', Vector3, queue_size=1)
     self.position_velocity_pub3 = rospy.Publisher('/uav3/input/unverified_position_velocity', Vector3, queue_size=1)
 
-    self.curr_pos1 = PoseStamped()
-    self.curr_pos2 = PoseStamped()
-    self.curr_pos3 = PoseStamped()
 
-    self.pos_vel1 = Vector3()
-    self.pos_vel2 = Vector3()
-    self.pos_vel3 = Vector3()
 
     self.pos_v_w = rospy.get_param("/cohesion_node/pos_v_w", 0.5)
     print("weight of the 'position' vector is: " + str(self.pos_v_w))

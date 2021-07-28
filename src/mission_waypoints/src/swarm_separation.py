@@ -60,25 +60,25 @@ class SwarmSeparation():
     # While ROS is still running
     while not rospy.is_shutdown():
       
-      away_2_1_x = self.curr_pos2.pose.position.x - self.curr_pos1.pose.position.x
-      away_2_1_y = self.curr_pos2.pose.position.y - self.curr_pos1.pose.position.y
-      away_2_1_z = self.curr_pos2.pose.position.z - self.curr_pos1.pose.position.z
+      away_2_1_x = 1 / (self.curr_pos2.pose.position.x - self.curr_pos1.pose.position.x)
+      away_2_1_y = 1 / (self.curr_pos2.pose.position.y - self.curr_pos1.pose.position.y)
+      away_2_1_z = 1 / (self.curr_pos2.pose.position.z - self.curr_pos1.pose.position.z)
 
       away_1_2_x = -1 * away_2_1_x
       away_1_2_y = -1 * away_2_1_y
       away_1_2_z = -1 * away_2_1_z
 
-      away_3_1_x = self.curr_pos3.pose.position.x - self.curr_pos1.pose.position.x
-      away_3_1_y = self.curr_pos3.pose.position.y - self.curr_pos1.pose.position.y
-      away_3_1_z = self.curr_pos3.pose.position.z - self.curr_pos1.pose.position.z
+      away_3_1_x = 1 / (self.curr_pos3.pose.position.x - self.curr_pos1.pose.position.x)
+      away_3_1_y = 1 / (self.curr_pos3.pose.position.y - self.curr_pos1.pose.position.y)
+      away_3_1_z = 1 / (self.curr_pos3.pose.position.z - self.curr_pos1.pose.position.z)
 
       away_1_3_x = -1 * away_3_1_x
       away_1_3_y = -1 * away_3_1_y
       away_1_3_z = -1 * away_3_1_z
 
-      away_3_2_x = self.curr_pos3.pose.position.x - self.curr_pos2.pose.position.x
-      away_3_2_y = self.curr_pos3.pose.position.y - self.curr_pos2.pose.position.y
-      away_3_2_z = self.curr_pos3.pose.position.z - self.curr_pos2.pose.position.z
+      away_3_2_x = 1 / (self.curr_pos3.pose.position.x - self.curr_pos2.pose.position.x)
+      away_3_2_y = 1 / (self.curr_pos3.pose.position.y - self.curr_pos2.pose.position.y)
+      away_3_2_z = 1 / (self.curr_pos3.pose.position.z - self.curr_pos2.pose.position.z)
 
       away_2_3_x = -1 * away_3_2_x
       away_2_3_y = -1 * away_3_2_y
