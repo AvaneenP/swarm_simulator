@@ -27,6 +27,12 @@
     <include file="$(find sensor_simulation)/launch/sensors.launch">
       <arg name="uavName" value="$(arg name1)" />
     </include>
+
+    <arg name="uavName" default="uav1" />
+    <node pkg="mission_waypoints" type="swarm_loc.py" name="swarm_gps_node_$(arg uavName)" >
+      <param name="uavName" type="string" value="$(arg uavName)"/>
+    </node>
+
   </group>
 
 
@@ -52,6 +58,12 @@
     <include file="$(find sensor_simulation)/launch/sensors.launch">
       <arg name="uavName" value="$(arg name2)" />
     </include>
+
+    <arg name="uavName" default="uav2" />
+    <node pkg="mission_waypoints" type="swarm_loc.py" name="swarm_gps_node_$(arg uavName)">
+      <param name="uavName" type="string" value="$(arg uavName)"/>
+    </node>
+
   </group>
 
 
@@ -77,6 +89,12 @@
     <include file="$(find sensor_simulation)/launch/sensors.launch">
       <arg name="uavName" value="$(arg name3)" />
     </include>
+
+    <arg name="uavName" default="uav3" />
+    <node pkg="mission_waypoints" type="swarm_loc.py" name="swarm_gps_node_$(arg uavName)">
+      <param name="uavName" type="string" value="$(arg uavName)"/>
+    </node>
+
   </group>
 
   <!--Static transform for ENU to NED world-->
@@ -114,6 +132,7 @@
   </node>
 
   <node pkg="mission_waypoints" type="boids.py" name="boids_node" output="screen"></node>
+
 
 
 </launch>
