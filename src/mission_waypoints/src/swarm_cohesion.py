@@ -62,9 +62,9 @@ class PositionCohesion():
     # While ROS is still running
     while not rospy.is_shutdown():
       
-      self.avg_x_pos = self.curr_pos1.pose.position.x + self.curr_pos2.pose.position.x + self.curr_pos3.pose.position.x
-      self.avg_y_pos = self.curr_pos1.pose.position.y + self.curr_pos2.pose.position.y + self.curr_pos3.pose.position.y
-      self.avg_z_pos = self.curr_pos1.pose.position.z + self.curr_pos2.pose.position.z + self.curr_pos3.pose.position.z
+      self.avg_x_pos = (self.curr_pos1.pose.position.x + self.curr_pos2.pose.position.x + self.curr_pos3.pose.position.x) / 3
+      self.avg_y_pos = (self.curr_pos1.pose.position.y + self.curr_pos2.pose.position.y + self.curr_pos3.pose.position.y) / 3
+      self.avg_z_pos = (self.curr_pos1.pose.position.z + self.curr_pos2.pose.position.z + self.curr_pos3.pose.position.z) / 3
 
       self.pos_vel1.x = (self.avg_x_pos - self.curr_pos1.pose.position.x) * self.pos_v_w
       self.pos_vel1.y = (self.avg_y_pos - self.curr_pos1.pose.position.y) * self.pos_v_w

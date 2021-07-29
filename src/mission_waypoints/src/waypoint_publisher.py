@@ -7,6 +7,11 @@ from geometry_msgs.msg import PoseStamped
 
 class WaypointReader():
   def __init__(self):
+
+    self.curr_pos1 = PoseStamped()
+    self.curr_pos2 = PoseStamped()
+    self.curr_pos3 = PoseStamped()
+
     # Create the publisher and subscriber
     self.wayp_pub1 = rospy.Publisher('/uav1/waypoint', Vector3, queue_size=1)
     self.position_sub1 = rospy.Subscriber('/uav1/sensors/gps', PoseStamped, self.get_pos1, queue_size = 1)
@@ -16,13 +21,11 @@ class WaypointReader():
 
     self.wayp_pub3 = rospy.Publisher('/uav3/waypoint', Vector3, queue_size=1)
     self.position_sub3 = rospy.Subscriber('/uav3/sensors/gps', PoseStamped, self.get_pos3, queue_size = 1)
-    
-    self.curr_pos1 = PoseStamped()
-    self.curr_pos2 = PoseStamped()
-    self.curr_pos3 = PoseStamped()
+  
 
-    # waypoint_file = open('/home/lesslab5/Documents/simulator_ws/src/mission_waypoints/src/mission_waypoints.txt', 'r')
-    waypoint_file = open('/home/avaneenpinninti/Documents/swarm_simulator/src/mission_waypoints/src/mission_waypoints.txt', 'r')
+    waypoint_file = open('/home/lesslab5/Documents/simulator_ws/src/mission_waypoints/src/mission_waypoints.txt', 'r')
+    
+    # waypoint_file = open('/home/avaneenpinninti/Documents/swarm_simulator/src/mission_waypoints/src/mission_waypoints.txt', 'r')
 
     self.coordinates = []
 
@@ -38,6 +41,9 @@ class WaypointReader():
     self.goal_wayp1 = Vector3()
     self.goal_wayp2 = Vector3()
     self.goal_wayp3 = Vector3()
+
+    self.acceptance_range = rospy.get_param("/waypoint_reader_node/acceptance_range", 0.1)
+    print("the acceptance range is: " + str(self.acceptance_range))
 
     # Call the mainloop of our class
     self.mainloop()
@@ -69,9 +75,12 @@ class WaypointReader():
 
     # While ROS is still running
     while not rospy.is_shutdown():
-
+      
       if count == len(self.coordinates):
-        break
+        count = count - 9 
+
+      if count2 == len(self.coordinates):
+        count2 = count2 - 9 
       
       x_diff1 = pow(self.curr_pos1.pose.position.x - self.coordinates[count2], 2)
       count2 += 1
@@ -98,7 +107,7 @@ class WaypointReader():
       diff3 = math.sqrt(x_diff3 + y_diff3 + z_diff3)
       
 
-      if diff1 < 0.3 and diff2 < 0.3 and diff3 < 0.3:
+      if diff1 < self.acceptance_range and diff2 < self.acceptance_range and diff3 < self.acceptance_range:
         print("got to waypoint!")
         
         self.goal_wayp1.x = self.coordinates[count]
