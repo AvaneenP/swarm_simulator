@@ -29,8 +29,13 @@
     </include>
 
     <arg name="uavName" default="uav1" />
+
     <node pkg="mission_waypoints" type="swarm_loc.py" name="swarm_gps_node_$(arg uavName)" >
       <param name="uavName" type="string" value="$(arg uavName)"/>
+    </node>
+
+    <node pkg="mission_waypoints" type="sphere.py" name="sphere_of_influence_node_$(arg uavName)" output="screen">
+      <param name="uavName" type="string" value="$(arg uavName)" />
     </node>
 
   </group>
@@ -60,8 +65,13 @@
     </include>
 
     <arg name="uavName" default="uav2" />
+
     <node pkg="mission_waypoints" type="swarm_loc.py" name="swarm_gps_node_$(arg uavName)">
       <param name="uavName" type="string" value="$(arg uavName)"/>
+    </node>
+
+    <node pkg="mission_waypoints" type="sphere.py" name="sphere_of_influence_node_$(arg uavName)" output="screen">
+      <param name="uavName" type="string" value="$(arg uavName)" />
     </node>
 
   </group>
@@ -93,6 +103,10 @@
     <arg name="uavName" default="uav3" />
     <node pkg="mission_waypoints" type="swarm_loc.py" name="swarm_gps_node_$(arg uavName)">
       <param name="uavName" type="string" value="$(arg uavName)"/>
+    </node>
+
+    <node pkg="mission_waypoints" type="sphere.py" name="sphere_of_influence_node_$(arg uavName)" output="screen">
+      <param name="uavName" type="string" value="$(arg uavName)" />
     </node>
 
   </group>

@@ -175,6 +175,13 @@ class BoidsVectors():
       vec3x = ax.arrow(self.uav3_pos.pose.position.x, self.uav3_pos.pose.position.y, self.final_vel3.x, 0, width = 0.1)
       vec3y = ax.arrow(self.uav3_pos.pose.position.x, self.uav3_pos.pose.position.y, 0, self.final_vel3.y, width = 0.1)
 
+
+      reachable_set1 = ax.fill( (self.uav1_pos.pose.position.x, self.uav1_pos.pose.position.x + self.final_vel1.x, self.uav1_pos.pose.position.x), (self.uav1_pos.pose.position.y, self.uav1_pos.pose.position.y, self.uav1_pos.pose.position.y + self.final_vel1.y), "r")      
+      
+      reachable_set2 = ax.fill( (self.uav2_pos.pose.position.x, self.uav2_pos.pose.position.x + self.final_vel2.x, self.uav2_pos.pose.position.x), (self.uav2_pos.pose.position.y, self.uav2_pos.pose.position.y, self.uav2_pos.pose.position.y + self.final_vel2.y), "b")      
+      
+      reachable_set3 = ax.fill( (self.uav3_pos.pose.position.x, self.uav3_pos.pose.position.x + self.final_vel3.x, self.uav3_pos.pose.position.x), (self.uav3_pos.pose.position.y, self.uav3_pos.pose.position.y, self.uav3_pos.pose.position.y + self.final_vel3.y), "g")      
+
       # vec1x = ax.arrow(self.uav1_pos.pose.position.x, self.uav1_pos.pose.position.y, self.pos_vel1.x, 0, width = 0.1)
       # vec1y = ax.arrow(self.uav1_pos.pose.position.x, self.uav1_pos.pose.position.y, 0, self.pos_vel1.y, width = 0.1)
       

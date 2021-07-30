@@ -14,9 +14,12 @@ class SwarmGPS():
     # self.uavName = "uav1"
     
     self.gps_pos = PoseStamped()
+    self.velocity = Vector3()
     self.uav_gps = swarm_gps()
 
     self.uav_pos = rospy.Subscriber(self.uavName + "/sensors/gps", PoseStamped, self.get_pos, queue_size = 1)
+
+    self.uav_vel = rospy.Subscriber(self.uavName + "/input/velocity", Vector3, self.get_vel, queue_size = 1)
 
     self.swarm_pos = rospy.Publisher('/swarm/gps', swarm_gps, queue_size = 1)
 
@@ -26,9 +29,12 @@ class SwarmGPS():
 
   # Callbacks
   def get_pos(self, msg):
-      self.gps_pos.pose.position.x = msg.pose.position.x
-      self.gps_pos.pose.position.y = msg.pose.position.y
-      self.gps_pos.pose.position.z = msg.pose.position.z
+    self.gps_pos.pose.position.x = msg.pose.position.x
+    self.gps_pos.pose.position.y = msg.pose.position.y
+    self.gps_pos.pose.position.z = msg.pose.position.z
+
+  def get_vel(self, msg):
+    self.velocity = copy.deepcopy(msg)
 
   # Main Loop
   def mainloop(self):
@@ -43,6 +49,9 @@ class SwarmGPS():
       self.uav_gps.pos.x = self.gps_pos.pose.position.x
       self.uav_gps.pos.y = self.gps_pos.pose.position.y
       self.uav_gps.pos.z = self.gps_pos.pose.position.z
+      self.uav_gps.vel.x = self.velocity.x
+      self.uav_gps.vel.y = self.velocity.y
+      self.uav_gps.vel.z = self.velocity.z
 
       self.swarm_pos.publish(self.uav_gps)
 
