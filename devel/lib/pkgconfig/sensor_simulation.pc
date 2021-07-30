@@ -1,1 +1,0 @@
-/home/lesslab5/Documents/simulator_ws/devel/.private/sensor_simulation/lib/pkgconfig/sensor_simulation.pc

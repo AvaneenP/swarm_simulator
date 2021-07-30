@@ -1,1 +1,0 @@
-/home/lesslab5/Documents/simulator_ws/devel/.private/mission_waypoints/include/mission_waypoints/swarm_gps.h
