@@ -34,8 +34,26 @@
       <param name="uavName" type="string" value="$(arg uavName)"/>
     </node>
 
+    <arg name="influence_radius" default="1" />
     <node pkg="mission_waypoints" type="sphere.py" name="sphere_of_influence_node_$(arg uavName)" output="screen">
       <param name="uavName" type="string" value="$(arg uavName)" />
+      <param name="influence_radius" type="double" value="$(arg influence_radius)" />
+    </node>
+
+    <arg name="collision_radius" default="0.1" />
+    <node pkg="mission_waypoints" type="collision_detector.py" name="collision_node_$(arg uavName)" output="screen">
+      <param name="uavName" type="string" value="$(arg uavName)" />
+      <param name="collision_radius" type="double" value="$(arg collision_radius)" />
+    </node>
+
+    <arg name="pos_v_w" default="0.5" />
+    <node pkg="mission_waypoints" type="swarm_cohesion.py" name="cohesion_node_$(arg uavName)" output="screen">
+      <param name="pos_v_w" type="double" value="$(arg pos_v_w)"/>
+    </node>
+
+    <arg name="align_v_w" default="0.5" />
+    <node pkg="mission_waypoints" type="swarm_alignment.py" name="alignment_node_$(arg uavName)" output="screen">
+      <param name="align_v_w" type="double" value="$(arg align_v_w)"/>
     </node>
 
   </group>
@@ -70,8 +88,26 @@
       <param name="uavName" type="string" value="$(arg uavName)"/>
     </node>
 
+    <arg name="influence_radius" default="1" />
     <node pkg="mission_waypoints" type="sphere.py" name="sphere_of_influence_node_$(arg uavName)" output="screen">
       <param name="uavName" type="string" value="$(arg uavName)" />
+      <param name="influence_radius" type="double" value="$(arg influence_radius)" />
+    </node>
+
+    <arg name="collision_radius" default="0.1" />
+    <node pkg="mission_waypoints" type="collision_detector.py" name="collision_node_$(arg uavName)" output="screen">
+      <param name="uavName" type="string" value="$(arg uavName)" />
+      <param name="collision_radius" type="double" value="$(arg collision_radius)" />
+    </node>
+
+    <arg name="pos_v_w" default="0.5" />
+    <node pkg="mission_waypoints" type="swarm_cohesion.py" name="cohesion_node_$(arg uavName)" output="screen">
+    <param name="pos_v_w" type="double" value="$(arg pos_v_w)"/>
+    </node>
+
+    <arg name="align_v_w" default="0.5" />
+    <node pkg="mission_waypoints" type="swarm_alignment.py" name="alignment_node_$(arg uavName)" output="screen">
+      <param name="align_v_w" type="double" value="$(arg align_v_w)"/>
     </node>
 
   </group>
@@ -105,8 +141,26 @@
       <param name="uavName" type="string" value="$(arg uavName)"/>
     </node>
 
+    <arg name="influence_radius" default="1" />
     <node pkg="mission_waypoints" type="sphere.py" name="sphere_of_influence_node_$(arg uavName)" output="screen">
       <param name="uavName" type="string" value="$(arg uavName)" />
+      <param name="influence_radius" type="double" value="$(arg influence_radius)" />
+    </node>
+
+    <arg name="collision_radius" default="0.1" />
+    <node pkg="mission_waypoints" type="collision_detector.py" name="collision_node_$(arg uavName)" output="screen">
+      <param name="uavName" type="string" value="$(arg uavName)" />
+      <param name="collision_radius" type="double" value="$(arg collision_radius)" />
+    </node>
+
+    <arg name="pos_v_w" default="0.5" />
+    <node pkg="mission_waypoints" type="swarm_cohesion.py" name="cohesion_node_$(arg uavName)" output="screen">
+    <param name="pos_v_w" type="double" value="$(arg pos_v_w)"/>
+    </node>
+
+    <arg name="align_v_w" default="0.5" />
+    <node pkg="mission_waypoints" type="swarm_alignment.py" name="alignment_node_$(arg uavName)" output="screen">
+      <param name="align_v_w" type="double" value="$(arg align_v_w)"/>
     </node>
 
   </group>
@@ -130,20 +184,11 @@
     <param name="goal_v_w" type="double" value="$(arg goal_v_w)"/>
   </node>
 
-  <arg name="pos_v_w" default="0.5" />
-  <node pkg="mission_waypoints" type="swarm_cohesion.py" name="cohesion_node" output="screen">
-    <param name="pos_v_w" type="double" value="$(arg pos_v_w)"/>
-  </node>
-
   <arg name="sep_v_w" default="0.5" />
   <node pkg="mission_waypoints" type="swarm_separation.py" name="separation_node" output="screen">
     <param name="sep_v_w" type="double" value="$(arg sep_v_w)"/>
   </node>
 
-  <arg name="align_v_w" default="0.5" />
-  <node pkg="mission_waypoints" type="swarm_alignment.py" name="alignment_node" output="screen">
-    <param name="align_v_w" type="double" value="$(arg align_v_w)"/>
-  </node>
 
   <node pkg="mission_waypoints" type="boids.py" name="boids_node" output="screen"></node>
 

@@ -15,20 +15,18 @@ class InfluenceSphere():
   def __init__(self):
 
     self.uavName = rospy.get_param(str(rospy.get_name()) + "/uavName", "uav")
+    self.influence_radius = rospy.get_param(str(rospy.get_name()) + "/influence_radius", 1)
+    print("The influence radius is: " + str(self.influence_radius))
     
     self.swarm_location = swarm_gps()
     self.curr_loc = PoseStamped()
-    self.curr_vel = Vector3()
-    self.new_vel = Vector3()
 
     # Create the publisher and subscriber
     self.swarm_loc_sub = rospy.Subscriber('/swarm/gps', swarm_gps, self.get_swarm_pos, queue_size = 1)
 
     self.uav_loc = rospy.Subscriber(self.uavName + "/sensors/gps", PoseStamped, self.get_pos, queue_size = 1)
 
-    self.uav_vel = rospy.Subscriber(self.uavName + "/input/velocity", Vector3, self.get_vel, queue_size = 1)
-
-    self.uav_vel_pub = rospy.Publisher(self.uavName + "/input/velocity", Vector3, queue_size = 1)
+    self.uav_sphere = rospy.Publisher(self.uavName + "/sphere_of_influence", String, queue_size = 1)
 
     # Call the mainloop of our class
     self.mainloop()
@@ -42,8 +40,6 @@ class InfluenceSphere():
   def get_swarm_pos(self, msg):
     self.swarm_location = copy.deepcopy(msg)
 
-  def get_vel(self, msg):
-    self.curr_vel = copy.deepcopy(msg)
 
   def mainloop(self):
     # Set the rate of this loop
@@ -58,22 +54,9 @@ class InfluenceSphere():
 
       distance = math.sqrt( pow(self.curr_loc.pose.position.x - self.swarm_location.pos.x, 2) + pow(self.curr_loc.pose.position.y - self.swarm_location.pos.y, 2) + pow(self.curr_loc.pose.position.z - self.swarm_location.pos.z, 2) )
 
-      if distance < 0.5:
+      if distance <= self.influence_radius:
         # print(self.uavName + " and " + self.swarm_location.name + " are in each others spheres of influence")
-        # check if two drones are on a collision course
-        uav1_reachable = Polygon([ (self.curr_loc.pose.position.x, self.curr_loc.pose.position.y), (self.curr_loc.pose.position.x + self.curr_vel.x, self.curr_loc.pose.position.y), (self.curr_loc.pose.position.x, self.curr_loc.pose.position.y + self.curr_vel.y) ])
-        
-        uav2_reachable = Polygon([ (self.swarm_location.pos.x, self.swarm_location.pos.y), (self.swarm_location.pos.x + self.swarm_location.vel.x, self.swarm_location.pos.y), (self.swarm_location.pos.x, self.swarm_location.pos.y + self.swarm_location.vel.y) ])
-
-        if uav1_reachable.intersects(uav2_reachable):
-          # print("collision between " + self.uavName + " and " + self.swarm_location.name)
-          self.new_vel.x = -1 * self.curr_vel.x
-          self.new_vel.y = -1 * self.curr_vel.y
-          self.new_vel.z = -1 * self.curr_vel.z
-          self.uav_vel_pub.publish(self.new_vel)
-
-      else:
-        continue
+        self.uav_sphere.publish(self.swarm_location.name)
 
       # Sleep for the remainder of the loop
       rate.sleep()

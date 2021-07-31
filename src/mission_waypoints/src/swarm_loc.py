@@ -11,7 +11,6 @@ from mission_waypoints.msg import swarm_gps
 class SwarmGPS():
   def __init__(self):
     self.uavName = rospy.get_param(str(rospy.get_name()) + "/uavName", "uav")
-    # self.uavName = "uav1"
     
     self.gps_pos = PoseStamped()
     self.velocity = Vector3()
