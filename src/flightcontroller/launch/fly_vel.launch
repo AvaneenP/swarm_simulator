@@ -56,6 +56,13 @@
       <param name="align_v_w" type="double" value="$(arg align_v_w)"/>
     </node>
 
+    <arg name="sep_v_w" default="0.5" />
+    <node pkg="mission_waypoints" type="swarm_separation.py" name="separation_node_$(arg uavName)" output="screen">
+      <param name="sep_v_w" type="double" value="$(arg sep_v_w)"/>
+    </node>
+
+    <node pkg="mission_waypoints" type="reachable_set.py" name="reachable_set_node_$(arg uavName)" output="screen"></node>
+
   </group>
 
 
@@ -110,6 +117,13 @@
       <param name="align_v_w" type="double" value="$(arg align_v_w)"/>
     </node>
 
+    <arg name="sep_v_w" default="0.5" />
+    <node pkg="mission_waypoints" type="swarm_separation.py" name="separation_node_$(arg uavName)" output="screen">
+      <param name="sep_v_w" type="double" value="$(arg sep_v_w)"/>
+    </node>
+
+    <node pkg="mission_waypoints" type="reachable_set.py" name="reachable_set_node_$(arg uavName)" output="screen"></node>
+
   </group>
 
 
@@ -163,6 +177,13 @@
       <param name="align_v_w" type="double" value="$(arg align_v_w)"/>
     </node>
 
+    <arg name="sep_v_w" default="0.5" />
+    <node pkg="mission_waypoints" type="swarm_separation.py" name="separation_node_$(arg uavName)" output="screen">
+      <param name="sep_v_w" type="double" value="$(arg sep_v_w)"/>
+    </node>
+
+    <node pkg="mission_waypoints" type="reachable_set.py" name="reachable_set_node_$(arg uavName)" output="screen"></node>
+
   </group>
 
   <!--Static transform for ENU to NED world-->
@@ -184,14 +205,6 @@
     <param name="goal_v_w" type="double" value="$(arg goal_v_w)"/>
   </node>
 
-  <arg name="sep_v_w" default="0.5" />
-  <node pkg="mission_waypoints" type="swarm_separation.py" name="separation_node" output="screen">
-    <param name="sep_v_w" type="double" value="$(arg sep_v_w)"/>
-  </node>
-
-
   <node pkg="mission_waypoints" type="boids.py" name="boids_node" output="screen"></node>
-
-
 
 </launch>
