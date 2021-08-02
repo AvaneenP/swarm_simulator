@@ -61,13 +61,21 @@ class ReachableSet():
       if self.swarm_location.name == self.uavName:
         continue
 
-      main_uav = Polygon([ (self.curr_loc.pose.position.x + self.curr_vel.x, self.curr_loc.pose.position.y + self.curr_vel.y), (self.curr_loc.pose.position.x, self.curr_loc.pose.position.y), (self.curr_loc.pose.position.x, self.curr_loc.pose.position.y + self.curr_vel.y), (self.curr_loc.pose.position.x + self.curr_vel.x, self.curr_loc.pose.position.y) ])
+      # main_uav = Polygon([ (self.curr_loc.pose.position.x + self.curr_vel.x, self.curr_loc.pose.position.y + self.curr_vel.y), (self.curr_loc.pose.position.x, self.curr_loc.pose.position.y), (self.curr_loc.pose.position.x, self.curr_loc.pose.position.y + self.curr_vel.y), (self.curr_loc.pose.position.x + self.curr_vel.x, self.curr_loc.pose.position.y) ])
 
-      swarm_uav = Polygon([ (self.swarm_location.pos.x, self.swarm_location.pos.y), (self.swarm_location.pos.x + self.swarm_location.vel.x, self.swarm_location.pos.y + self.swarm_location.vel.y), (self.swarm_location.pos.x + self.swarm_location.vel.x, self.swarm_location.pos.y), (self.swarm_location.pos.x, self.swarm_location.pos.y + self.swarm_location.vel.y) ])
+      # swarm_uav = Polygon([ (self.swarm_location.pos.x, self.swarm_location.pos.y), (self.swarm_location.pos.x + self.swarm_location.vel.x, self.swarm_location.pos.y + self.swarm_location.vel.y), (self.swarm_location.pos.x + self.swarm_location.vel.x, self.swarm_location.pos.y), (self.swarm_location.pos.x, self.swarm_location.pos.y + self.swarm_location.vel.y) ])
 
-      if main_uav.intersects(swarm_uav):
-        self.uav_collision_name = self.swarm_location.name
-        self.uav_intersection.publish(self.uav_collision_name)
+      # if main_uav.intersects(swarm_uav):
+      #   # print("collision between " + str(self.uavName) + " and " + str(self.swarm_location.name))
+      #   self.uav_collision_name = self.swarm_location.name
+      #   self.uav_intersection.publish(self.uav_collision_name)
+
+      distance = math.sqrt( pow(self.curr_loc.pose.position.x - self.swarm_location.pos.x, 2) + pow(self.curr_loc.pose.position.y - self.swarm_location.pos.y, 2) )
+
+      if distance <= 2.5:
+        self.uav_intersection.publish(self.swarm_location.name)
+      else:
+        self.uav_intersection.publish("")
 
       # Sleep for the remainder of the loop
       rate.sleep()

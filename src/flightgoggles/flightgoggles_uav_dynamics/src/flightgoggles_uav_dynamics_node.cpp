@@ -120,8 +120,8 @@ initPose_(7,0)
     // Start a few meters above the ground.
     std::cout << "Did NOT find initial pose from param file" << std::endl;
 
-     initPose_.at(2) = 1.5;
-     initPose_.at(6) = 1.0;
+    initPose_.at(2) = 1.5;
+    initPose_.at(6) = 1.0;
   }
 
   std::cout << "Initial pose: ";

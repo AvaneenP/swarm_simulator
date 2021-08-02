@@ -20,6 +20,7 @@ class InfluenceSphere():
     
     self.swarm_location = swarm_gps()
     self.curr_loc = PoseStamped()
+    self.drone_positions = {}
 
     # Create the publisher and subscriber
     self.swarm_loc_sub = rospy.Subscriber('/swarm/gps', swarm_gps, self.get_swarm_pos, queue_size = 1)
@@ -49,14 +50,20 @@ class InfluenceSphere():
     # While ROS is still running
     while not rospy.is_shutdown():        
       
+      self.drone_positions[self.swarm_location.name] = [self.swarm_location.pos, self.swarm_location.vel]
+
+      print(self.drone_positions['uav1'][1].x)
+
       if self.swarm_location.name == self.uavName:
         continue
 
-      distance = math.sqrt( pow(self.curr_loc.pose.position.x - self.swarm_location.pos.x, 2) + pow(self.curr_loc.pose.position.y - self.swarm_location.pos.y, 2) + pow(self.curr_loc.pose.position.z - self.swarm_location.pos.z, 2) )
+      distance = math.sqrt( pow(self.curr_loc.pose.position.x - self.swarm_location.pos.x, 2) + pow(self.curr_loc.pose.position.y - self.swarm_location.pos.y, 2) )
 
       if distance <= self.influence_radius:
         # print(self.uavName + " and " + self.swarm_location.name + " are in each others spheres of influence")
         self.uav_sphere.publish(self.swarm_location.name)
+      else:
+        self.uav_sphere.publish("")
 
       # Sleep for the remainder of the loop
       rate.sleep()

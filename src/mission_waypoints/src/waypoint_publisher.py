@@ -2,6 +2,7 @@
 import rospy
 import copy
 import math
+import time
 from geometry_msgs.msg import Vector3
 from geometry_msgs.msg import PoseStamped
 
@@ -22,11 +23,12 @@ class WaypointReader():
     self.wayp_pub3 = rospy.Publisher('/uav3/waypoint', Vector3, queue_size=1)
     self.position_sub3 = rospy.Subscriber('/uav3/sensors/gps', PoseStamped, self.get_pos3, queue_size = 1)
   
+    self.file = rospy.get_param("/waypoint_reader_node/file", "mission_waypoints.txt")
 
-    waypoint_file = open('/home/lesslab5/Documents/simulator_ws/src/mission_waypoints/src/mission_waypoints.txt', 'r')
+    print("The file used for this run of the simulator is: " + self.file)
+
+    waypoint_file = open('/home/lesslab5/Documents/simulator_ws/src/mission_waypoints/src/waypoint_files/' + self.file, 'r')
     
-    # waypoint_file = open('/home/avaneenpinninti/Documents/swarm_simulator/src/mission_waypoints/src/mission_waypoints.txt', 'r')
-
     self.coordinates = []
 
     for c in waypoint_file:
@@ -43,7 +45,7 @@ class WaypointReader():
     self.goal_wayp3 = Vector3()
 
     self.acceptance_range = rospy.get_param("/waypoint_reader_node/acceptance_range", 0.1)
-    print("the acceptance range is: " + str(self.acceptance_range))
+    print("The acceptance range is: " + str(self.acceptance_range))
 
     # Call the mainloop of our class
     self.mainloop()
@@ -68,13 +70,18 @@ class WaypointReader():
   def mainloop(self):
     # Set the rate of this loop
     rate = rospy.Rate(20)
-    rospy.sleep(10.)
+    rospy.sleep(9.)
 
     count = 9
     count2 = 0
+    self.counter = time.clock()
+    print(self.counter)
+    print(len(self.coordinates))
 
     # While ROS is still running
     while not rospy.is_shutdown():
+      self.time_elapsed = time.clock() - self.counter
+      # print(self.time_elapsed)
       
       if count == len(self.coordinates):
         count = count - 9 
@@ -105,9 +112,10 @@ class WaypointReader():
       z_diff3 = pow(self.curr_pos3.pose.position.z - self.coordinates[count2], 2)
       count2 += 1
       diff3 = math.sqrt(x_diff3 + y_diff3 + z_diff3)
-      
+    
 
       if diff1 < self.acceptance_range and diff2 < self.acceptance_range and diff3 < self.acceptance_range:
+        self.counter = time.clock()
         print("got to waypoint!")
         
         self.goal_wayp1.x = self.coordinates[count]
@@ -134,6 +142,35 @@ class WaypointReader():
         self.wayp_pub1.publish(self.goal_wayp1)
         self.wayp_pub2.publish(self.goal_wayp2)
         self.wayp_pub3.publish(self.goal_wayp3)
+      elif self.time_elapsed >= 1:
+        print("it's been more than 5 seconds, moving onto next waypoint")
+        self.counter = time.clock()
+
+        self.goal_wayp1.x = self.coordinates[count]
+        count += 1
+        self.goal_wayp1.y = self.coordinates[count]
+        count += 1
+        self.goal_wayp1.z = self.coordinates[count]
+        count += 1
+        
+        self.goal_wayp2.x = self.coordinates[count]
+        count += 1
+        self.goal_wayp2.y = self.coordinates[count]
+        count += 1
+        self.goal_wayp2.z = self.coordinates[count]
+        count += 1
+        
+        self.goal_wayp3.x = self.coordinates[count]
+        count += 1
+        self.goal_wayp3.y = self.coordinates[count]
+        count += 1
+        self.goal_wayp3.z = self.coordinates[count]
+        count += 1
+
+        self.wayp_pub1.publish(self.goal_wayp1)
+        self.wayp_pub2.publish(self.goal_wayp2)
+        self.wayp_pub3.publish(self.goal_wayp3)
+        
       else:
         count2 = count2 - 9
 

@@ -162,25 +162,30 @@ class BoidsVectors():
       plot2 = ax.plot(self.uav2_pos.pose.position.x, self.uav2_pos.pose.position.y, 'bo')
       plot3 = ax.plot(self.uav3_pos.pose.position.x, self.uav3_pos.pose.position.y, 'go')
 
-      label1 = ax.text(self.uav1_pos.pose.position.x, self.uav1_pos.pose.position.y, '({}, {})'.format(self.uav1_pos.pose.position.x, self.uav1_pos.pose.position.y))
-      label2 = ax.text(self.uav2_pos.pose.position.x, self.uav2_pos.pose.position.y, '({}, {})'.format(self.uav2_pos.pose.position.x, self.uav2_pos.pose.position.y))
-      label3 = ax.text(self.uav3_pos.pose.position.x, self.uav3_pos.pose.position.y, '({}, {})'.format(self.uav3_pos.pose.position.x, self.uav3_pos.pose.position.y))
+      label1 = ax.text(self.uav1_pos.pose.position.x, self.uav1_pos.pose.position.y, '({}, {})'.format(round(self.uav1_pos.pose.position.x, 2), round(self.uav1_pos.pose.position.y, 2)))
+      label2 = ax.text(self.uav2_pos.pose.position.x, self.uav2_pos.pose.position.y, '({}, {})'.format(round(self.uav2_pos.pose.position.x, 2), round(self.uav2_pos.pose.position.y, 2)))
+      label3 = ax.text(self.uav3_pos.pose.position.x, self.uav3_pos.pose.position.y, '({}, {})'.format(round(self.uav3_pos.pose.position.x, 2), round(self.uav3_pos.pose.position.y, 2)))
 
-      vec1x = ax.arrow(self.uav1_pos.pose.position.x, self.uav1_pos.pose.position.y, self.final_vel1.x, 0, width = 0.1)
-      vec1y = ax.arrow(self.uav1_pos.pose.position.x, self.uav1_pos.pose.position.y, 0, self.final_vel1.y, width = 0.1)
-      
-      vec2x = ax.arrow(self.uav2_pos.pose.position.x, self.uav2_pos.pose.position.y, self.final_vel2.x, 0, width = 0.1)
-      vec2y = ax.arrow(self.uav2_pos.pose.position.x, self.uav2_pos.pose.position.y, 0, self.final_vel2.y, width = 0.1)
-      
-      vec3x = ax.arrow(self.uav3_pos.pose.position.x, self.uav3_pos.pose.position.y, self.final_vel3.x, 0, width = 0.1)
-      vec3y = ax.arrow(self.uav3_pos.pose.position.x, self.uav3_pos.pose.position.y, 0, self.final_vel3.y, width = 0.1)
+      # vec1 = ax.arrow(self.uav1_pos.pose.position.x, self.uav1_pos.pose.position.y, self.final_vel1.x, self.final_vel1.y, width = 0.1)
+      vec1a = ax.arrow(self.uav1_pos.pose.position.x, self.uav1_pos.pose.position.y, self.away_vel1.x, self.away_vel1.y, width = 0.1)
+      # vec1g = ax.arrow(self.uav1_pos.pose.position.x, self.uav1_pos.pose.position.y, self.goal_vel1.x, self.goal_vel1.y, width = 0.1)
+      # vec1al = ax.arrow(self.uav1_pos.pose.position.x, self.uav1_pos.pose.position.y, self.align_vel1.x, self.align_vel1.y, width = 0.1)
 
+      # vec2 = ax.arrow(self.uav2_pos.pose.position.x, self.uav2_pos.pose.position.y, self.final_vel2.x, self.final_vel2.y, width = 0.1)
+      vec2a = ax.arrow(self.uav2_pos.pose.position.x, self.uav2_pos.pose.position.y, self.away_vel2.x, self.away_vel2.y, width = 0.1)
+      # vec2g = ax.arrow(self.uav2_pos.pose.position.x, self.uav2_pos.pose.position.y, self.goal_vel2.x, self.goal_vel2.y, width = 0.1)
+      # vec2al = ax.arrow(self.uav2_pos.pose.position.x, self.uav2_pos.pose.position.y, self.align_vel2.x, self.align_vel2.y, width = 0.1)
+      
+      # vec3 = ax.arrow(self.uav3_pos.pose.position.x, self.uav3_pos.pose.position.y, self.final_vel3.x, self.final_vel3.y, width = 0.1)
+      vec3a = ax.arrow(self.uav3_pos.pose.position.x, self.uav3_pos.pose.position.y, self.away_vel3.x, self.away_vel3.y, width = 0.1)
+      # vec3g = ax.arrow(self.uav3_pos.pose.position.x, self.uav3_pos.pose.position.y, self.goal_vel3.x, self.goal_vel3.y, width = 0.1)
+      # vec3al = ax.arrow(self.uav3_pos.pose.position.x, self.uav3_pos.pose.position.y, self.align_vel3.x, self.align_vel3.y, width = 0.1)
 
-      reachable_set1 = ax.fill( (self.uav1_pos.pose.position.x, self.uav1_pos.pose.position.x + self.final_vel1.x, self.uav1_pos.pose.position.x), (self.uav1_pos.pose.position.y, self.uav1_pos.pose.position.y, self.uav1_pos.pose.position.y + self.final_vel1.y), "r")      
+      # reachable_set1 = ax.fill( (self.uav1_pos.pose.position.x, self.uav1_pos.pose.position.x + self.final_vel1.x, self.uav1_pos.pose.position.x), (self.uav1_pos.pose.position.y, self.uav1_pos.pose.position.y, self.uav1_pos.pose.position.y + self.final_vel1.y), "r")      
       
-      reachable_set2 = ax.fill( (self.uav2_pos.pose.position.x, self.uav2_pos.pose.position.x + self.final_vel2.x, self.uav2_pos.pose.position.x), (self.uav2_pos.pose.position.y, self.uav2_pos.pose.position.y, self.uav2_pos.pose.position.y + self.final_vel2.y), "b")      
+      # reachable_set2 = ax.fill( (self.uav2_pos.pose.position.x, self.uav2_pos.pose.position.x + self.final_vel2.x, self.uav2_pos.pose.position.x), (self.uav2_pos.pose.position.y, self.uav2_pos.pose.position.y, self.uav2_pos.pose.position.y + self.final_vel2.y), "b")      
       
-      reachable_set3 = ax.fill( (self.uav3_pos.pose.position.x, self.uav3_pos.pose.position.x + self.final_vel3.x, self.uav3_pos.pose.position.x), (self.uav3_pos.pose.position.y, self.uav3_pos.pose.position.y, self.uav3_pos.pose.position.y + self.final_vel3.y), "g")      
+      # reachable_set3 = ax.fill( (self.uav3_pos.pose.position.x, self.uav3_pos.pose.position.x + self.final_vel3.x, self.uav3_pos.pose.position.x), (self.uav3_pos.pose.position.y, self.uav3_pos.pose.position.y, self.uav3_pos.pose.position.y + self.final_vel3.y), "g")      
 
       # vec1x = ax.arrow(self.uav1_pos.pose.position.x, self.uav1_pos.pose.position.y, self.pos_vel1.x, 0, width = 0.1)
       # vec1y = ax.arrow(self.uav1_pos.pose.position.x, self.uav1_pos.pose.position.y, 0, self.pos_vel1.y, width = 0.1)

@@ -22,6 +22,7 @@ class SwarmSeparation():
     self.curr_pos = PoseStamped()
     self.swarm_location = swarm_gps()
     self.uav_intersection_name = String()
+    self.uav_sphere_name = String()
     self.away_vel = Vector3()
 
     # Create the publisher and subscriber
@@ -30,6 +31,8 @@ class SwarmSeparation():
     self.swarm_position_sub = rospy.Subscriber('/swarm/gps', swarm_gps, self.get_swarm_pos, queue_size = 1)
 
     self.uav_avoid = rospy.Subscriber(self.uavName + "/intersection", String, self.get_avoid_name, queue_size = 1)
+
+    self.uav_sphere_avoid = rospy.Subscriber(self.uavName + "/sphere_of_influence", String, self.get_sphere_uav, queue_size = 1)
 
     self.away_velocity_pub = rospy.Publisher(self.uavName + '/input/unverified_away_velocity', Vector3, queue_size=1)
 
@@ -52,6 +55,8 @@ class SwarmSeparation():
   def get_avoid_name(self, msg):
     self.uav_intersection_name = copy.deepcopy(msg)
 
+  def get_sphere_uav(self, msg):
+    self.uav_sphere_name = copy.deepcopy(msg)
 
   # Main Loop
   def mainloop(self):
@@ -62,15 +67,40 @@ class SwarmSeparation():
     # While ROS is still running
     while not rospy.is_shutdown():
 
-      if self.swarm_location.name == self.uav_intersection_name:
-        away_x = 1 / (self.curr_pos.pose.position.x - self.swarm_location.x)
-        away_y = 1 / (self.curr_pos.pose.position.y - self.swarm_location.y)
-        away_z = 1 / (self.curr_pos.pose.position.z - self.swarm_location.z)
+      if self.swarm_location.name == self.uavName:
+        continue
 
-        self.away_vel.x = away_x * self.sep_v_w
-        self.away_vel.y = away_y * self.sep_v_w
-        self.away_vel.z = away_z * self.sep_v_w
+      if self.swarm_location.name == self.uav_intersection_name.data:
+        # print("moving " + self.uavName + " away from " + self.uav_intersection_name.data)
+        away_x = (self.curr_pos.pose.position.x - self.swarm_location.pos.x)
+        away_y = (self.curr_pos.pose.position.y - self.swarm_location.pos.y)
+        away_z = (self.curr_pos.pose.position.z - self.swarm_location.pos.z)
 
+        # if abs(away_x) <= 0.5:
+        #   self.away_vel.x = 2 * (away_x/away_x) * self.sep_v_w
+        # else:
+        #   self.away_vel.x = (1 / away_x) * self.sep_v_w
+
+        # if abs(away_y) <= 0.5:
+        #   self.away_vel.y = 2 * (away_y/away_y) * self.sep_v_w
+        # else:
+        #   self.away_vel.y = (1 / away_y) * self.sep_v_w
+
+        # if abs(away_z) <= 0.5:
+        #   self.away_vel.z = 2 * (away_z/away_z) * self.sep_v_w
+        # else:
+        #   self.away_vel.z = (1 / away_z) * self.sep_v_w
+
+        self.away_vel.x = (0.5 / away_x) * self.sep_v_w
+        self.away_vel.y = (0.5 / away_y) * self.sep_v_w
+        self.away_vel.z = (0.5 / away_z) * self.sep_v_w
+        
+        self.away_velocity_pub.publish(self.away_vel)
+      else:
+        self.away_vel.x = 0
+        self.away_vel.y = 0
+        self.away_vel.z = 0
+        
         self.away_velocity_pub.publish(self.away_vel)
 
       # Sleep for the remainder of the loop

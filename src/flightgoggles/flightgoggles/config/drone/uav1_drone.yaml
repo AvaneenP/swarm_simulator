@@ -1,5 +1,5 @@
-flightgoggles_uav_dynamics:
-    init_pose: [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0]
+uav1/flightgoggles_uav_dynamics:
+    init_pose: [3.0, 3.0, 1.5, 0.0, 0.0, 0.0, 1.0]
 
     clockscale: 1.0
     vehicle_mass: 1.0
@@ -21,7 +21,7 @@ flightgoggles_uav_dynamics:
     use_ratethrust_controller: true
     use_rungekutta4integrator: false
 
-flightgoggles_imu:
+uav1/flightgoggles_imu:
     accelerometer_variance: 0.005
     gyroscope_variance: 0.003
     accelerometer_biasprocess: 1.0e-7
@@ -29,11 +29,11 @@ flightgoggles_imu:
     accelerometer_biasinitvar: 0.0
     gyroscope_biasinitvar: 0.0
 
-flightgoggles_lpf:
+uav1/flightgoggles_lpf:
     gain_p: 35530.5758439217
     gain_q: 266.572976289502
 
-flightgoggles_pid:
+uav1/flightgoggles_pid:
     gain_p_roll: 9.0
     gain_i_roll: 3.0
     gain_d_roll: 0.3

@@ -13,7 +13,7 @@ from shapely.geometry import Polygon
 class SwarmAlignment():
   def __init__(self):
     self.uavName = rospy.get_param(str(rospy.get_name()) + "/uavName", "uav")
-    self.align_v_w = rospy.get_param("/alignment_node/align_v_w", 0.5)
+    self.align_v_w = rospy.get_param(str(rospy.get_name()) + "/align_v_w", 0.5)
     print("weight of the 'align' vector is: " + str(self.align_v_w))
 
     self.align_vel = Vector3()
@@ -54,8 +54,11 @@ class SwarmAlignment():
 
     # While ROS is still running
     while not rospy.is_shutdown():
-      
-      if self.swarm_loc.name == self.nearby_uav:
+
+      if self.swarm_loc.name == self.uavName:
+        continue
+
+      if self.swarm_loc.name == self.nearby_uav.data:
         self.align_vel.x = (self.curr_vel.x + self.swarm_loc.vel.x) / 2
         self.align_vel.y = (self.curr_vel.y + self.swarm_loc.vel.y) / 2
         self.align_vel.z = (self.curr_vel.z + self.swarm_loc.vel.z) / 2
@@ -63,6 +66,12 @@ class SwarmAlignment():
         self.align_vel.x = self.align_vel.x * self.align_v_w
         self.align_vel.y = self.align_vel.y * self.align_v_w
         self.align_vel.z = self.align_vel.z * self.align_v_w
+
+        self.align_velocity_pub.publish(self.align_vel)
+      else:
+        self.align_vel.x = 0
+        self.align_vel.y = 0
+        self.align_vel.z = 0
 
         self.align_velocity_pub.publish(self.align_vel)
 

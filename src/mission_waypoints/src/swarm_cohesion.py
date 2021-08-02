@@ -19,6 +19,7 @@ class PositionCohesion():
     self.swarm_loc = swarm_gps()
     self.pos_vel = Vector3()
     self.nearby_uav = String()
+    self.drone_positions = {}
 
     # Create the publisher and subscriber
 
@@ -60,7 +61,10 @@ class PositionCohesion():
     # While ROS is still running
     while not rospy.is_shutdown():
 
-      if self.swarm_loc.name == self.nearby_uav:
+      if self.swarm_loc.name == self.uavName:
+        continue      
+      
+      if self.swarm_loc.name == self.nearby_uav.data:
         avg_x_pos = (self.curr_pos.pose.position.x + self.swarm_loc.pos.x) / 2
         avg_y_pos = (self.curr_pos.pose.position.y + self.swarm_loc.pos.y) / 2
         avg_z_pos = (self.curr_pos.pose.position.z + self.swarm_loc.pos.z) / 2
@@ -70,6 +74,13 @@ class PositionCohesion():
         self.pos_vel.z = (avg_z_pos - self.curr_pos.pose.position.z) * self.pos_v_w
 
         self.position_velocity_pub.publish(self.pos_vel)
+      else:
+        self.pos_vel.x = 0
+        self.pos_vel.y = 0
+        self.pos_vel.z = 0
+
+        self.position_velocity_pub.publish(self.pos_vel)
+
 
       # Sleep for the remainder of the loop
       rate.sleep()
