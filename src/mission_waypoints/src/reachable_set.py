@@ -19,11 +19,17 @@ class ReachableSet():
   def __init__(self):
 
     self.uavName = rospy.get_param(str(rospy.get_name()) + "/uavName", "uav")
+
+    self.collisionSphere = rospy.get_param(str(rospy.get_name()) + "/collisionSphere", 2.5)
+    print("The sphere for separation is: " + str(self.collisionSphere))
     
     self.swarm_location = swarm_gps()
     self.curr_loc = PoseStamped()
     self.curr_vel = Vector3()
     self.uav_collision_name = String()
+    self.drone_positions = {}
+
+    self.uav_collision_name = ""
 
     # Create the publisher and subscriber
     self.swarm_loc_sub = rospy.Subscriber('/swarm/gps', swarm_gps, self.get_swarm_pos, queue_size = 1)
@@ -58,24 +64,22 @@ class ReachableSet():
     # While ROS is still running
     while not rospy.is_shutdown():        
       
-      if self.swarm_location.name == self.uavName:
+      self.drone_positions[self.swarm_location.name] = [self.swarm_location.pos, self.swarm_location.vel]      
+
+      if len(self.drone_positions.keys()) != 3:
         continue
 
-      # main_uav = Polygon([ (self.curr_loc.pose.position.x + self.curr_vel.x, self.curr_loc.pose.position.y + self.curr_vel.y), (self.curr_loc.pose.position.x, self.curr_loc.pose.position.y), (self.curr_loc.pose.position.x, self.curr_loc.pose.position.y + self.curr_vel.y), (self.curr_loc.pose.position.x + self.curr_vel.x, self.curr_loc.pose.position.y) ])
+      for key in sorted(self.drone_positions.keys()):
+        if key == self.uavName:
+          continue
+        self.distance = math.sqrt( pow(self.curr_loc.pose.position.x - self.drone_positions[key][0].x, 2) + pow(self.curr_loc.pose.position.y - self.drone_positions[key][0].y, 2) )
 
-      # swarm_uav = Polygon([ (self.swarm_location.pos.x, self.swarm_location.pos.y), (self.swarm_location.pos.x + self.swarm_location.vel.x, self.swarm_location.pos.y + self.swarm_location.vel.y), (self.swarm_location.pos.x + self.swarm_location.vel.x, self.swarm_location.pos.y), (self.swarm_location.pos.x, self.swarm_location.pos.y + self.swarm_location.vel.y) ])
+        if self.distance <= self.collisionSphere:
+          self.uav_collision_name = self.uav_collision_name + key + ","
 
-      # if main_uav.intersects(swarm_uav):
-      #   # print("collision between " + str(self.uavName) + " and " + str(self.swarm_location.name))
-      #   self.uav_collision_name = self.swarm_location.name
-      #   self.uav_intersection.publish(self.uav_collision_name)
-
-      distance = math.sqrt( pow(self.curr_loc.pose.position.x - self.swarm_location.pos.x, 2) + pow(self.curr_loc.pose.position.y - self.swarm_location.pos.y, 2) )
-
-      if distance <= 2.5:
-        self.uav_intersection.publish(self.swarm_location.name)
-      else:
-        self.uav_intersection.publish("")
+      self.uav_collision_name = self.uav_collision_name.rstrip(",")
+      self.uav_intersection.publish(self.uav_collision_name)
+      self.uav_collision_name = ""
 
       # Sleep for the remainder of the loop
       rate.sleep()

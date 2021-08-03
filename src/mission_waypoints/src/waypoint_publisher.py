@@ -44,7 +44,7 @@ class WaypointReader():
     self.goal_wayp2 = Vector3()
     self.goal_wayp3 = Vector3()
 
-    self.acceptance_range = rospy.get_param("/waypoint_reader_node/acceptance_range", 0.1)
+    self.acceptance_range = rospy.get_param("/waypoint_reader_node/acceptance_range", 0.25)
     print("The acceptance range is: " + str(self.acceptance_range))
 
     # Call the mainloop of our class
@@ -143,7 +143,7 @@ class WaypointReader():
         self.wayp_pub2.publish(self.goal_wayp2)
         self.wayp_pub3.publish(self.goal_wayp3)
       elif self.time_elapsed >= 1:
-        print("it's been more than 5 seconds, moving onto next waypoint")
+        print("it's been more than 20 seconds, moving onto next waypoint")
         self.counter = time.clock()
 
         self.goal_wayp1.x = self.coordinates[count]

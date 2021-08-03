@@ -12,11 +12,12 @@ from mission_waypoints.msg import swarm_gps
 class CollisionDetector():
   def __init__(self):
     self.uavName = rospy.get_param(str(rospy.get_name()) + "/uavName", "uav")
-    self.collision_radius = rospy.get_param(str(rospy.get_name()) + "/collision_radius", 0.1)
+    self.collision_radius = rospy.get_param(str(rospy.get_name()) + "/collision_radius", 0.2)
     print("The collision radius is: " + str(self.collision_radius))
     
     self.uav_gps = PoseStamped()
     self.swarm_gps = swarm_gps()
+    self.drone_positions = {}
 
     self.uav_pos = rospy.Subscriber(self.uavName + "/sensors/gps", PoseStamped, self.get_pos, queue_size = 1)
 
@@ -42,20 +43,28 @@ class CollisionDetector():
     # Set the rate of this loop
     rate = rospy.Rate(20)
     rospy.sleep(10.)
+    self.msg_str = ""
 
     # While ROS is still running
     while not rospy.is_shutdown():
 
-      if self.swarm_gps.name == self.uavName:
+      self.drone_positions[self.swarm_gps.name] = [self.swarm_gps.pos, self.swarm_gps.vel]      
+
+      if len(self.drone_positions.keys()) != 3:
         continue
 
-      distance = math.sqrt( pow(self.uav_gps.pose.position.x - self.swarm_gps.pos.x, 2) + pow(self.uav_gps.pose.position.y - self.swarm_gps.pos.y, 2) + pow(self.uav_gps.pose.position.z - self.swarm_gps.pos.z, 2) )
+      for key in sorted(self.drone_positions.keys()):
+        if key == self.uavName:
+          continue
+        distance = math.sqrt( pow(self.uav_gps.pose.position.x - self.drone_positions[key][0].x, 2) + pow(self.uav_gps.pose.position.y - self.drone_positions[key][0].y, 2) + pow(self.uav_gps.pose.position.z - self.drone_positions[key][0].z, 2) )
 
-      if distance <= self.collision_radius:
-        msg_str = str(self.uavName) + " and "
-        msg_str = msg_str + str(self.swarm_gps.name)
-        msg_str = msg_str + " collided!"
-        self.collision_pub.publish(msg_str)
+        if distance <= self.collision_radius:
+          self.msg_str = "COLLISION!"
+          rospy.logerr("COLLISION!")
+          self.collision_pub.publish(self.msg_str)
+
+        self.collision_pub.publish(self.msg_str)
+        self.msg_str = ""
 
       # Sleep for the remainder of the loop
       rate.sleep()

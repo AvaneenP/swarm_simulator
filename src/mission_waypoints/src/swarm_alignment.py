@@ -20,6 +20,7 @@ class SwarmAlignment():
     self.curr_vel = Vector3()
     self.swarm_loc = swarm_gps()
     self.nearby_uav = String()
+    self.drone_positions = {}
     
     # Create the publisher and subscriber
     self.vel_sub = rospy.Subscriber(self.uavName + '/input/velocity', Vector3, self.get_vel, queue_size = 1)
@@ -52,28 +53,38 @@ class SwarmAlignment():
     rate = rospy.Rate(20)
     rospy.sleep(10.)
 
+    self.avg_x_vel = 0
+    self.avg_y_vel = 0
+    self.count = 0
+
     # While ROS is still running
     while not rospy.is_shutdown():
 
-      if self.swarm_loc.name == self.uavName:
+      self.drone_positions[self.swarm_loc.name] = [self.swarm_loc.pos, self.swarm_loc.vel]      
+
+      if len(self.drone_positions.keys()) != 3:
         continue
 
-      if self.swarm_loc.name == self.nearby_uav.data:
-        self.align_vel.x = (self.curr_vel.x + self.swarm_loc.vel.x) / 2
-        self.align_vel.y = (self.curr_vel.y + self.swarm_loc.vel.y) / 2
-        self.align_vel.z = (self.curr_vel.z + self.swarm_loc.vel.z) / 2
+      if self.nearby_uav.data != "":
+        for word in self.nearby_uav.data.split(","):
+          if word == '':
+            continue
+          self.avg_x_vel += self.drone_positions[word][1].x
+          self.avg_y_vel += self.drone_positions[word][1].y
+          self.count += 1
 
-        self.align_vel.x = self.align_vel.x * self.align_v_w
-        self.align_vel.y = self.align_vel.y * self.align_v_w
-        self.align_vel.z = self.align_vel.z * self.align_v_w
+        self.avg_x_vel += self.curr_vel.x
+        self.avg_y_vel += self.curr_vel.y
 
-        self.align_velocity_pub.publish(self.align_vel)
-      else:
-        self.align_vel.x = 0
-        self.align_vel.y = 0
-        self.align_vel.z = 0
+        self.align_vel.x = self.avg_x_vel / (self.count + 1) * self.align_v_w
+        self.align_vel.y = self.avg_y_vel / (self.count + 1) * self.align_v_w
 
-        self.align_velocity_pub.publish(self.align_vel)
+      self.align_velocity_pub.publish(self.align_vel)
+      self.align_vel.x = 0
+      self.align_vel.y = 0
+      self.avg_x_vel = 0
+      self.avg_y_vel = 0
+      self.count = 0
 
       # Sleep for the remainder of the loop
       rate.sleep()

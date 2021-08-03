@@ -58,28 +58,43 @@ class PositionCohesion():
     rate = rospy.Rate(20)
     rospy.sleep(10.)
 
+    self.avg_x_pos = 0
+    self.avg_y_pos = 0
+    self.count = 0
+
     # While ROS is still running
     while not rospy.is_shutdown():
 
-      if self.swarm_loc.name == self.uavName:
-        continue      
+      self.drone_positions[self.swarm_loc.name] = [self.swarm_loc.pos, self.swarm_loc.vel]
+
+      if len(self.drone_positions.keys()) != 3:
+        continue
+
+      if self.nearby_uav.data != "":
+        # getting an error where the key is ''. This shouldn't happen because of the if statement above. Very random to replicate
+        # I added the if statement within the for loop (still haven't been able to consistently replicate error)
+        for word in self.nearby_uav.data.split(","):
+          if word == '':
+            continue
+          self.avg_x_pos += self.drone_positions[word][0].x
+          self.avg_y_pos += self.drone_positions[word][0].y
+          self.count += 1
       
-      if self.swarm_loc.name == self.nearby_uav.data:
-        avg_x_pos = (self.curr_pos.pose.position.x + self.swarm_loc.pos.x) / 2
-        avg_y_pos = (self.curr_pos.pose.position.y + self.swarm_loc.pos.y) / 2
-        avg_z_pos = (self.curr_pos.pose.position.z + self.swarm_loc.pos.z) / 2
+        self.avg_x_pos += self.curr_pos.pose.position.x
+        self.avg_y_pos += self.curr_pos.pose.position.y
 
-        self.pos_vel.x = (avg_x_pos - self.curr_pos.pose.position.x) * self.pos_v_w
-        self.pos_vel.y = (avg_y_pos - self.curr_pos.pose.position.y) * self.pos_v_w
-        self.pos_vel.z = (avg_z_pos - self.curr_pos.pose.position.z) * self.pos_v_w
+        self.avg_x_pos = self.avg_x_pos / (self.count + 1)
+        self.avg_y_pos = self.avg_y_pos / (self.count + 1)
 
-        self.position_velocity_pub.publish(self.pos_vel)
-      else:
-        self.pos_vel.x = 0
-        self.pos_vel.y = 0
-        self.pos_vel.z = 0
+        self.pos_vel.x =  (self.avg_x_pos - self.curr_pos.pose.position.x) * self.pos_v_w
+        self.pos_vel.y =  (self.avg_y_pos - self.curr_pos.pose.position.y) * self.pos_v_w
 
-        self.position_velocity_pub.publish(self.pos_vel)
+      self.position_velocity_pub.publish(self.pos_vel)
+      self.pos_vel.x = 0
+      self.pos_vel.y = 0
+      self.avg_x_pos = 0
+      self.avg_y_pos = 0
+      self.count = 0
 
 
       # Sleep for the remainder of the loop

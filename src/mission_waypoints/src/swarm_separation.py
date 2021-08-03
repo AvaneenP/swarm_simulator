@@ -24,6 +24,7 @@ class SwarmSeparation():
     self.uav_intersection_name = String()
     self.uav_sphere_name = String()
     self.away_vel = Vector3()
+    self.drone_positions = {}
 
     # Create the publisher and subscriber
     self.position_sub = rospy.Subscriber(self.uavName + '/sensors/gps', PoseStamped, self.get_pos, queue_size = 1)
@@ -64,44 +65,38 @@ class SwarmSeparation():
     rate = rospy.Rate(20)
     rospy.sleep(10.)
 
+    self.avg_away_x = 0
+    self.avg_away_y = 0
+
     # While ROS is still running
     while not rospy.is_shutdown():
 
-      if self.swarm_location.name == self.uavName:
+      self.drone_positions[self.swarm_location.name] = [self.swarm_location.pos, self.swarm_location.vel]      
+
+      if len(self.drone_positions.keys()) != 3:
         continue
 
-      if self.swarm_location.name == self.uav_intersection_name.data:
-        # print("moving " + self.uavName + " away from " + self.uav_intersection_name.data)
-        away_x = (self.curr_pos.pose.position.x - self.swarm_location.pos.x)
-        away_y = (self.curr_pos.pose.position.y - self.swarm_location.pos.y)
-        away_z = (self.curr_pos.pose.position.z - self.swarm_location.pos.z)
+      if self.uav_intersection_name.data != "":
+        for word in self.uav_intersection_name.data.split(","):
+          if word == '':
+            continue
+          vec1 = self.curr_pos.pose.position.x - self.drone_positions[word][0].x
+          vec2 = self.curr_pos.pose.position.y - self.drone_positions[word][0].y
+          mag = math.sqrt( pow(vec1, 2) + pow(vec2, 2) )
+          vec1 = vec1 / mag
+          vec2 = vec2 / mag
 
-        # if abs(away_x) <= 0.5:
-        #   self.away_vel.x = 2 * (away_x/away_x) * self.sep_v_w
-        # else:
-        #   self.away_vel.x = (1 / away_x) * self.sep_v_w
+          self.avg_away_x += vec1 * (3 / mag)
+          self.avg_away_y += vec2 * (3 / mag)
 
-        # if abs(away_y) <= 0.5:
-        #   self.away_vel.y = 2 * (away_y/away_y) * self.sep_v_w
-        # else:
-        #   self.away_vel.y = (1 / away_y) * self.sep_v_w
+        self.away_vel.x = self.avg_away_x * self.sep_v_w
+        self.away_vel.y = self.avg_away_y * self.sep_v_w
 
-        # if abs(away_z) <= 0.5:
-        #   self.away_vel.z = 2 * (away_z/away_z) * self.sep_v_w
-        # else:
-        #   self.away_vel.z = (1 / away_z) * self.sep_v_w
-
-        self.away_vel.x = (0.5 / away_x) * self.sep_v_w
-        self.away_vel.y = (0.5 / away_y) * self.sep_v_w
-        self.away_vel.z = (0.5 / away_z) * self.sep_v_w
-        
-        self.away_velocity_pub.publish(self.away_vel)
-      else:
-        self.away_vel.x = 0
-        self.away_vel.y = 0
-        self.away_vel.z = 0
-        
-        self.away_velocity_pub.publish(self.away_vel)
+      self.away_velocity_pub.publish(self.away_vel)
+      self.away_vel.x = 0
+      self.away_vel.y = 0
+      self.avg_away_x = 0
+      self.avg_away_y = 0
 
       # Sleep for the remainder of the loop
       rate.sleep()

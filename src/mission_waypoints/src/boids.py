@@ -11,6 +11,13 @@ from matplotlib.pyplot import show, plot
 
 class BoidsVectors():
   def __init__(self):
+    self.final_arrows = rospy.get_param("boids_node/final_arrows", False)
+    self.goal_arrows = rospy.get_param("boids_node/goal_arrows", False)
+    self.pos_arrows = rospy.get_param("boids_node/pos_arrows", False)
+    self.sep_arrows = rospy.get_param("boids_node/sep_arrows", False)
+    self.align_arrows = rospy.get_param("boids_node/align_arrows", False)
+
+
     self.goal_vel1 = Vector3()
     self.goal_vel2 = Vector3()
     self.goal_vel3 = Vector3()
@@ -166,20 +173,36 @@ class BoidsVectors():
       label2 = ax.text(self.uav2_pos.pose.position.x, self.uav2_pos.pose.position.y, '({}, {})'.format(round(self.uav2_pos.pose.position.x, 2), round(self.uav2_pos.pose.position.y, 2)))
       label3 = ax.text(self.uav3_pos.pose.position.x, self.uav3_pos.pose.position.y, '({}, {})'.format(round(self.uav3_pos.pose.position.x, 2), round(self.uav3_pos.pose.position.y, 2)))
 
-      # vec1 = ax.arrow(self.uav1_pos.pose.position.x, self.uav1_pos.pose.position.y, self.final_vel1.x, self.final_vel1.y, width = 0.1)
-      vec1a = ax.arrow(self.uav1_pos.pose.position.x, self.uav1_pos.pose.position.y, self.away_vel1.x, self.away_vel1.y, width = 0.1)
-      # vec1g = ax.arrow(self.uav1_pos.pose.position.x, self.uav1_pos.pose.position.y, self.goal_vel1.x, self.goal_vel1.y, width = 0.1)
-      # vec1al = ax.arrow(self.uav1_pos.pose.position.x, self.uav1_pos.pose.position.y, self.align_vel1.x, self.align_vel1.y, width = 0.1)
+      if self.final_arrows:
+        vec1 = ax.arrow(self.uav1_pos.pose.position.x, self.uav1_pos.pose.position.y, self.final_vel1.x, self.final_vel1.y, width = 0.1)
+        vec2 = ax.arrow(self.uav2_pos.pose.position.x, self.uav2_pos.pose.position.y, self.final_vel2.x, self.final_vel2.y, width = 0.1)
+        vec3 = ax.arrow(self.uav3_pos.pose.position.x, self.uav3_pos.pose.position.y, self.final_vel3.x, self.final_vel3.y, width = 0.1)
 
-      # vec2 = ax.arrow(self.uav2_pos.pose.position.x, self.uav2_pos.pose.position.y, self.final_vel2.x, self.final_vel2.y, width = 0.1)
-      vec2a = ax.arrow(self.uav2_pos.pose.position.x, self.uav2_pos.pose.position.y, self.away_vel2.x, self.away_vel2.y, width = 0.1)
-      # vec2g = ax.arrow(self.uav2_pos.pose.position.x, self.uav2_pos.pose.position.y, self.goal_vel2.x, self.goal_vel2.y, width = 0.1)
-      # vec2al = ax.arrow(self.uav2_pos.pose.position.x, self.uav2_pos.pose.position.y, self.align_vel2.x, self.align_vel2.y, width = 0.1)
       
-      # vec3 = ax.arrow(self.uav3_pos.pose.position.x, self.uav3_pos.pose.position.y, self.final_vel3.x, self.final_vel3.y, width = 0.1)
-      vec3a = ax.arrow(self.uav3_pos.pose.position.x, self.uav3_pos.pose.position.y, self.away_vel3.x, self.away_vel3.y, width = 0.1)
-      # vec3g = ax.arrow(self.uav3_pos.pose.position.x, self.uav3_pos.pose.position.y, self.goal_vel3.x, self.goal_vel3.y, width = 0.1)
-      # vec3al = ax.arrow(self.uav3_pos.pose.position.x, self.uav3_pos.pose.position.y, self.align_vel3.x, self.align_vel3.y, width = 0.1)
+      if self.goal_arrows:
+        vec1g = ax.arrow(self.uav1_pos.pose.position.x, self.uav1_pos.pose.position.y, self.goal_vel1.x, self.goal_vel1.y, width = 0.1)
+        vec2g = ax.arrow(self.uav2_pos.pose.position.x, self.uav2_pos.pose.position.y, self.goal_vel2.x, self.goal_vel2.y, width = 0.1)
+        vec3g = ax.arrow(self.uav3_pos.pose.position.x, self.uav3_pos.pose.position.y, self.goal_vel3.x, self.goal_vel3.y, width = 0.1)
+
+      
+      if self.pos_arrows:
+        vec1p = ax.arrow(self.uav1_pos.pose.position.x, self.uav1_pos.pose.position.y, self.pos_vel1.x, self.pos_vel1.y, width = 0.1, alpha=0.5, color='b')
+        vec2p = ax.arrow(self.uav2_pos.pose.position.x, self.uav2_pos.pose.position.y, self.pos_vel2.x, self.pos_vel2.y, width = 0.1, alpha=0.5, color='b')
+        vec3p = ax.arrow(self.uav3_pos.pose.position.x, self.uav3_pos.pose.position.y, self.pos_vel3.x, self.pos_vel3.y, width = 0.1, alpha=0.5, color='b')
+      
+
+      if self.sep_arrows:
+        vec1a = ax.arrow(self.uav1_pos.pose.position.x, self.uav1_pos.pose.position.y, self.away_vel1.x, self.away_vel1.y, width = 0.1, alpha=0.5, color='r')
+        vec2a = ax.arrow(self.uav2_pos.pose.position.x, self.uav2_pos.pose.position.y, self.away_vel2.x, self.away_vel2.y, width = 0.1, alpha=0.5, color='r')
+        vec3a = ax.arrow(self.uav3_pos.pose.position.x, self.uav3_pos.pose.position.y, self.away_vel3.x, self.away_vel3.y, width = 0.1, alpha=0.5, color='r')
+
+      
+      if self.align_arrows:
+        vec1al = ax.arrow(self.uav1_pos.pose.position.x, self.uav1_pos.pose.position.y, self.align_vel1.x, self.align_vel1.y, width = 0.1, alpha=0.5, color='g')
+        vec2al = ax.arrow(self.uav2_pos.pose.position.x, self.uav2_pos.pose.position.y, self.align_vel2.x, self.align_vel2.y, width = 0.1, alpha=0.5, color='g')
+        vec3al = ax.arrow(self.uav3_pos.pose.position.x, self.uav3_pos.pose.position.y, self.align_vel3.x, self.align_vel3.y, width = 0.1, alpha=0.5, color='g')
+
+      
 
       # reachable_set1 = ax.fill( (self.uav1_pos.pose.position.x, self.uav1_pos.pose.position.x + self.final_vel1.x, self.uav1_pos.pose.position.x), (self.uav1_pos.pose.position.y, self.uav1_pos.pose.position.y, self.uav1_pos.pose.position.y + self.final_vel1.y), "r")      
       

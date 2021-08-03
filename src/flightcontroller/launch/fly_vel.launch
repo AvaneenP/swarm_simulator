@@ -40,8 +40,8 @@
       <param name="influence_radius" type="double" value="$(arg influence_radius)" />
     </node>
 
-    <arg name="collision_radius" default="0.1" />
-    <node pkg="mission_waypoints" type="collision_detector.py" name="collision_node_$(arg uavName)" output="screen">
+    <arg name="collision_radius" default="0.2" />
+    <node pkg="mission_waypoints" type="collision_detector.py" name="collision_node_$(arg uavName)" output="screen" required="true">
       <param name="uavName" type="string" value="$(arg uavName)" />
       <param name="collision_radius" type="double" value="$(arg collision_radius)" />
     </node>
@@ -64,8 +64,10 @@
       <param name="sep_v_w" type="double" value="$(arg sep_v_w)"/>
     </node>
 
+    <arg name="collisionSphere" default="2.5" />
     <node pkg="mission_waypoints" type="reachable_set.py" name="reachable_set_node_$(arg uavName)" output="screen">
       <param name="uavName" type="string" value="$(arg uavName)" />
+      <param name="collisionSphere" type="double" value="$(arg collisionSphere)" />
     </node>
 
   </group>
@@ -106,8 +108,8 @@
       <param name="influence_radius" type="double" value="$(arg influence_radius)" />
     </node>
 
-    <arg name="collision_radius" default="0.1" />
-    <node pkg="mission_waypoints" type="collision_detector.py" name="collision_node_$(arg uavName)" output="screen">
+    <arg name="collision_radius" default="0.2" />
+    <node pkg="mission_waypoints" type="collision_detector.py" name="collision_node_$(arg uavName)" output="screen" required="true">
       <param name="uavName" type="string" value="$(arg uavName)" />
       <param name="collision_radius" type="double" value="$(arg collision_radius)" />
     </node>
@@ -130,8 +132,10 @@
       <param name="sep_v_w" type="double" value="$(arg sep_v_w)"/>
     </node>
 
+    <arg name="collisionSphere" default="2.5" />
     <node pkg="mission_waypoints" type="reachable_set.py" name="reachable_set_node_$(arg uavName)" output="screen">
       <param name="uavName" type="string" value="$(arg uavName)" />
+      <param name="collisionSphere" type="double" value="$(arg collisionSphere)" />
     </node>
 
   </group>
@@ -171,8 +175,8 @@
       <param name="influence_radius" type="double" value="$(arg influence_radius)" />
     </node>
 
-    <arg name="collision_radius" default="0.1" />
-    <node pkg="mission_waypoints" type="collision_detector.py" name="collision_node_$(arg uavName)" output="screen">
+    <arg name="collision_radius" default="0.2" />
+    <node pkg="mission_waypoints" type="collision_detector.py" name="collision_node_$(arg uavName)" output="screen" required="true">
       <param name="uavName" type="string" value="$(arg uavName)" />
       <param name="collision_radius" type="double" value="$(arg collision_radius)" />
     </node>
@@ -195,8 +199,10 @@
       <param name="sep_v_w" type="double" value="$(arg sep_v_w)"/>
     </node>
 
+    <arg name="collisionSphere" default="2.5" />
     <node pkg="mission_waypoints" type="reachable_set.py" name="reachable_set_node_$(arg uavName)" output="screen">
       <param name="uavName" type="string" value="$(arg uavName)" />
+      <param name="collisionSphere" type="double" value="$(arg collisionSphere)" />
     </node>
 
   </group>
@@ -210,7 +216,7 @@
     <arg name="uavName3" value="$(arg name3)" />
   </include>
 
-  <arg name="acceptance_range" default="0.1"/>
+  <arg name="acceptance_range" default="0.25"/>
   <arg name="file" default="mission_waypoints.txt"/>
   <node pkg="mission_waypoints" type="waypoint_publisher.py" name="waypoint_reader_node" output="screen">
     <param name="acceptance_range" type="double" value="$(arg acceptance_range)"/>
@@ -222,6 +228,17 @@
     <param name="goal_v_w" type="double" value="$(arg goal_v_w)"/>
   </node>
 
-  <node pkg="mission_waypoints" type="boids.py" name="boids_node" output="screen"></node>
+  <arg name="final_arrows" default="false" />
+  <arg name="goal_arrows" default="false" />
+  <arg name="pos_arrows" default="false" />
+  <arg name="sep_arrows" default="false" />
+  <arg name="align_arrows" default="false" />
+  <node pkg="mission_waypoints" type="boids.py" name="boids_node" output="screen">
+    <param name="final_arrows" type="bool" value="$(arg final_arrows)" />
+    <param name="goal_arrows" type="bool" value="$(arg goal_arrows)" />
+    <param name="pos_arrows" type="bool" value="$(arg pos_arrows)" />
+    <param name="sep_arrows" type="bool" value="$(arg sep_arrows)" />
+    <param name="align_arrows" type="bool" value="$(arg align_arrows)" />
+  </node>
 
 </launch>
