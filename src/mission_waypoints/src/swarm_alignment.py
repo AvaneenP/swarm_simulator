@@ -22,6 +22,10 @@ class SwarmAlignment():
     self.nearby_uav = String()
     self.drone_positions = {}
     
+    self.curr_pos = PoseStamped()
+    self.uav_info = swarm_gps()
+    self.uav_info.name = self.uavName
+    
     # Create the publisher and subscriber
     self.vel_sub = rospy.Subscriber(self.uavName + '/input/velocity', Vector3, self.get_vel, queue_size = 1)
 
@@ -31,6 +35,9 @@ class SwarmAlignment():
 
     self.align_velocity_pub = rospy.Publisher(self.uavName + '/input/unverified_align_velocity', Vector3, queue_size=1)
 
+    self.position_sub = rospy.Subscriber(self.uavName + '/sensors/gps', PoseStamped, self.get_pos, queue_size = 1)
+
+    self.uav_info_pub = rospy.Publisher(self.uavName + '/align_info', swarm_gps, queue_size = 1)
 
     # Call the mainloop of our class
     self.mainloop()
@@ -45,6 +52,11 @@ class SwarmAlignment():
 
   def get_nearby_uav_name(self, msg):
     self.nearby_uav = copy.deepcopy(msg)
+
+  def get_pos(self, msg):
+    self.curr_pos.pose.position.x = msg.pose.position.x
+    self.curr_pos.pose.position.y = msg.pose.position.y
+    self.curr_pos.pose.position.z = msg.pose.position.z
 
 
   # Main Loop
@@ -80,6 +92,16 @@ class SwarmAlignment():
         self.align_vel.y = self.avg_y_vel / (self.count + 1) * self.align_v_w
 
       self.align_velocity_pub.publish(self.align_vel)
+
+      self.uav_info.pos.x = self.curr_pos.pose.position.x
+      self.uav_info.pos.y = self.curr_pos.pose.position.y
+      self.uav_info.pos.z = self.curr_pos.pose.position.z
+
+      self.uav_info.vel.x = self.align_vel.x
+      self.uav_info.vel.y = self.align_vel.y
+
+      self.uav_info_pub.publish(self.uav_info)
+
       self.align_vel.x = 0
       self.align_vel.y = 0
       self.avg_x_vel = 0

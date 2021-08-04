@@ -8,20 +8,22 @@ from geometry_msgs.msg import PoseStamped
 
 class WaypointReader():
   def __init__(self):
+    
+    self.numUAVs = rospy.get_param("matplot_viz_node/numUAVs", 3)
+
+    self.uav_pos = {}
+    self.publisherList = []
 
     self.curr_pos1 = PoseStamped()
     self.curr_pos2 = PoseStamped()
     self.curr_pos3 = PoseStamped()
 
     # Create the publisher and subscriber
-    self.wayp_pub1 = rospy.Publisher('/uav1/waypoint', Vector3, queue_size=1)
-    self.position_sub1 = rospy.Subscriber('/uav1/sensors/gps', PoseStamped, self.get_pos1, queue_size = 1)
+    for i in range(1, self.numUAVs+1):
+      self.uav_pos_sub = rospy.Subscriber("uav" + str(i) + "/final_info", swarm_gps, self.uav_pos_info, queue_size = 1)
 
-    self.wayp_pub2 = rospy.Publisher('/uav2/waypoint', Vector3, queue_size=1)
-    self.position_sub2 = rospy.Subscriber('/uav2/sensors/gps', PoseStamped, self.get_pos2, queue_size = 1)
-
-    self.wayp_pub3 = rospy.Publisher('/uav3/waypoint', Vector3, queue_size=1)
-    self.position_sub3 = rospy.Subscriber('/uav3/sensors/gps', PoseStamped, self.get_pos3, queue_size = 1)
+    for i in range(1, self.numUAVs+1):
+      self.publisherList.append( rospy.Publisher("uav" + str(i) + "/waypoint", Vector3, queue_size = 1) )
   
     self.file = rospy.get_param("/waypoint_reader_node/file", "mission_waypoints.txt")
 
@@ -34,15 +36,11 @@ class WaypointReader():
     for c in waypoint_file:
       c = c[1:len(c)-2]
       temp = c.split(',')
-      # print(temp)
       self.coordinates.append(float(temp[0]))
       self.coordinates.append(float(temp[1]))
       self.coordinates.append(float(temp[2]))
 
     # Create the waypoint messages we are going to be sending
-    self.goal_wayp1 = Vector3()
-    self.goal_wayp2 = Vector3()
-    self.goal_wayp3 = Vector3()
 
     self.acceptance_range = rospy.get_param("/waypoint_reader_node/acceptance_range", 0.25)
     print("The acceptance range is: " + str(self.acceptance_range))
@@ -51,20 +49,8 @@ class WaypointReader():
     self.mainloop()
   
   # Callbacks
-  def get_pos1(self, msg):
-    self.curr_pos1.pose.position.x = msg.pose.position.x
-    self.curr_pos1.pose.position.y = msg.pose.position.y
-    self.curr_pos1.pose.position.z = msg.pose.position.z
-
-  def get_pos2(self, msg):
-    self.curr_pos2.pose.position.x = msg.pose.position.x
-    self.curr_pos2.pose.position.y = msg.pose.position.y
-    self.curr_pos2.pose.position.z = msg.pose.position.z
-
-  def get_pos3(self, msg):
-    self.curr_pos3.pose.position.x = msg.pose.position.x
-    self.curr_pos3.pose.position.y = msg.pose.position.y
-    self.curr_pos3.pose.position.z = msg.pose.position.z
+  def uav_pos_info(self, msg):
+    self.uav_pos[msg.name] = [msg.pos, msg.vel]
 
 
   def mainloop(self):
@@ -72,8 +58,9 @@ class WaypointReader():
     rate = rospy.Rate(20)
     rospy.sleep(9.)
 
-    count = 9
+    count = (3 * self.numUAVs)
     count2 = 0
+    self.reached = False
     self.counter = time.clock()
     print(self.counter)
     print(len(self.coordinates))
@@ -81,38 +68,40 @@ class WaypointReader():
     # While ROS is still running
     while not rospy.is_shutdown():
       self.time_elapsed = time.clock() - self.counter
-      # print(self.time_elapsed)
+      loopCount = 0
+      self.reached = False
       
       if count == len(self.coordinates):
-        count = count - 9 
+        count = count - (3 * self.numUAVs) 
 
       if count2 == len(self.coordinates):
-        count2 = count2 - 9 
+        count2 = count2 - (3 * self.numUAVs)
+
+      temp = count2
+
+      for key in uav_pos.keys():
+        loopCount += 1
+
+        x_diff = pow(uav_pos[key][0].x - self.coordinates[count2], 2)
+        count2 += 1
+        y_diff = pow(uav_pos[key][0].y - self.coordinates[count2], 2)
+        count2 += 1
+        z_diff = pow(uav_pos[key][0].z - self.coordinates[count2], 2)
+        count2 += 1
+        diff = math.sqrt(x_diff + y_diff + z_diff)
+
+        if diff > self.acceptance_range:
+          count2 = temp
+          loopCount = 0
+          break
+
+        if loopCount == 3:
+          self.reached = True
+
       
-      x_diff1 = pow(self.curr_pos1.pose.position.x - self.coordinates[count2], 2)
-      count2 += 1
-      y_diff1 = pow(self.curr_pos1.pose.position.y - self.coordinates[count2], 2)
-      count2 += 1
-      z_diff1 = pow(self.curr_pos1.pose.position.z - self.coordinates[count2], 2)
-      count2 += 1
-      diff1 = math.sqrt(x_diff1 + y_diff1 + z_diff1)
+      if self.reached:
+        
 
-      x_diff2 = pow(self.curr_pos2.pose.position.x - self.coordinates[count2], 2)
-      count2 += 1
-      y_diff2 = pow(self.curr_pos2.pose.position.y - self.coordinates[count2], 2)
-      count2 += 1
-      z_diff2 = pow(self.curr_pos2.pose.position.z - self.coordinates[count2], 2)
-      count2 += 1
-      diff2 = math.sqrt(x_diff2 + y_diff2 + z_diff2)
-
-      x_diff3 = pow(self.curr_pos3.pose.position.x - self.coordinates[count2], 2)
-      count2 += 1
-      y_diff3 = pow(self.curr_pos3.pose.position.y - self.coordinates[count2], 2)
-      count2 += 1
-      z_diff3 = pow(self.curr_pos3.pose.position.z - self.coordinates[count2], 2)
-      count2 += 1
-      diff3 = math.sqrt(x_diff3 + y_diff3 + z_diff3)
-    
 
       if diff1 < self.acceptance_range and diff2 < self.acceptance_range and diff3 < self.acceptance_range:
         self.counter = time.clock()

@@ -26,6 +26,9 @@ class SwarmSeparation():
     self.away_vel = Vector3()
     self.drone_positions = {}
 
+    self.uav_info = swarm_gps()
+    self.uav_info.name = self.uavName
+
     # Create the publisher and subscriber
     self.position_sub = rospy.Subscriber(self.uavName + '/sensors/gps', PoseStamped, self.get_pos, queue_size = 1)
 
@@ -36,6 +39,8 @@ class SwarmSeparation():
     self.uav_sphere_avoid = rospy.Subscriber(self.uavName + "/sphere_of_influence", String, self.get_sphere_uav, queue_size = 1)
 
     self.away_velocity_pub = rospy.Publisher(self.uavName + '/input/unverified_away_velocity', Vector3, queue_size=1)
+
+    self.uav_info_pub = rospy.Publisher(self.uavName + "/sep_info", swarm_gps, queue_size = 1)
 
     self.sep_v_w = rospy.get_param(str(rospy.get_name()) + "/sep_v_w", 0.5)
     print("weight of the 'separation' vector is: " + str(self.sep_v_w))
@@ -93,6 +98,16 @@ class SwarmSeparation():
         self.away_vel.y = self.avg_away_y * self.sep_v_w
 
       self.away_velocity_pub.publish(self.away_vel)
+
+      self.uav_info.pos.x = self.curr_pos.pose.position.x
+      self.uav_info.pos.y = self.curr_pos.pose.position.y
+      self.uav_info.pos.z = self.curr_pos.pose.position.z
+
+      self.uav_info.vel.x = self.away_vel.x
+      self.uav_info.vel.y = self.away_vel.y
+
+      self.uav_info_pub.publish(self.uav_info)
+
       self.away_vel.x = 0
       self.away_vel.y = 0
       self.avg_away_x = 0

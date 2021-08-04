@@ -70,6 +70,16 @@
       <param name="collisionSphere" type="double" value="$(arg collisionSphere)" />
     </node>
 
+    <arg name="goal_v_w" default="0.5"/>
+    <node pkg="mission_waypoints" type="vel_controller.py" name="velocity_pub_node_$(arg uavName)" output="screen">
+      <param name="goal_v_w" type="double" value="$(arg goal_v_w)"/>
+      <param name="uavName" type="string" value="$(arg uavName)" />
+    </node>
+
+    <node pkg="mission_waypoints" type="boids_all.py" name="boids_vec_node_$(arg uavName)" output="screen">
+      <param name="uavName" type="string" value="$(arg uavName)" />
+    </node>
+
   </group>
 
 
@@ -136,6 +146,16 @@
     <node pkg="mission_waypoints" type="reachable_set.py" name="reachable_set_node_$(arg uavName)" output="screen">
       <param name="uavName" type="string" value="$(arg uavName)" />
       <param name="collisionSphere" type="double" value="$(arg collisionSphere)" />
+    </node>
+
+    <arg name="goal_v_w" default="0.5"/>
+    <node pkg="mission_waypoints" type="vel_controller.py" name="velocity_pub_node_$(arg uavName)" output="screen">
+      <param name="goal_v_w" type="double" value="$(arg goal_v_w)"/>
+      <param name="uavName" type="string" value="$(arg uavName)" />
+    </node>
+
+    <node pkg="mission_waypoints" type="boids_all.py" name="boids_vec_node_$(arg uavName)" output="screen">
+      <param name="uavName" type="string" value="$(arg uavName)" />
     </node>
 
   </group>
@@ -205,6 +225,16 @@
       <param name="collisionSphere" type="double" value="$(arg collisionSphere)" />
     </node>
 
+    <arg name="goal_v_w" default="0.5"/>
+    <node pkg="mission_waypoints" type="vel_controller.py" name="velocity_pub_node_$(arg uavName)" output="screen">
+      <param name="goal_v_w" type="double" value="$(arg goal_v_w)"/>
+      <param name="uavName" type="string" value="$(arg uavName)" />
+    </node>
+
+    <node pkg="mission_waypoints" type="boids_all.py" name="boids_vec_node_$(arg uavName)" output="screen">
+      <param name="uavName" type="string" value="$(arg uavName)" />
+    </node>
+
   </group>
 
   <!--Static transform for ENU to NED world-->
@@ -216,29 +246,27 @@
     <arg name="uavName3" value="$(arg name3)" />
   </include>
 
+  <arg name="numUAVs" default="3" />
   <arg name="acceptance_range" default="0.25"/>
   <arg name="file" default="mission_waypoints.txt"/>
   <node pkg="mission_waypoints" type="waypoint_publisher.py" name="waypoint_reader_node" output="screen">
     <param name="acceptance_range" type="double" value="$(arg acceptance_range)"/>
     <param name="file" type="String" value="$(arg file)"/>
+    <param name="numUAVs" type="int" value="$(arg numUAVs)" />
   </node>
 
-  <arg name="goal_v_w" default="0.5"/>
-  <node pkg="mission_waypoints" type="vel_controller.py" name="velocity_pub_node" output="screen">
-    <param name="goal_v_w" type="double" value="$(arg goal_v_w)"/>
-  </node>
-
-  <arg name="final_arrows" default="false" />
   <arg name="goal_arrows" default="false" />
+  <arg name="align_arrows" default="false" />
   <arg name="pos_arrows" default="false" />
   <arg name="sep_arrows" default="false" />
-  <arg name="align_arrows" default="false" />
-  <node pkg="mission_waypoints" type="boids.py" name="boids_node" output="screen">
-    <param name="final_arrows" type="bool" value="$(arg final_arrows)" />
+  <arg name="final_arrows" default="false" />
+  <node pkg="mission_waypoints" type="matplot_viz.py" name="matplot_viz_node" output="screen">
+    <param name="numUAVs" type="int" value="$(arg numUAVs)" />
     <param name="goal_arrows" type="bool" value="$(arg goal_arrows)" />
+    <param name="align_arrows" type="bool" value="$(arg align_arrows)" />
     <param name="pos_arrows" type="bool" value="$(arg pos_arrows)" />
     <param name="sep_arrows" type="bool" value="$(arg sep_arrows)" />
-    <param name="align_arrows" type="bool" value="$(arg align_arrows)" />
+    <param name="final_arrows" type="bool" value="$(arg final_arrows)" />
   </node>
 
 </launch>

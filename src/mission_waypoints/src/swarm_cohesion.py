@@ -21,6 +21,9 @@ class PositionCohesion():
     self.nearby_uav = String()
     self.drone_positions = {}
 
+    self.uav_info = swarm_gps()
+    self.uav_info.name = self.uavName
+
     # Create the publisher and subscriber
 
     self.position_sub = rospy.Subscriber(self.uavName + '/sensors/gps', PoseStamped, self.get_pos, queue_size = 1)
@@ -31,6 +34,7 @@ class PositionCohesion():
 
     self.position_velocity_pub = rospy.Publisher(self.uavName + '/input/unverified_position_velocity', Vector3, queue_size=1)
 
+    self.uav_info_pub = rospy.Publisher(self.uavName + '/pos_info', swarm_gps, queue_size = 1)
 
     self.pos_v_w = rospy.get_param(str(rospy.get_name()) + "/pos_v_w", 0.5)
     print("Weight of the 'position' vector is: " + str(self.pos_v_w))
@@ -90,6 +94,16 @@ class PositionCohesion():
         self.pos_vel.y =  (self.avg_y_pos - self.curr_pos.pose.position.y) * self.pos_v_w
 
       self.position_velocity_pub.publish(self.pos_vel)
+
+      self.uav_info.pos.x = self.curr_pos.pose.position.x
+      self.uav_info.pos.y = self.curr_pos.pose.position.y
+      self.uav_info.pos.z = self.curr_pos.pose.position.z
+
+      self.uav_info.vel.x = self.pos_vel.x
+      self.uav_info.vel.y = self.pos_vel.y
+
+      self.uav_info_pub.publish(self.uav_info)
+
       self.pos_vel.x = 0
       self.pos_vel.y = 0
       self.avg_x_pos = 0

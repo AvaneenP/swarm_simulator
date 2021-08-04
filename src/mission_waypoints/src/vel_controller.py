@@ -6,39 +6,31 @@ import random
 from keyboard.msg import Key
 from geometry_msgs.msg import Vector3
 from geometry_msgs.msg import PoseStamped
+from mission_waypoints.msg import swarm_gps
 
 class VelocityPublisher():
   def __init__(self):
 
-    self.vel1 = Vector3()
-    self.vel2 = Vector3()
-    self.vel3 = Vector3()
+    self.uavName = rospy.get_param(str(rospy.get_name()) + "/uavName", "uav")
 
-    self.curr_pos1 = PoseStamped()
-    self.curr_pos2 = PoseStamped()
-    self.curr_pos3 = PoseStamped()
+    self.vel = Vector3()
+    self.curr_pos = PoseStamped()
+    self.wayp = Vector3()
+    self.uav_info = swarm_gps()
 
-    self.wayp1 = Vector3()
-    self.wayp2 = Vector3()
-    self.wayp3 = Vector3()
-      
+    self.uav_info.name = self.uavName
+
     # Create the publisher and subscriber
-    self.uav1_wayp = rospy.Subscriber('/uav1/waypoint', Vector3, self.get_wayp1, queue_size = 1)
-    self.uav2_wayp = rospy.Subscriber('/uav2/waypoint', Vector3, self.get_wayp2, queue_size = 1)
-    self.uav3_wayp = rospy.Subscriber('/uav3/waypoint', Vector3, self.get_wayp3, queue_size = 1)
+    self.uav_wayp = rospy.Subscriber(self.uavName + '/waypoint', Vector3, self.get_wayp, queue_size = 1)
 
-    self.position_sub1 = rospy.Subscriber('/uav1/sensors/gps', PoseStamped, self.get_pos1, queue_size = 1)
-    self.position_sub2 = rospy.Subscriber('/uav2/sensors/gps', PoseStamped, self.get_pos2, queue_size = 1)
-    self.position_sub3 = rospy.Subscriber('/uav3/sensors/gps', PoseStamped, self.get_pos3, queue_size = 1)
+    self.position_sub = rospy.Subscriber(self.uavName + '/sensors/gps', PoseStamped, self.get_pos, queue_size = 1)
 
-    self.velocity_pub1 = rospy.Publisher('/uav1/input/unverified_goal_velocity', Vector3, queue_size=1)
-    self.velocity_pub2 = rospy.Publisher('/uav2/input/unverified_goal_velocity', Vector3, queue_size=1)
-    self.velocity_pub3 = rospy.Publisher('/uav3/input/unverified_goal_velocity', Vector3, queue_size=1)
+    self.velocity_pub = rospy.Publisher(self.uavName + '/input/unverified_goal_velocity', Vector3, queue_size=1)
+
+    self.uav_info_pub = rospy.Publisher(self.uavName + '/goal_info', swarm_gps, queue_size = 1)
 
 
-
-
-    self.goal_v_w = rospy.get_param("/velocity_pub_node/goal_v_w", 0.5)
+    self.goal_v_w = rospy.get_param(str(rospy.get_name()) + "/goal_v_w", 0.5)
     print("weight of the 'goal' vector is: " + str(self.goal_v_w))
 
     # Call the mainloop of our class
@@ -46,29 +38,13 @@ class VelocityPublisher():
 
 
   # Callbacks
-  def get_wayp1(self, msg):
-    self.wayp1 = copy.deepcopy(msg)
+  def get_wayp(self, msg):
+    self.wayp = copy.deepcopy(msg)
 
-  def get_wayp2(self, msg):
-    self.wayp2 = copy.deepcopy(msg)
-
-  def get_wayp3(self, msg):
-    self.wayp3 = copy.deepcopy(msg)
-
-  def get_pos1(self, msg):
-    self.curr_pos1.pose.position.x = msg.pose.position.x
-    self.curr_pos1.pose.position.y = msg.pose.position.y
-    self.curr_pos1.pose.position.z = msg.pose.position.z
-
-  def get_pos2(self, msg):
-    self.curr_pos2.pose.position.x = msg.pose.position.x
-    self.curr_pos2.pose.position.y = msg.pose.position.y
-    self.curr_pos2.pose.position.z = msg.pose.position.z
-
-  def get_pos3(self, msg):
-    self.curr_pos3.pose.position.x = msg.pose.position.x
-    self.curr_pos3.pose.position.y = msg.pose.position.y
-    self.curr_pos3.pose.position.z = msg.pose.position.z
+  def get_pos(self, msg):
+    self.curr_pos.pose.position.x = msg.pose.position.x
+    self.curr_pos.pose.position.y = msg.pose.position.y
+    self.curr_pos.pose.position.z = msg.pose.position.z
 
 
   # Main Loop
@@ -80,21 +56,21 @@ class VelocityPublisher():
     # While ROS is still running
     while not rospy.is_shutdown():
 
-      self.vel1.x = (self.wayp1.x - self.curr_pos1.pose.position.x) * self.goal_v_w
-      self.vel1.y = (self.wayp1.y - self.curr_pos1.pose.position.y) * self.goal_v_w
-      self.vel1.z = (self.wayp1.z - self.curr_pos1.pose.position.z) * self.goal_v_w
+      self.vel.x = (self.wayp.x - self.curr_pos.pose.position.x) * self.goal_v_w
+      self.vel.y = (self.wayp.y - self.curr_pos.pose.position.y) * self.goal_v_w
+      self.vel.z = (self.wayp.z - self.curr_pos.pose.position.z) * self.goal_v_w
 
-      self.vel2.x = (self.wayp2.x - self.curr_pos2.pose.position.x) * self.goal_v_w
-      self.vel2.y = (self.wayp2.y - self.curr_pos2.pose.position.y) * self.goal_v_w
-      self.vel2.z = (self.wayp2.z - self.curr_pos2.pose.position.z) * self.goal_v_w
+      self.velocity_pub.publish(self.vel)
 
-      self.vel3.x = (self.wayp3.x - self.curr_pos3.pose.position.x) * self.goal_v_w
-      self.vel3.y = (self.wayp3.y - self.curr_pos3.pose.position.y) * self.goal_v_w
-      self.vel3.z = (self.wayp3.z - self.curr_pos3.pose.position.z) * self.goal_v_w
+      self.uav_info.pos.x = self.curr_pos.pose.position.x
+      self.uav_info.pos.y = self.curr_pos.pose.position.y
+      self.uav_info.pos.z = self.curr_pos.pose.position.z
 
-      self.velocity_pub1.publish(self.vel1)
-      self.velocity_pub2.publish(self.vel2)
-      self.velocity_pub3.publish(self.vel3)
+      self.uav_info.vel.x = self.vel.x
+      self.uav_info.vel.y = self.vel.y
+      self.uav_info.vel.z = self.vel.z
+
+      self.uav_info_pub.publish(self.uav_info)
 
       # Sleep for the remainder of the loop
       rate.sleep()
