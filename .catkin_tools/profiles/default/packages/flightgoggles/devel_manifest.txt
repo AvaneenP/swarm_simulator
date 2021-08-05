@@ -1,5 +1,0 @@
-flightgoggles/flightgoggles
-/home/lesslab5/Documents/simulator_ws/devel/.private/flightgoggles/cmake.lock /home/lesslab5/Documents/simulator_ws/devel/./cmake.lock
-/home/lesslab5/Documents/simulator_ws/devel/.private/flightgoggles/share/flightgoggles/cmake/flightgogglesConfig.cmake /home/lesslab5/Documents/simulator_ws/devel/share/flightgoggles/cmake/flightgogglesConfig.cmake
-/home/lesslab5/Documents/simulator_ws/devel/.private/flightgoggles/share/flightgoggles/cmake/flightgogglesConfig-version.cmake /home/lesslab5/Documents/simulator_ws/devel/share/flightgoggles/cmake/flightgogglesConfig-version.cmake
-/home/lesslab5/Documents/simulator_ws/devel/.private/flightgoggles/lib/pkgconfig/flightgoggles.pc /home/lesslab5/Documents/simulator_ws/devel/lib/pkgconfig/flightgoggles.pc

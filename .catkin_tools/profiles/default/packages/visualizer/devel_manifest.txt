@@ -1,5 +1,0 @@
-visualizer
-/home/lesslab5/Documents/simulator_ws/devel/.private/visualizer/cmake.lock /home/lesslab5/Documents/simulator_ws/devel/./cmake.lock
-/home/lesslab5/Documents/simulator_ws/devel/.private/visualizer/share/visualizer/cmake/visualizerConfig-version.cmake /home/lesslab5/Documents/simulator_ws/devel/share/visualizer/cmake/visualizerConfig-version.cmake
-/home/lesslab5/Documents/simulator_ws/devel/.private/visualizer/share/visualizer/cmake/visualizerConfig.cmake /home/lesslab5/Documents/simulator_ws/devel/share/visualizer/cmake/visualizerConfig.cmake
-/home/lesslab5/Documents/simulator_ws/devel/.private/visualizer/lib/pkgconfig/visualizer.pc /home/lesslab5/Documents/simulator_ws/devel/lib/pkgconfig/visualizer.pc

@@ -1,6 +1,0 @@
-Symlinking /home/lesslab5/Documents/simulator_ws/devel/share/flightgoggles_uav_dynamics/cmake/flightgoggles_uav_dynamicsConfig.cmake
-Symlinking /home/lesslab5/Documents/simulator_ws/devel/share/flightgoggles_uav_dynamics/cmake/flightgoggles_uav_dynamicsConfig-version.cmake
-Symlinking /home/lesslab5/Documents/simulator_ws/devel/lib/libinertialMeasurementSim.so
-Symlinking /home/lesslab5/Documents/simulator_ws/devel/lib/libmulticopterDynamicsSim.so
-Symlinking /home/lesslab5/Documents/simulator_ws/devel/lib/pkgconfig/flightgoggles_uav_dynamics.pc
-Symlinking /home/lesslab5/Documents/simulator_ws/devel/lib/flightgoggles_uav_dynamics/node
