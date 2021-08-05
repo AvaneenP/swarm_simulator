@@ -15,10 +15,10 @@ class InfluenceSphere():
   def __init__(self):
 
     self.uavName = rospy.get_param(str(rospy.get_name()) + "/uavName", "uav")
+    self.numUAVs = rospy.get_param(str(rospy.get_name()) + "/numUAVs", 3)
     self.influence_radius = rospy.get_param(str(rospy.get_name()) + "/influence_radius", 1)
     print("The influence radius is: " + str(self.influence_radius))
     
-    self.swarm_location = swarm_gps()
     self.curr_loc = PoseStamped()
     self.drone_positions = {}
     self.intersec_uav = String()
@@ -42,20 +42,18 @@ class InfluenceSphere():
     self.curr_loc.pose.position.z = msg.pose.position.z
 
   def get_swarm_pos(self, msg):
-    self.swarm_location = copy.deepcopy(msg)
+    self.drone_positions[msg.name] = [msg.pos, msg.vel]
 
 
   def mainloop(self):
     # Set the rate of this loop
     rate = rospy.Rate(20)
-    rospy.sleep(10.)
+    rospy.sleep(1.)
 
     # While ROS is still running
     while not rospy.is_shutdown():        
       
-      self.drone_positions[self.swarm_location.name] = [self.swarm_location.pos, self.swarm_location.vel]
-
-      if len(self.drone_positions.keys()) != 3:
+      if len(self.drone_positions.keys()) != self.numUAVs:
         continue
 
       for key in sorted(self.drone_positions.keys()):

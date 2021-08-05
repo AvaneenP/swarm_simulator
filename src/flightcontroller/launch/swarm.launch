@@ -1,0 +1,205 @@
+<?xml version="1.0"?>
+<launch>
+
+  <!-- Swarm details -->
+  <arg name="numUAVs" default="3" />
+  <!-- Mission -->
+  <arg name="acceptance_range" default="0.25"/>
+  <arg name="file" default="mission_waypoints.txt"/>
+  <!-- Visualization -->
+  <arg name="goal_arrows" default="false" />
+  <arg name="align_arrows" default="false" />
+  <arg name="pos_arrows" default="false" />
+  <arg name="sep_arrows" default="false" />
+  <arg name="final_arrows" default="false" />
+  <!-- Obstacles -->
+  <arg name="obstacle" default="false" />
+  <!-- Radius -->
+  <arg name="influence_radius" default="5" />
+  <arg name="separation_radius" default="2.5" />
+  <arg name="collision_radius" default="0.2" />
+  <!-- Boid Weights -->
+  <arg name="align_v_w" default="0.5" />
+  <arg name="pos_v_w" default="0.5" />
+  <arg name="sep_v_w" default="0.5" />
+  <!-- Velocity controller -->
+  <arg name="goal_v_w" default="0.5"/>
+
+
+
+  <include file="$(find flightcontroller)/launch/uav.launch">
+    <arg name="droneName" value="uav1" />
+    <arg name="numUAVs" value="$(arg numUAVs)" />
+    <arg name="clockControl" value="True" />
+    <arg name="influence_radius" value="$(arg influence_radius)" />
+    <arg name="separation_radius" value="$(arg separation_radius)" />
+    <arg name="collision_radius" value="$(arg collision_radius)" />
+    <arg name="align_v_w" value="$(arg align_v_w)" />
+    <arg name="pos_v_w" value="$(arg pos_v_w)" />
+    <arg name="sep_v_w" value="$(arg sep_v_w)" />
+    <arg name="goal_v_w" value="$(arg goal_v_w)"/>
+  </include>
+
+  <include file="$(find flightcontroller)/launch/uav.launch">
+    <arg name="droneName" value="uav2" />
+    <arg name="numUAVs" value="$(arg numUAVs)" />
+    <arg name="influence_radius" value="$(arg influence_radius)" />
+    <arg name="separation_radius" value="$(arg separation_radius)" />
+    <arg name="collision_radius" value="$(arg collision_radius)" />
+    <arg name="align_v_w" value="$(arg align_v_w)" />
+    <arg name="pos_v_w" value="$(arg pos_v_w)" />
+    <arg name="sep_v_w" value="$(arg sep_v_w)" />
+    <arg name="goal_v_w" value="$(arg goal_v_w)"/>
+  </include> 
+
+  <!-- <include file="$(find flightcontroller)/launch/uav.launch">
+    <arg name="droneName" value="uav3" />
+    <arg name="numUAVs" value="$(arg numUAVs)" />
+    <arg name="influence_radius" value="$(arg influence_radius)" />
+    <arg name="separation_radius" value="$(arg separation_radius)" />
+    <arg name="collision_radius" value="$(arg collision_radius)" />
+    <arg name="align_v_w" value="$(arg align_v_w)" />
+    <arg name="pos_v_w" value="$(arg pos_v_w)" />
+    <arg name="sep_v_w" value="$(arg sep_v_w)" />
+    <arg name="goal_v_w" value="$(arg goal_v_w)"/>
+  </include> 
+
+  <include file="$(find flightcontroller)/launch/uav.launch">
+    <arg name="droneName" value="uav4" />
+    <arg name="numUAVs" value="$(arg numUAVs)" />
+    <arg name="influence_radius" value="$(arg influence_radius)" />
+    <arg name="separation_radius" value="$(arg separation_radius)" />
+    <arg name="collision_radius" value="$(arg collision_radius)" />
+    <arg name="align_v_w" value="$(arg align_v_w)" />
+    <arg name="pos_v_w" value="$(arg pos_v_w)" />
+    <arg name="sep_v_w" value="$(arg sep_v_w)" />
+    <arg name="goal_v_w" value="$(arg goal_v_w)"/>
+  </include> 
+
+  <include file="$(find flightcontroller)/launch/uav.launch">
+    <arg name="droneName" value="uav5" />
+    <arg name="numUAVs" value="$(arg numUAVs)" />
+    <arg name="influence_radius" value="$(arg influence_radius)" />
+    <arg name="separation_radius" value="$(arg separation_radius)" />
+    <arg name="collision_radius" value="$(arg collision_radius)" />
+    <arg name="align_v_w" value="$(arg align_v_w)" />
+    <arg name="pos_v_w" value="$(arg pos_v_w)" />
+    <arg name="sep_v_w" value="$(arg sep_v_w)" />
+    <arg name="goal_v_w" value="$(arg goal_v_w)"/>
+  </include>  -->
+
+  <!-- <include file="$(find flightcontroller)/launch/uav.launch">
+    <arg name="droneName" value="uav6" />
+    <arg name="numUAVs" value="$(arg numUAVs)" />
+    <arg name="influence_radius" value="$(arg influence_radius)" />
+    <arg name="separation_radius" value="$(arg separation_radius)" />
+    <arg name="collision_radius" value="$(arg collision_radius)" />
+    <arg name="align_v_w" value="$(arg align_v_w)" />
+    <arg name="pos_v_w" value="$(arg pos_v_w)" />
+    <arg name="sep_v_w" value="$(arg sep_v_w)" />
+    <arg name="goal_v_w" value="$(arg goal_v_w)"/>
+  </include> 
+
+  <include file="$(find flightcontroller)/launch/uav.launch">
+    <arg name="droneName" value="uav7" />
+    <arg name="numUAVs" value="$(arg numUAVs)" />
+    <arg name="influence_radius" value="$(arg influence_radius)" />
+    <arg name="separation_radius" value="$(arg separation_radius)" />
+    <arg name="collision_radius" value="$(arg collision_radius)" />
+    <arg name="align_v_w" value="$(arg align_v_w)" />
+    <arg name="pos_v_w" value="$(arg pos_v_w)" />
+    <arg name="sep_v_w" value="$(arg sep_v_w)" />
+    <arg name="goal_v_w" value="$(arg goal_v_w)"/>
+  </include> 
+
+  <include file="$(find flightcontroller)/launch/uav.launch">
+    <arg name="droneName" value="uav8" />
+    <arg name="numUAVs" value="$(arg numUAVs)" />
+    <arg name="influence_radius" value="$(arg influence_radius)" />
+    <arg name="separation_radius" value="$(arg separation_radius)" />
+    <arg name="collision_radius" value="$(arg collision_radius)" />
+    <arg name="align_v_w" value="$(arg align_v_w)" />
+    <arg name="pos_v_w" value="$(arg pos_v_w)" />
+    <arg name="sep_v_w" value="$(arg sep_v_w)" />
+    <arg name="goal_v_w" value="$(arg goal_v_w)"/>
+  </include>  -->
+
+  <!-- <include file="$(find flightcontroller)/launch/uav.launch">
+    <arg name="droneName" value="uav9" />
+    <arg name="numUAVs" value="$(arg numUAVs)" />
+    <arg name="influence_radius" value="$(arg influence_radius)" />
+    <arg name="separation_radius" value="$(arg separation_radius)" />
+    <arg name="collision_radius" value="$(arg collision_radius)" />
+    <arg name="align_v_w" value="$(arg align_v_w)" />
+    <arg name="pos_v_w" value="$(arg pos_v_w)" />
+    <arg name="sep_v_w" value="$(arg sep_v_w)" />
+    <arg name="goal_v_w" value="$(arg goal_v_w)"/>
+  </include> 
+
+  <include file="$(find flightcontroller)/launch/uav.launch">
+    <arg name="droneName" value="uav10" />
+    <arg name="numUAVs" value="$(arg numUAVs)" />
+    <arg name="influence_radius" value="$(arg influence_radius)" />
+    <arg name="separation_radius" value="$(arg separation_radius)" />
+    <arg name="collision_radius" value="$(arg collision_radius)" />
+    <arg name="align_v_w" value="$(arg align_v_w)" />
+    <arg name="pos_v_w" value="$(arg pos_v_w)" />
+    <arg name="sep_v_w" value="$(arg sep_v_w)" />
+    <arg name="goal_v_w" value="$(arg goal_v_w)"/>
+  </include> 
+
+  <include file="$(find flightcontroller)/launch/uav.launch">
+    <arg name="droneName" value="uav11" />
+    <arg name="numUAVs" value="$(arg numUAVs)" />
+    <arg name="influence_radius" value="$(arg influence_radius)" />
+    <arg name="separation_radius" value="$(arg separation_radius)" />
+    <arg name="collision_radius" value="$(arg collision_radius)" />
+    <arg name="align_v_w" value="$(arg align_v_w)" />
+    <arg name="pos_v_w" value="$(arg pos_v_w)" />
+    <arg name="sep_v_w" value="$(arg sep_v_w)" />
+    <arg name="goal_v_w" value="$(arg goal_v_w)"/>
+  </include>  -->
+
+  <!--Static transform for ENU to NED world-->
+  <node pkg="tf2_ros" type="static_transform_publisher" name="world_ned_link" args="0 0 0 1.57079632679 3.14159265359 0 'world' 'world/ned'"/>
+
+  <!-- Controls waypoints -->
+  <node pkg="mission_waypoints" type="waypoint_publisher.py" name="waypoint_reader_node" output="screen">
+    <param name="acceptance_range" type="double" value="$(arg acceptance_range)"/>
+    <param name="file" type="String" value="$(arg file)"/>
+    <param name="numUAVs" type="int" value="$(arg numUAVs)" />
+    <param name="obstacle" type="bool" value="$(arg obstacle)" />
+  </node>
+
+  <!-- 2D Visualization -->
+  <node pkg="mission_waypoints" type="matplot_viz.py" name="matplot_viz_node_xy" output="screen">
+    <param name="numUAVs" type="int" value="$(arg numUAVs)" />
+    <param name="goal_arrows" type="bool" value="$(arg goal_arrows)" />
+    <param name="align_arrows" type="bool" value="$(arg align_arrows)" />
+    <param name="pos_arrows" type="bool" value="$(arg pos_arrows)" />
+    <param name="sep_arrows" type="bool" value="$(arg sep_arrows)" />
+    <param name="final_arrows" type="bool" value="$(arg final_arrows)" />
+    <param name="view" type="String" value="xy" />
+  </node>
+
+  <!-- <node pkg="mission_waypoints" type="matplot_viz.py" name="matplot_viz_node_xz" output="screen">
+    <param name="numUAVs" type="int" value="$(arg numUAVs)" />
+    <param name="goal_arrows" type="bool" value="$(arg goal_arrows)" />
+    <param name="align_arrows" type="bool" value="$(arg align_arrows)" />
+    <param name="pos_arrows" type="bool" value="$(arg pos_arrows)" />
+    <param name="sep_arrows" type="bool" value="$(arg sep_arrows)" />
+    <param name="final_arrows" type="bool" value="$(arg final_arrows)" />
+    <param name="view" type="String" value="xz" />
+  </node> -->
+
+ <!-- <include file="$(find visualizer)/launch/view.launch">
+    <arg name="uavName1" value="$(arg name1)" />
+    <arg name="uavName2" value="$(arg name2)" />
+    <arg name="uavName3" value="$(arg name3)" />
+  </include> -->
+
+  <!-- <node pkg="mission_waypoints" type="obstacle.py" name="obstacle_node" output="screen"></node> -->
+
+  <node pkg="mission_waypoints" type="real_uav.py" name="real_uav_node" output="screen"> </node>
+
+</launch>

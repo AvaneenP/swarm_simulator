@@ -1,0 +1,101 @@
+<?xml version="1.0"?>
+<launch>
+
+  <!-- Swarm and drone params -->
+  <arg name="droneName" default="uav" />
+  <arg name="numUAVs" default="3" />
+  <arg name="clockControl" default="False" />
+
+  <!-- Radius -->
+  <arg name="influence_radius" default="5" />
+  <arg name="separation_radius" default="2.5" />
+  <arg name="collision_radius" default="0.2" />
+
+  <!-- Boid Weights -->
+  <arg name="align_v_w" default="0.5" />
+  <arg name="pos_v_w" default="0.5" />
+  <arg name="sep_v_w" default="0.5" />
+
+  <!-- Velocity controller -->
+  <arg name="goal_v_w" default="0.5"/>
+
+  <group>
+    <!-- Drone simulation -->
+    <include file="$(find flightgoggles)/launch/core.launch">
+      <arg name="uavName" value="$(arg droneName)" />
+      <arg name="clock_control" value="$(arg clockControl)" />
+    </include>
+
+    <!-- Flight controllers -->
+    <include file="$(find flightcontroller)/launch/angle.launch">
+      <arg name="uavName" value="$(arg droneName)" />
+    </include>
+
+    <include file="$(find flightcontroller)/launch/velocity.launch">
+      <arg name="uavName" value="$(arg droneName)" />
+    </include>
+
+    <include file="$(find sensor_simulation)/launch/sensors.launch">
+      <arg name="uavName" value="$(arg droneName)" />
+    </include>
+
+    <!-- Publish the swarm GPS messages -->
+    <node pkg="mission_waypoints" type="swarm_loc.py" name="swarm_gps_node_$(arg droneName)" >
+      <param name="uavName" type="string" value="$(arg droneName)"/>
+    </node>
+
+    <!-- Radius detection - Cohesion and alignment -->
+    <node pkg="mission_waypoints" type="sphere.py" name="sphere_of_influence_node_$(arg droneName)" output="screen">
+      <param name="uavName" type="string" value="$(arg droneName)" />
+      <param name="influence_radius" type="double" value="$(arg influence_radius)" />
+      <param name="numUAVs" type="int" value="$(arg numUAVs)" />
+    </node>
+
+    <!-- Radius detection - Separation -->
+    <node pkg="mission_waypoints" type="reachable_set.py" name="reachable_set_node_$(arg droneName)" output="screen">
+      <param name="uavName" type="string" value="$(arg droneName)" />
+      <param name="separationRadius" type="double" value="$(arg separation_radius)" />
+      <param name="numUAVs" type="int" value="$(arg numUAVs)" />      
+    </node>
+
+    <!-- Collision detection -->
+    <node pkg="mission_waypoints" type="collision_detector.py" name="collision_node_$(arg droneName)" output="screen" >
+      <param name="uavName" type="string" value="$(arg droneName)" />
+      <param name="collision_radius" type="double" value="$(arg collision_radius)" />
+      <param name="numUAVs" type="int" value="$(arg numUAVs)" />
+    </node>
+
+    <!-- Cohesion -->
+    <node pkg="mission_waypoints" type="swarm_cohesion.py" name="cohesion_node_$(arg droneName)" output="screen">
+      <param name="uavName" type="string" value="$(arg droneName)" />
+      <param name="pos_v_w" type="double" value="$(arg pos_v_w)"/>
+      <param name="numUAVs" type="int" value="$(arg numUAVs)" />
+    </node>
+
+    <!-- Aligment -->
+    <node pkg="mission_waypoints" type="swarm_alignment.py" name="alignment_node_$(arg droneName)" output="screen">
+      <param name="uavName" type="string" value="$(arg droneName)" />
+      <param name="align_v_w" type="double" value="$(arg align_v_w)"/>
+      <param name="numUAVs" type="int" value="$(arg numUAVs)" />
+    </node>
+
+    <!-- Seperation -->
+    <node pkg="mission_waypoints" type="swarm_separation.py" name="separation_node_$(arg droneName)" output="screen">
+      <param name="uavName" type="string" value="$(arg droneName)" />
+      <param name="sep_v_w" type="double" value="$(arg sep_v_w)"/>
+      <param name="numUAVs" type="int" value="$(arg numUAVs)" />
+    </node>
+
+    <!-- Velocity Controller  -->
+    <node pkg="mission_waypoints" type="vel_controller.py" name="velocity_pub_node_$(arg droneName)" output="screen">
+      <param name="goal_v_w" type="double" value="$(arg goal_v_w)"/>
+      <param name="uavName" type="string" value="$(arg droneName)" />
+    </node>
+
+    <!-- Boids controller -->
+    <node pkg="mission_waypoints" type="boids_all.py" name="boids_vec_node_$(arg droneName)" output="screen">
+      <param name="uavName" type="string" value="$(arg droneName)" />
+    </node>
+
+  </group>
+</launch>

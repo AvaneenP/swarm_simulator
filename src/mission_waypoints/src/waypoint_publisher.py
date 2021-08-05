@@ -5,18 +5,21 @@ import math
 import time
 from geometry_msgs.msg import Vector3
 from geometry_msgs.msg import PoseStamped
+from mission_waypoints.msg import swarm_gps
+
 
 class WaypointReader():
   def __init__(self):
     
-    self.numUAVs = rospy.get_param("matplot_viz_node/numUAVs", 3)
+    self.numUAVs = rospy.get_param(str(rospy.get_name()) + "/numUAVs", 3)
+    self.obstacle = rospy.get_param(str(rospy.get_name()) + "/obstacle", False)
+
+    if self.obstacle:
+      self.numUAVs -= 1
 
     self.uav_pos = {}
     self.publisherList = []
-
-    self.curr_pos1 = PoseStamped()
-    self.curr_pos2 = PoseStamped()
-    self.curr_pos3 = PoseStamped()
+    self.waypoint = Vector3()
 
     # Create the publisher and subscriber
     for i in range(1, self.numUAVs+1):
@@ -56,14 +59,21 @@ class WaypointReader():
   def mainloop(self):
     # Set the rate of this loop
     rate = rospy.Rate(20)
-    rospy.sleep(9.)
+    rospy.sleep(1.)
 
-    count = (3 * self.numUAVs)
+    count = (0 * self.numUAVs)
     count2 = 0
     self.reached = False
     self.counter = time.clock()
-    print(self.counter)
-    print(len(self.coordinates))
+
+    for i in range(len(self.publisherList)):
+      self.waypoint.x = self.coordinates[count]
+      count += 1
+      self.waypoint.y = self.coordinates[count]
+      count += 1
+      self.waypoint.z = self.coordinates[count]
+      count += 1
+      self.publisherList[i].publish(self.waypoint)
 
     # While ROS is still running
     while not rospy.is_shutdown():
@@ -79,14 +89,14 @@ class WaypointReader():
 
       temp = count2
 
-      for key in uav_pos.keys():
+      for key in self.uav_pos.keys():
         loopCount += 1
 
-        x_diff = pow(uav_pos[key][0].x - self.coordinates[count2], 2)
+        x_diff = pow(self.uav_pos[key][0].x - self.coordinates[count2], 2)
         count2 += 1
-        y_diff = pow(uav_pos[key][0].y - self.coordinates[count2], 2)
+        y_diff = pow(self.uav_pos[key][0].y - self.coordinates[count2], 2)
         count2 += 1
-        z_diff = pow(uav_pos[key][0].z - self.coordinates[count2], 2)
+        z_diff = pow(self.uav_pos[key][0].z - self.coordinates[count2], 2)
         count2 += 1
         diff = math.sqrt(x_diff + y_diff + z_diff)
 
@@ -95,73 +105,38 @@ class WaypointReader():
           loopCount = 0
           break
 
-        if loopCount == 3:
+        if loopCount == self.numUAVs:
           self.reached = True
 
       
       if self.reached:
-        
-
-
-      if diff1 < self.acceptance_range and diff2 < self.acceptance_range and diff3 < self.acceptance_range:
         self.counter = time.clock()
         print("got to waypoint!")
-        
-        self.goal_wayp1.x = self.coordinates[count]
-        count += 1
-        self.goal_wayp1.y = self.coordinates[count]
-        count += 1
-        self.goal_wayp1.z = self.coordinates[count]
-        count += 1
-        
-        self.goal_wayp2.x = self.coordinates[count]
-        count += 1
-        self.goal_wayp2.y = self.coordinates[count]
-        count += 1
-        self.goal_wayp2.z = self.coordinates[count]
-        count += 1
-        
-        self.goal_wayp3.x = self.coordinates[count]
-        count += 1
-        self.goal_wayp3.y = self.coordinates[count]
-        count += 1
-        self.goal_wayp3.z = self.coordinates[count]
-        count += 1
 
-        self.wayp_pub1.publish(self.goal_wayp1)
-        self.wayp_pub2.publish(self.goal_wayp2)
-        self.wayp_pub3.publish(self.goal_wayp3)
+        for i in range(len(self.publisherList)):
+          self.waypoint.x = self.coordinates[count]
+          count += 1
+          self.waypoint.y = self.coordinates[count]
+          count += 1
+          self.waypoint.z = self.coordinates[count]
+          count += 1
+          self.publisherList[i].publish(self.waypoint)
+      
       elif self.time_elapsed >= 1:
         print("it's been more than 20 seconds, moving onto next waypoint")
         self.counter = time.clock()
+        
+        for i in range(len(self.publisherList)):
+          self.waypoint.x = self.coordinates[count]
+          count += 1
+          self.waypoint.y = self.coordinates[count]
+          count += 1
+          self.waypoint.z = self.coordinates[count]
+          count += 1
+          self.publisherList[i].publish(self.waypoint)
 
-        self.goal_wayp1.x = self.coordinates[count]
-        count += 1
-        self.goal_wayp1.y = self.coordinates[count]
-        count += 1
-        self.goal_wayp1.z = self.coordinates[count]
-        count += 1
-        
-        self.goal_wayp2.x = self.coordinates[count]
-        count += 1
-        self.goal_wayp2.y = self.coordinates[count]
-        count += 1
-        self.goal_wayp2.z = self.coordinates[count]
-        count += 1
-        
-        self.goal_wayp3.x = self.coordinates[count]
-        count += 1
-        self.goal_wayp3.y = self.coordinates[count]
-        count += 1
-        self.goal_wayp3.z = self.coordinates[count]
-        count += 1
-
-        self.wayp_pub1.publish(self.goal_wayp1)
-        self.wayp_pub2.publish(self.goal_wayp2)
-        self.wayp_pub3.publish(self.goal_wayp3)
-        
       else:
-        count2 = count2 - 9
+        count2 = temp
 
       # Sleep for the remainder of the loop
       rate.sleep()

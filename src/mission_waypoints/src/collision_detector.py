@@ -11,6 +11,7 @@ from mission_waypoints.msg import swarm_gps
 
 class CollisionDetector():
   def __init__(self):
+    self.numUAVs = rospy.get_param(str(rospy.get_name()) + "/numUAVs", 3)
     self.uavName = rospy.get_param(str(rospy.get_name()) + "/uavName", "uav")
     self.collision_radius = rospy.get_param(str(rospy.get_name()) + "/collision_radius", 0.2)
     print("The collision radius is: " + str(self.collision_radius))
@@ -42,7 +43,7 @@ class CollisionDetector():
   def mainloop(self):
     # Set the rate of this loop
     rate = rospy.Rate(20)
-    rospy.sleep(10.)
+    rospy.sleep(1.)
     self.msg_str = ""
 
     # While ROS is still running
@@ -50,7 +51,7 @@ class CollisionDetector():
 
       self.drone_positions[self.swarm_gps.name] = [self.swarm_gps.pos, self.swarm_gps.vel]      
 
-      if len(self.drone_positions.keys()) != 3:
+      if len(self.drone_positions.keys()) != self.numUAVs:
         continue
 
       for key in sorted(self.drone_positions.keys()):

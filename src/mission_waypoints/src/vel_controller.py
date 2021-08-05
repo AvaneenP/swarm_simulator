@@ -51,7 +51,7 @@ class VelocityPublisher():
   def mainloop(self):
     # Set the rate of this loop
     rate = rospy.Rate(20)
-    rospy.sleep(9.)
+    rospy.sleep(1.)
 
     # While ROS is still running
     while not rospy.is_shutdown():

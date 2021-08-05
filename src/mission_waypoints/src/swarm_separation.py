@@ -18,6 +18,7 @@ class SwarmSeparation():
   def __init__(self):
     
     self.uavName = rospy.get_param(str(rospy.get_name()) + "/uavName", "uav")
+    self.numUAVs = rospy.get_param(str(rospy.get_name()) + "/numUAVs", 3)
 
     self.curr_pos = PoseStamped()
     self.swarm_location = swarm_gps()
@@ -56,7 +57,7 @@ class SwarmSeparation():
     self.curr_pos.pose.position.z = msg.pose.position.z
 
   def get_swarm_pos(self, msg):
-    self.swarm_location = copy.deepcopy(msg)
+    self.drone_positions[msg.name] = [msg.pos, msg.vel]
 
   def get_avoid_name(self, msg):
     self.uav_intersection_name = copy.deepcopy(msg)
@@ -68,17 +69,15 @@ class SwarmSeparation():
   def mainloop(self):
     # Set the rate of this loop
     rate = rospy.Rate(20)
-    rospy.sleep(10.)
+    rospy.sleep(1.)
 
     self.avg_away_x = 0
     self.avg_away_y = 0
 
     # While ROS is still running
-    while not rospy.is_shutdown():
+    while not rospy.is_shutdown():  
 
-      self.drone_positions[self.swarm_location.name] = [self.swarm_location.pos, self.swarm_location.vel]      
-
-      if len(self.drone_positions.keys()) != 3:
+      if len(self.drone_positions.keys()) != self.numUAVs:
         continue
 
       if self.uav_intersection_name.data != "":

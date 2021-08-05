@@ -13,6 +13,7 @@ from shapely.geometry import Polygon
 class SwarmAlignment():
   def __init__(self):
     self.uavName = rospy.get_param(str(rospy.get_name()) + "/uavName", "uav")
+    self.numUAVs = rospy.get_param(str(rospy.get_name()) + "/numUAVs", 3)
     self.align_v_w = rospy.get_param(str(rospy.get_name()) + "/align_v_w", 0.5)
     print("weight of the 'align' vector is: " + str(self.align_v_w))
 
@@ -48,7 +49,7 @@ class SwarmAlignment():
     self.curr_vel = copy.deepcopy(msg)
 
   def get_swarm_vel(self, msg):
-    self.swarm_loc = copy.deepcopy(msg)
+    self.drone_positions[msg.name] = [msg.pos, msg.vel]
 
   def get_nearby_uav_name(self, msg):
     self.nearby_uav = copy.deepcopy(msg)
@@ -63,7 +64,7 @@ class SwarmAlignment():
   def mainloop(self):
     # Set the rate of this loop
     rate = rospy.Rate(20)
-    rospy.sleep(10.)
+    rospy.sleep(1.)
 
     self.avg_x_vel = 0
     self.avg_y_vel = 0
@@ -72,9 +73,7 @@ class SwarmAlignment():
     # While ROS is still running
     while not rospy.is_shutdown():
 
-      self.drone_positions[self.swarm_loc.name] = [self.swarm_loc.pos, self.swarm_loc.vel]      
-
-      if len(self.drone_positions.keys()) != 3:
+      if len(self.drone_positions.keys()) != self.numUAVs:
         continue
 
       if self.nearby_uav.data != "":
