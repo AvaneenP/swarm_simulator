@@ -2,7 +2,7 @@
 <launch>
 
   <!-- Swarm details -->
-  <arg name="numUAVs" default="3" />
+  <arg name="numUAVs" default="5" />
   <!-- Mission -->
   <arg name="acceptance_range" default="0.25"/>
   <arg name="file" default="mission_waypoints.txt"/>
@@ -179,6 +179,7 @@
     <param name="pos_arrows" type="bool" value="$(arg pos_arrows)" />
     <param name="sep_arrows" type="bool" value="$(arg sep_arrows)" />
     <param name="final_arrows" type="bool" value="$(arg final_arrows)" />
+    <param name="collision_radius" type="double" value="$(arg collision_radius)" />
     <param name="view" type="String" value="xy" />
   </node>
 
@@ -198,8 +199,8 @@
     <arg name="uavName3" value="$(arg name3)" />
   </include> -->
 
-  <!-- <node pkg="mission_waypoints" type="obstacle.py" name="obstacle_node" output="screen"></node> -->
+  <node pkg="mission_waypoints" type="obstacle.py" name="obstacle_node" output="screen"></node>
 
-  <node pkg="mission_waypoints" type="real_uav.py" name="real_uav_node" output="screen"> </node>
+  <!-- <node pkg="mission_waypoints" type="real_uav.py" name="real_uav_node" output="screen"> </node> -->
 
 </launch>

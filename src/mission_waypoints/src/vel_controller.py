@@ -15,13 +15,13 @@ class VelocityPublisher():
 
     self.vel = Vector3()
     self.curr_pos = PoseStamped()
-    self.wayp = Vector3()
+    self.wayp = swarm_gps()
     self.uav_info = swarm_gps()
 
     self.uav_info.name = self.uavName
 
     # Create the publisher and subscriber
-    self.uav_wayp = rospy.Subscriber(self.uavName + '/waypoint', Vector3, self.get_wayp, queue_size = 1)
+    self.uav_wayp = rospy.Subscriber(self.uavName + '/waypoint', swarm_gps, self.get_wayp, queue_size = 1)
 
     self.position_sub = rospy.Subscriber(self.uavName + '/sensors/gps', PoseStamped, self.get_pos, queue_size = 1)
 
@@ -56,9 +56,9 @@ class VelocityPublisher():
     # While ROS is still running
     while not rospy.is_shutdown():
 
-      self.vel.x = (self.wayp.x - self.curr_pos.pose.position.x) * self.goal_v_w
-      self.vel.y = (self.wayp.y - self.curr_pos.pose.position.y) * self.goal_v_w
-      self.vel.z = (self.wayp.z - self.curr_pos.pose.position.z) * self.goal_v_w
+      self.vel.x = (self.wayp.pos.x - self.curr_pos.pose.position.x) * self.goal_v_w
+      self.vel.y = (self.wayp.pos.y - self.curr_pos.pose.position.y) * self.goal_v_w
+      self.vel.z = (self.wayp.pos.z - self.curr_pos.pose.position.z) * self.goal_v_w
 
       self.velocity_pub.publish(self.vel)
 

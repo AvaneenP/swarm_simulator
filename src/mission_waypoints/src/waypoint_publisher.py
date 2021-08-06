@@ -15,19 +15,20 @@ class WaypointReader():
     self.obstacle = rospy.get_param(str(rospy.get_name()) + "/obstacle", False)
 
     if self.obstacle:
-      self.numUAVs -= 1
+      self.numUAVs -= 3
 
     self.uav_pos = {}
     self.publisherList = []
-    self.waypoint = Vector3()
+    self.waypoint = swarm_gps()
+    
 
     # Create the publisher and subscriber
     for i in range(1, self.numUAVs+1):
       self.uav_pos_sub = rospy.Subscriber("uav" + str(i) + "/final_info", swarm_gps, self.uav_pos_info, queue_size = 1)
 
     for i in range(1, self.numUAVs+1):
-      self.publisherList.append( rospy.Publisher("uav" + str(i) + "/waypoint", Vector3, queue_size = 1) )
-  
+      self.publisherList.append( rospy.Publisher("uav" + str(i) + "/waypoint", swarm_gps, queue_size = 1) )
+
     self.file = rospy.get_param("/waypoint_reader_node/file", "mission_waypoints.txt")
 
     print("The file used for this run of the simulator is: " + self.file)
@@ -67,12 +68,13 @@ class WaypointReader():
     self.counter = time.clock()
 
     for i in range(len(self.publisherList)):
-      self.waypoint.x = self.coordinates[count]
+      self.waypoint.pos.x = self.coordinates[count]
       count += 1
-      self.waypoint.y = self.coordinates[count]
+      self.waypoint.pos.y = self.coordinates[count]
       count += 1
-      self.waypoint.z = self.coordinates[count]
+      self.waypoint.pos.z = self.coordinates[count]
       count += 1
+      self.waypoint.name = ("uav" + str(i+1))
       self.publisherList[i].publish(self.waypoint)
 
     # While ROS is still running
@@ -114,12 +116,13 @@ class WaypointReader():
         print("got to waypoint!")
 
         for i in range(len(self.publisherList)):
-          self.waypoint.x = self.coordinates[count]
+          self.waypoint.pos.x = self.coordinates[count]
           count += 1
-          self.waypoint.y = self.coordinates[count]
+          self.waypoint.pos.y = self.coordinates[count]
           count += 1
-          self.waypoint.z = self.coordinates[count]
+          self.waypoint.pos.z = self.coordinates[count]
           count += 1
+          self.waypoint.name = ("uav" + str(i+1))
           self.publisherList[i].publish(self.waypoint)
       
       elif self.time_elapsed >= 1:
@@ -127,12 +130,13 @@ class WaypointReader():
         self.counter = time.clock()
         
         for i in range(len(self.publisherList)):
-          self.waypoint.x = self.coordinates[count]
+          self.waypoint.pos.x = self.coordinates[count]
           count += 1
-          self.waypoint.y = self.coordinates[count]
+          self.waypoint.pos.y = self.coordinates[count]
           count += 1
-          self.waypoint.z = self.coordinates[count]
+          self.waypoint.pos.z = self.coordinates[count]
           count += 1
+          self.waypoint.name = ("uav" + str(i+1))
           self.publisherList[i].publish(self.waypoint)
 
       else:

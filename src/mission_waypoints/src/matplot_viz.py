@@ -9,6 +9,7 @@ from geometry_msgs.msg import PoseStamped
 import matplotlib.pyplot as plt
 from matplotlib.pyplot import show, plot
 from mission_waypoints.msg import swarm_gps
+from matplotlib.patches import Circle
 
 
 class MatplotViz():
@@ -19,6 +20,7 @@ class MatplotViz():
     self.swarm_sepInfo = {}
     self.swarm_finalInfo = {}
     self.swarm_pos = {}
+    self.waypoints = {}
 
     self.final_arrows = rospy.get_param(str(rospy.get_name()) + "/final_arrows", False)
     self.goal_arrows = rospy.get_param(str(rospy.get_name()) + "/goal_arrows", False)
@@ -27,6 +29,8 @@ class MatplotViz():
     self.align_arrows = rospy.get_param(str(rospy.get_name()) + "/align_arrows", False)
 
     self.view_type = rospy.get_param(str(rospy.get_name()) + "/view", "xy")
+
+    self.uav_size = rospy.get_param(str(rospy.get_name()) + "/collision_radius", 0.2)
 
     self.a = 0
     if self.view_type == "xy":
@@ -55,6 +59,9 @@ class MatplotViz():
 
     for i in range(1, self.numUAVs+1):
       self.uav_final_info_sub = rospy.Subscriber("uav" + str(i) + "/final_info", swarm_gps, self.uav_final_plot, queue_size = 1)
+
+    for i in range(1, self.numUAVs+1):
+      self.wayp_sub = rospy.Subscriber("uav" + str(i) + "/waypoint", swarm_gps, self.uav_wayp_plot, queue_size = 1)
 
     self.swarm_pos_sub = rospy.Subscriber('/swarm/gps', swarm_gps, self.get_swarm_pos, queue_size = 1)
 
@@ -86,6 +93,10 @@ class MatplotViz():
     self.swarm_pos[msg.name] = [[msg.pos.x, msg.pos.y, msg.pos.z],
                                [msg.vel.x, msg.vel.y, msg.vel.z]]
 
+  def uav_wayp_plot(self, msg):
+    self.waypoints[msg.name] = [[msg.pos.x, msg.pos.y, msg.pos.z],
+                               [msg.vel.x, msg.vel.y, msg.vel.z]]
+
   # Main Loop
   def mainloop(self):
     # Set the rate of this loop
@@ -105,7 +116,8 @@ class MatplotViz():
 
       for key in self.swarm_goalInfo.keys():
         if self.goal_arrows:
-          point = self.ax.plot(self.swarm_goalInfo[key][0][0], self.swarm_goalInfo[key][0][self.a], 'ko')
+          point = Circle((self.swarm_goalInfo[key][0][0], self.swarm_goalInfo[key][0][self.a]), self.uav_size, fill = True, color = "black")
+          self.ax.add_patch(point)
           arrow = self.ax.arrow(self.swarm_goalInfo[key][0][0], self.swarm_goalInfo[key][0][self.a], self.swarm_goalInfo[key][1][0], self.swarm_goalInfo[key][1][self.a], width = 0.1, color = "m")
 
       for key in self.swarm_alignInfo.keys():
@@ -126,6 +138,9 @@ class MatplotViz():
 
       for key in self.swarm_pos.keys():
         point = self.ax.plot(self.swarm_pos[key][0][0], self.swarm_pos[key][0][self.a], 'ko')
+
+      for key in self.waypoints.keys():
+        point = self.ax.plot(self.waypoints[key][0][0], self.waypoints[key][0][self.a], 'co', markersize = 10)
 
       self.fig.canvas.draw()
       self.ax.clear()
