@@ -73,6 +73,7 @@ class SwarmSeparation():
 
     self.avg_away_x = 0
     self.avg_away_y = 0
+    self.avg_away_z = 0
 
     # While ROS is still running
     while not rospy.is_shutdown():  
@@ -86,15 +87,19 @@ class SwarmSeparation():
             continue
           vec1 = self.curr_pos.pose.position.x - self.drone_positions[word][0].x
           vec2 = self.curr_pos.pose.position.y - self.drone_positions[word][0].y
-          mag = math.sqrt( pow(vec1, 2) + pow(vec2, 2) )
+          vec3 = self.curr_pos.pose.position.z - self.drone_positions[word][0].z
+          mag = math.sqrt( pow(vec1, 2) + pow(vec2, 2) + pow(vec3, 2) )
           vec1 = vec1 / mag
           vec2 = vec2 / mag
+          vec3 = vec3 / mag
 
           self.avg_away_x += vec1 * (3 / mag)
           self.avg_away_y += vec2 * (3 / mag)
+          self.avg_away_z += vec3 * (3 / mag)
 
         self.away_vel.x = self.avg_away_x * self.sep_v_w
         self.away_vel.y = self.avg_away_y * self.sep_v_w
+        self.away_vel.z = self.avg_away_z * self.sep_v_w
 
       self.away_velocity_pub.publish(self.away_vel)
 
@@ -104,13 +109,16 @@ class SwarmSeparation():
 
       self.uav_info.vel.x = self.away_vel.x
       self.uav_info.vel.y = self.away_vel.y
+      self.uav_info.vel.z = self.away_vel.z
 
       self.uav_info_pub.publish(self.uav_info)
 
       self.away_vel.x = 0
       self.away_vel.y = 0
+      self.away_vel.z = 0
       self.avg_away_x = 0
       self.avg_away_y = 0
+      self.avg_away_z = 0
 
       # Sleep for the remainder of the loop
       rate.sleep()

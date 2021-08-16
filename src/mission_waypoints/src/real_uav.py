@@ -13,11 +13,13 @@ from mission_waypoints.msg import swarm_gps
 class RealUAV():
   def __init__(self):
     
+    self.uavName = rospy.get_param(str(rospy.get_name()) + "/uavName", "uav")
+
     self.real_uav = swarm_gps()
-    self.real_uav.name = "Tello"
+    self.real_uav.name = self.uavName
 
     # Create the publisher and subscriber
-    self.real_uav_sub = rospy.Subscriber('/vicon/TELLO/TELLO', TransformStamped, self.getDronePos, queue_size = 1)
+    self.real_uav_sub = rospy.Subscriber('/vicon/' + self.uavName + '/' + self.uavName, TransformStamped, self.getDronePos, queue_size = 1)
 
     self.uav_info_pub = rospy.Publisher('/swarm/gps', swarm_gps, queue_size = 1)
 

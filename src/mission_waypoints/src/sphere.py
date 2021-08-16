@@ -59,7 +59,7 @@ class InfluenceSphere():
       for key in sorted(self.drone_positions.keys()):
         if key == self.uavName:
           continue
-        self.distance = math.sqrt( pow(self.curr_loc.pose.position.x - self.drone_positions[key][0].x, 2) + pow(self.curr_loc.pose.position.y - self.drone_positions[key][0].y, 2) )
+        self.distance = math.sqrt( pow(self.curr_loc.pose.position.x - self.drone_positions[key][0].x, 2) + pow(self.curr_loc.pose.position.y - self.drone_positions[key][0].y, 2) + pow(self.curr_loc.pose.position.z - self.drone_positions[key][0].z, 2) )
 
         if self.distance <= self.influence_radius:
           self.intersec_uav = self.intersec_uav + key + ","

@@ -68,6 +68,7 @@ class SwarmAlignment():
 
     self.avg_x_vel = 0
     self.avg_y_vel = 0
+    self.avg_z_vel = 0
     self.count = 0
 
     # While ROS is still running
@@ -82,13 +83,16 @@ class SwarmAlignment():
             continue
           self.avg_x_vel += self.drone_positions[word][1].x
           self.avg_y_vel += self.drone_positions[word][1].y
+          self.avg_z_vel += self.drone_positions[word][1].z
           self.count += 1
 
         self.avg_x_vel += self.curr_vel.x
         self.avg_y_vel += self.curr_vel.y
+        self.avg_z_vel += self.curr_vel.z
 
         self.align_vel.x = self.avg_x_vel / (self.count + 1) * self.align_v_w
         self.align_vel.y = self.avg_y_vel / (self.count + 1) * self.align_v_w
+        self.align_vel.z = self.avg_z_vel / (self.count + 1) * self.align_v_w
 
       self.align_velocity_pub.publish(self.align_vel)
 
@@ -98,13 +102,16 @@ class SwarmAlignment():
 
       self.uav_info.vel.x = self.align_vel.x
       self.uav_info.vel.y = self.align_vel.y
+      self.uav_info.vel.z = self.align_vel.z
 
       self.uav_info_pub.publish(self.uav_info)
 
       self.align_vel.x = 0
       self.align_vel.y = 0
+      self.align_vel.z = 0
       self.avg_x_vel = 0
       self.avg_y_vel = 0
+      self.avg_z_vel = 0
       self.count = 0
 
       # Sleep for the remainder of the loop

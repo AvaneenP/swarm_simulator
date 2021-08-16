@@ -2,7 +2,7 @@
 <launch>
 
   <!-- Swarm details -->
-  <arg name="numUAVs" default="5" />
+  <arg name="numUAVs" default="4" />
   <!-- Mission -->
   <arg name="acceptance_range" default="0.25"/>
   <arg name="file" default="mission_waypoints.txt"/>
@@ -27,7 +27,7 @@
 
 
 
-  <include file="$(find flightcontroller)/launch/uav.launch">
+  <include file="$(find flightcontroller)/launch/sim_uav.launch">
     <arg name="droneName" value="uav1" />
     <arg name="numUAVs" value="$(arg numUAVs)" />
     <arg name="clockControl" value="True" />
@@ -40,7 +40,7 @@
     <arg name="goal_v_w" value="$(arg goal_v_w)"/>
   </include>
 
-  <include file="$(find flightcontroller)/launch/uav.launch">
+  <include file="$(find flightcontroller)/launch/sim_uav.launch">
     <arg name="droneName" value="uav2" />
     <arg name="numUAVs" value="$(arg numUAVs)" />
     <arg name="influence_radius" value="$(arg influence_radius)" />
@@ -52,7 +52,7 @@
     <arg name="goal_v_w" value="$(arg goal_v_w)"/>
   </include> 
 
-  <!-- <include file="$(find flightcontroller)/launch/uav.launch">
+  <!-- <include file="$(find flightcontroller)/launch/sim_uav.launch">
     <arg name="droneName" value="uav3" />
     <arg name="numUAVs" value="$(arg numUAVs)" />
     <arg name="influence_radius" value="$(arg influence_radius)" />
@@ -64,7 +64,7 @@
     <arg name="goal_v_w" value="$(arg goal_v_w)"/>
   </include> 
 
-  <include file="$(find flightcontroller)/launch/uav.launch">
+  <include file="$(find flightcontroller)/launch/sim_uav.launch">
     <arg name="droneName" value="uav4" />
     <arg name="numUAVs" value="$(arg numUAVs)" />
     <arg name="influence_radius" value="$(arg influence_radius)" />
@@ -76,7 +76,7 @@
     <arg name="goal_v_w" value="$(arg goal_v_w)"/>
   </include> 
 
-  <include file="$(find flightcontroller)/launch/uav.launch">
+  <include file="$(find flightcontroller)/launch/sim_uav.launch">
     <arg name="droneName" value="uav5" />
     <arg name="numUAVs" value="$(arg numUAVs)" />
     <arg name="influence_radius" value="$(arg influence_radius)" />
@@ -88,7 +88,7 @@
     <arg name="goal_v_w" value="$(arg goal_v_w)"/>
   </include>  -->
 
-  <!-- <include file="$(find flightcontroller)/launch/uav.launch">
+  <!-- <include file="$(find flightcontroller)/launch/sim_uav.launch">
     <arg name="droneName" value="uav6" />
     <arg name="numUAVs" value="$(arg numUAVs)" />
     <arg name="influence_radius" value="$(arg influence_radius)" />
@@ -100,7 +100,7 @@
     <arg name="goal_v_w" value="$(arg goal_v_w)"/>
   </include> 
 
-  <include file="$(find flightcontroller)/launch/uav.launch">
+  <include file="$(find flightcontroller)/launch/sim_uav.launch">
     <arg name="droneName" value="uav7" />
     <arg name="numUAVs" value="$(arg numUAVs)" />
     <arg name="influence_radius" value="$(arg influence_radius)" />
@@ -112,7 +112,7 @@
     <arg name="goal_v_w" value="$(arg goal_v_w)"/>
   </include> 
 
-  <include file="$(find flightcontroller)/launch/uav.launch">
+  <include file="$(find flightcontroller)/launch/sim_uav.launch">
     <arg name="droneName" value="uav8" />
     <arg name="numUAVs" value="$(arg numUAVs)" />
     <arg name="influence_radius" value="$(arg influence_radius)" />
@@ -124,7 +124,7 @@
     <arg name="goal_v_w" value="$(arg goal_v_w)"/>
   </include>  -->
 
-  <!-- <include file="$(find flightcontroller)/launch/uav.launch">
+  <!-- <include file="$(find flightcontroller)/launch/sim_uav.launch">
     <arg name="droneName" value="uav9" />
     <arg name="numUAVs" value="$(arg numUAVs)" />
     <arg name="influence_radius" value="$(arg influence_radius)" />
@@ -136,7 +136,7 @@
     <arg name="goal_v_w" value="$(arg goal_v_w)"/>
   </include> 
 
-  <include file="$(find flightcontroller)/launch/uav.launch">
+  <include file="$(find flightcontroller)/launch/sim_uav.launch">
     <arg name="droneName" value="uav10" />
     <arg name="numUAVs" value="$(arg numUAVs)" />
     <arg name="influence_radius" value="$(arg influence_radius)" />
@@ -148,7 +148,7 @@
     <arg name="goal_v_w" value="$(arg goal_v_w)"/>
   </include> 
 
-  <include file="$(find flightcontroller)/launch/uav.launch">
+  <include file="$(find flightcontroller)/launch/sim_uav.launch">
     <arg name="droneName" value="uav11" />
     <arg name="numUAVs" value="$(arg numUAVs)" />
     <arg name="influence_radius" value="$(arg influence_radius)" />
@@ -183,15 +183,16 @@
     <param name="view" type="String" value="xy" />
   </node>
 
-  <!-- <node pkg="mission_waypoints" type="matplot_viz.py" name="matplot_viz_node_xz" output="screen">
+  <node pkg="mission_waypoints" type="matplot_viz.py" name="matplot_viz_node_xz" output="screen">
     <param name="numUAVs" type="int" value="$(arg numUAVs)" />
     <param name="goal_arrows" type="bool" value="$(arg goal_arrows)" />
     <param name="align_arrows" type="bool" value="$(arg align_arrows)" />
     <param name="pos_arrows" type="bool" value="$(arg pos_arrows)" />
     <param name="sep_arrows" type="bool" value="$(arg sep_arrows)" />
     <param name="final_arrows" type="bool" value="$(arg final_arrows)" />
+    <param name="collision_radius" type="double" value="$(arg collision_radius)" />
     <param name="view" type="String" value="xz" />
-  </node> -->
+  </node>
 
  <!-- <include file="$(find visualizer)/launch/view.launch">
     <arg name="uavName1" value="$(arg name1)" />
@@ -199,8 +200,14 @@
     <arg name="uavName3" value="$(arg name3)" />
   </include> -->
 
-  <node pkg="mission_waypoints" type="obstacle.py" name="obstacle_node" output="screen"></node>
+  <!-- <node pkg="mission_waypoints" type="obstacle.py" name="obstacle_node" output="screen"></node> -->
 
-  <!-- <node pkg="mission_waypoints" type="real_uav.py" name="real_uav_node" output="screen"> </node> -->
+  <include file="$(find flightcontroller)/launch/real_uav.launch">
+    <arg name="droneName" value="JOZI" />
+  </include> 
+
+  <include file="$(find flightcontroller)/launch/real_uav.launch">
+    <arg name="droneName" value="ELI" />
+  </include> 
 
 </launch>

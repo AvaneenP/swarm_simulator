@@ -65,6 +65,7 @@ class PositionCohesion():
 
     self.avg_x_pos = 0
     self.avg_y_pos = 0
+    self.avg_z_pos = 0
     self.count = 0
 
     # While ROS is still running
@@ -81,16 +82,20 @@ class PositionCohesion():
             continue
           self.avg_x_pos += self.drone_positions[word][0].x
           self.avg_y_pos += self.drone_positions[word][0].y
+          self.avg_z_pos += self.drone_positions[word][0].z
           self.count += 1
       
         self.avg_x_pos += self.curr_pos.pose.position.x
         self.avg_y_pos += self.curr_pos.pose.position.y
+        self.avg_z_pos += self.curr_pos.pose.position.z
 
         self.avg_x_pos = self.avg_x_pos / (self.count + 1)
         self.avg_y_pos = self.avg_y_pos / (self.count + 1)
+        self.avg_z_pos = self.avg_z_pos / (self.count + 1)
 
         self.pos_vel.x =  (self.avg_x_pos - self.curr_pos.pose.position.x) * self.pos_v_w
         self.pos_vel.y =  (self.avg_y_pos - self.curr_pos.pose.position.y) * self.pos_v_w
+        self.pos_vel.z =  (self.avg_z_pos - self.curr_pos.pose.position.z) * self.pos_v_w
 
       self.position_velocity_pub.publish(self.pos_vel)
 
@@ -100,13 +105,16 @@ class PositionCohesion():
 
       self.uav_info.vel.x = self.pos_vel.x
       self.uav_info.vel.y = self.pos_vel.y
+      self.uav_info.vel.z = self.pos_vel.z
 
       self.uav_info_pub.publish(self.uav_info)
 
       self.pos_vel.x = 0
       self.pos_vel.y = 0
+      self.pos_vel.z = 0
       self.avg_x_pos = 0
       self.avg_y_pos = 0
+      self.avg_z_pos = 0
       self.count = 0
 
 

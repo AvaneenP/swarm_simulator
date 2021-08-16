@@ -15,7 +15,7 @@ class WaypointReader():
     self.obstacle = rospy.get_param(str(rospy.get_name()) + "/obstacle", False)
 
     if self.obstacle:
-      self.numUAVs -= 3
+      self.numUAVs -= 2
 
     self.uav_pos = {}
     self.publisherList = []

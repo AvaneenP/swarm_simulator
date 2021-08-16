@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<launch>
+
+  <!-- VICON Drone Name -->
+  <arg name="droneName" default="uav" />
+
+  <node pkg="mission_waypoints" type="real_uav.py" name="real_uav_node_$(arg droneName)" output="screen">
+    <param name="uavName" type="string" value="$(arg droneName)" />
+  </node>
+
+</launch>

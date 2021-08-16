@@ -3,6 +3,7 @@ import rospy
 import copy
 import math
 import random
+import numpy as np
 from keyboard.msg import Key
 from geometry_msgs.msg import Vector3
 from geometry_msgs.msg import PoseStamped
@@ -14,6 +15,8 @@ from matplotlib.patches import Circle
 
 class MatplotViz():
   def __init__(self):
+    self.num_obstacles = 2
+    
     self.swarm_goalInfo = {}
     self.swarm_alignInfo = {}
     self.swarm_posInfo = {}
@@ -42,6 +45,9 @@ class MatplotViz():
       exit()
 
     self.numUAVs = rospy.get_param(str(rospy.get_name()) + "/numUAVs", 3)
+
+    self.plotTrails = np.zeros( (self.numUAVs - self.num_obstacles, 3, 20), dtype = np.float64 )
+    print(self.plotTrails.dtype.name)
 
     # Create the publisher and subscriber
     for i in range(1, self.numUAVs+1):
@@ -93,6 +99,14 @@ class MatplotViz():
     self.swarm_pos[msg.name] = [[msg.pos.x, msg.pos.y, msg.pos.z],
                                [msg.vel.x, msg.vel.y, msg.vel.z]]
 
+    if msg.name[0:3] == "uav":
+      ident = int( msg.name.lstrip("uav") )
+      ident -= 1
+      self.plotTrails[ident][0][0] = msg.pos.x
+      self.plotTrails[ident][1][0] = msg.pos.y
+      self.plotTrails[ident][2][0] = msg.pos.z
+      self.plotTrails[ident] = np.roll( self.plotTrails[ident], 1 )
+
   def uav_wayp_plot(self, msg):
     self.waypoints[msg.name] = [[msg.pos.x, msg.pos.y, msg.pos.z],
                                [msg.vel.x, msg.vel.y, msg.vel.z]]
@@ -104,7 +118,7 @@ class MatplotViz():
     rospy.sleep(0.1)
 
     plt.ion()
-    self.fig = plt.figure(figsize=(13,13))
+    self.fig = plt.figure(figsize=(8,8))
     self.ax = self.fig.add_subplot(111)
 
     # While ROS is still running
@@ -138,6 +152,12 @@ class MatplotViz():
 
       for key in self.swarm_pos.keys():
         point = self.ax.plot(self.swarm_pos[key][0][0], self.swarm_pos[key][0][self.a], 'ko')
+
+
+      for i in range(self.numUAVs - self.num_obstacles):
+        for j in range(0, 20, 3):
+          point = self.ax.plot(self.plotTrails[i][0][j], self.plotTrails[i][self.a][j], 'ro', alpha = 0.3)
+
 
       for key in self.waypoints.keys():
         point = self.ax.plot(self.waypoints[key][0][0], self.waypoints[key][0][self.a], 'co', markersize = 10)
