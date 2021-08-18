@@ -15,8 +15,13 @@ from matplotlib.patches import Circle
 
 class MatplotViz():
   def __init__(self):
-    self.num_obstacles = 2
-    
+    self.obstacle = rospy.get_param(str(rospy.get_name()) + "/obstacle", False)
+    self.numObs = rospy.get_param(str(rospy.get_name()) + "/numObs", 0)
+
+    self.num_obstacles = 0
+    if self.obstacle:
+      self.num_obstacles = self.numObs
+
     self.swarm_goalInfo = {}
     self.swarm_alignInfo = {}
     self.swarm_posInfo = {}
