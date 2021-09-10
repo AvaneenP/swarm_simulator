@@ -92,6 +92,11 @@
       <param name="uavName" type="string" value="$(arg droneName)" />
     </node>
 
+    <!-- Virtual Cage and Center Velocity Controller -->
+    <node pkg="mission_waypoints" type="safety_cage.py" name="safety_cage_node_$(arg droneName)" output="screen">
+      <param name="uavName" type="string" value="$(arg droneName)" />
+    </node>    
+
     <!-- Boids controller -->
     <node pkg="mission_waypoints" type="boids_all.py" name="boids_vec_node_$(arg droneName)" output="screen">
       <param name="uavName" type="string" value="$(arg droneName)" />

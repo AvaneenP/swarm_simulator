@@ -19,6 +19,7 @@ class Boids():
     self.pos_vel = Vector3()
     self.away_vel = Vector3()
     self.align_vel = Vector3()
+    self.center_vel = Vector3()
     self.final_vel = Vector3()
 
     self.curr_pos = PoseStamped()
@@ -37,6 +38,8 @@ class Boids():
     self.away_velocity_sub = rospy.Subscriber(self.uavName + '/input/unverified_away_velocity', Vector3, self.get_away_vec, queue_size=1)
 
     self.align_velocity_sub = rospy.Subscriber(self.uavName + '/input/unverified_align_velocity', Vector3, self.get_align_vec, queue_size=1)
+
+    self.center_vel_sub = rospy.Subscriber(self.uavName + '/input/center_vel', Vector3, self.get_center_vel, queue_size = 1)
 
     self.uav_info_pub = rospy.Publisher(self.uavName + "/final_info", swarm_gps, queue_size = 1)
 
@@ -62,6 +65,8 @@ class Boids():
   def get_align_vec(self, msg):
     self.align_vel = copy.deepcopy(msg)
 
+  def get_center_vel(self, msg):
+    self.center_vel = copy.deepcopy(msg)
 
   # Main Loop
   def mainloop(self):
@@ -72,11 +77,14 @@ class Boids():
     # While ROS is still running
     while not rospy.is_shutdown():
 
-      self.final_vel.x = (self.goal_vel.x + self.pos_vel.x + self.away_vel.x + self.align_vel.x) / 4
-      
-      self.final_vel.y = (self.goal_vel.y + self.pos_vel.y + self.away_vel.y + self.align_vel.y) / 4
-      
-      self.final_vel.z = (self.goal_vel.z + self.pos_vel.z + self.away_vel.z + self.align_vel.z) / 4
+      if self.center_vel.x == 0 and self.center_vel.y == 0 and self.center_vel.z == 0:
+        self.final_vel.x = (self.goal_vel.x + self.pos_vel.x + self.away_vel.x + self.align_vel.x) / 4
+        self.final_vel.y = (self.goal_vel.y + self.pos_vel.y + self.away_vel.y + self.align_vel.y) / 4
+        self.final_vel.z = (self.goal_vel.z + self.pos_vel.z + self.away_vel.z + self.align_vel.z) / 4
+      else:
+        self.final_vel.x = self.center_vel.x
+        self.final_vel.y = self.center_vel.y
+        self.final_vel.z = self.center_vel.z
 
       self.final_velocity_pub.publish(self.final_vel)
 

@@ -135,8 +135,6 @@ class MatplotViz():
 
       for key in self.swarm_goalInfo.keys():
         if self.goal_arrows:
-          point = Circle((self.swarm_goalInfo[key][0][0], self.swarm_goalInfo[key][0][self.a]), self.uav_size, fill = True, color = "black")
-          self.ax.add_patch(point)
           arrow = self.ax.arrow(self.swarm_goalInfo[key][0][0], self.swarm_goalInfo[key][0][self.a], self.swarm_goalInfo[key][1][0], self.swarm_goalInfo[key][1][self.a], width = 0.1, color = "m")
 
       for key in self.swarm_alignInfo.keys():
@@ -153,6 +151,8 @@ class MatplotViz():
 
       for key in self.swarm_finalInfo.keys():
         if self.final_arrows:
+          point = Circle((self.swarm_goalInfo[key][0][0], self.swarm_goalInfo[key][0][self.a]), self.uav_size, fill = True, color = "black")
+          self.ax.add_patch(point)
           arrow = self.ax.arrow(self.swarm_finalInfo[key][0][0], self.swarm_finalInfo[key][0][self.a], self.swarm_finalInfo[key][1][0], self.swarm_finalInfo[key][1][self.a], color = "y", width = 0.1, alpha = 0.5)
 
       for key in self.swarm_pos.keys():
