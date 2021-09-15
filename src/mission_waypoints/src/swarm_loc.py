@@ -1,3 +1,7 @@
+'''
+publishes uav's location & velocity to /swarm/gps
+'''
+
 #!/usr/bin/env python
 import rospy
 import copy

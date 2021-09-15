@@ -1,3 +1,7 @@
+'''
+This node creates several static obstacles and publishes their positions to /swarm/gps
+'''
+
 #!/usr/bin/env python
 import rospy
 import copy

@@ -1,3 +1,9 @@
+'''
+Reads waypoint from /uavName/waypoint
+Calculates vector needed to reach waypoint
+Publishes vector to /uavName/input/unverified_goal_velocity
+'''
+
 #!/usr/bin/env python
 import rospy
 import copy

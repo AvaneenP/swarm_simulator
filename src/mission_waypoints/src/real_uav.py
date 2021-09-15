@@ -31,7 +31,7 @@ class RealUAV():
     scaling = 3
     self.real_uav.pos.x = msg.transform.translation.x * scaling
     self.real_uav.pos.y = msg.transform.translation.y * scaling
-    self.real_uav.pos.z = 1.5
+    self.real_uav.pos.z = msg.transform.translation.z * scaling
 
 
   # Main Loop

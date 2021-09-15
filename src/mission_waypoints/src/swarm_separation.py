@@ -23,7 +23,6 @@ class SwarmSeparation():
     self.curr_pos = PoseStamped()
     self.swarm_location = swarm_gps()
     self.uav_intersection_name = String()
-    self.uav_sphere_name = String()
     self.away_vel = Vector3()
     self.drone_positions = {}
 
@@ -37,7 +36,6 @@ class SwarmSeparation():
 
     self.uav_avoid = rospy.Subscriber(self.uavName + "/intersection", String, self.get_avoid_name, queue_size = 1)
 
-    self.uav_sphere_avoid = rospy.Subscriber(self.uavName + "/sphere_of_influence", String, self.get_sphere_uav, queue_size = 1)
 
     self.away_velocity_pub = rospy.Publisher(self.uavName + '/input/unverified_away_velocity', Vector3, queue_size=1)
 
@@ -61,9 +59,6 @@ class SwarmSeparation():
 
   def get_avoid_name(self, msg):
     self.uav_intersection_name = copy.deepcopy(msg)
-
-  def get_sphere_uav(self, msg):
-    self.uav_sphere_name = copy.deepcopy(msg)
 
   # Main Loop
   def mainloop(self):

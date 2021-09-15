@@ -1,3 +1,9 @@
+'''
+Checks if a uav's location is within the same "sphere" as some other uavs
+If so, publishes the names of those uavs to /uavName/intersection
+Used for separation behavior 
+'''
+
 #!/usr/bin/env python
 import rospy
 import copy
