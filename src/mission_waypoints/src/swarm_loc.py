@@ -1,7 +1,3 @@
-'''
-publishes uav's location & velocity to /swarm/gps
-'''
-
 #!/usr/bin/env python
 import rospy
 import copy
@@ -11,6 +7,11 @@ from keyboard.msg import Key
 from geometry_msgs.msg import Vector3
 from geometry_msgs.msg import PoseStamped
 from mission_waypoints.msg import swarm_gps
+
+'''
+publishes uav's location & velocity to /swarm/gps
+'''
+
 
 class SwarmGPS():
   def __init__(self):

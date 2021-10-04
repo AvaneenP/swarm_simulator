@@ -1,9 +1,3 @@
-'''
-Reads waypoint from /uavName/waypoint
-Calculates vector needed to reach waypoint
-Publishes vector to /uavName/input/unverified_goal_velocity
-'''
-
 #!/usr/bin/env python
 import rospy
 import copy
@@ -13,6 +7,12 @@ from keyboard.msg import Key
 from geometry_msgs.msg import Vector3
 from geometry_msgs.msg import PoseStamped
 from mission_waypoints.msg import swarm_gps
+
+'''
+Reads waypoint from /uavName/waypoint
+Calculates vector needed to reach waypoint
+Publishes vector to /uavName/input/unverified_goal_velocity
+'''
 
 class VelocityPublisher():
   def __init__(self):

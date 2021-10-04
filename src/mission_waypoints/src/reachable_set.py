@@ -1,9 +1,3 @@
-'''
-Checks if a uav's location is within the same "sphere" as some other uavs
-If so, publishes the names of those uavs to /uavName/intersection
-Used for separation behavior 
-'''
-
 #!/usr/bin/env python
 import rospy
 import copy
@@ -20,6 +14,11 @@ from matplotlib import pyplot
 from shapely.geometry import LineString, Polygon
 from shapely.figures import SIZE, set_limits, plot_coords, plot_bounds, plot_line_issimple
 
+'''
+Checks if a uav's location is within the same "sphere" as some other uavs
+If so, publishes the names of those uavs to /uavName/intersection
+Used for separation behavior 
+'''
 
 class ReachableSet():
   def __init__(self):

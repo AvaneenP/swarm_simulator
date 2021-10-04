@@ -23,6 +23,8 @@ class RealUAV():
 
     self.uav_info_pub = rospy.Publisher('/swarm/gps', swarm_gps, queue_size = 1)
 
+    self.real_pub = rospy.Publisher(self.uavName + '/final_info', swarm_gps, queue_size = 1)
+
     # Call the mainloop of our class
     self.mainloop()
 
@@ -44,6 +46,7 @@ class RealUAV():
     while not rospy.is_shutdown():
 
       self.uav_info_pub.publish(self.real_uav)
+      self.real_pub.publish(self.real_uav)
 
       # Sleep for the remainder of the loop
       rate.sleep()

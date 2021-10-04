@@ -208,11 +208,11 @@
 
   <!-- <node pkg="mission_waypoints" type="obstacle.py" name="obstacle_node" output="screen"></node> -->
 
-  <!-- <include file="$(find flightcontroller)/launch/real_uav.launch">
+  <include file="$(find flightcontroller)/launch/real_uav.launch">
     <arg name="droneName" value="JOZI" />
   </include> 
 
-  <include file="$(find flightcontroller)/launch/real_uav.launch">
+  <!-- <include file="$(find flightcontroller)/launch/real_uav.launch">
     <arg name="droneName" value="ELI" />
   </include>  -->
 

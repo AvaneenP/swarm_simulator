@@ -1,7 +1,3 @@
-'''
-This node creates several static obstacles and publishes their positions to /swarm/gps
-'''
-
 #!/usr/bin/env python
 import rospy
 import copy
@@ -12,6 +8,10 @@ from std_msgs.msg import String
 from geometry_msgs.msg import Vector3
 from geometry_msgs.msg import PoseStamped
 from mission_waypoints.msg import swarm_gps
+
+'''
+This node creates several static obstacles and publishes their positions to /swarm/gps
+'''
 
 class Obstacle():
   def __init__(self):

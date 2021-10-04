@@ -1,9 +1,3 @@
-'''
-Checks if a uav's location is within the same "sphere" as some other uavs
-If so, publishes the names of those uavs to /uavName/sphere_of_influence
-Used for cohesion and alignment behavior 
-'''
-
 #!/usr/bin/env python
 import rospy
 import copy
@@ -16,6 +10,11 @@ from geometry_msgs.msg import PoseStamped
 from mission_waypoints.msg import swarm_gps
 from shapely.geometry import Polygon
 
+'''
+Checks if a uav's location is within the same "sphere" as some other uavs
+If so, publishes the names of those uavs to /uavName/sphere_of_influence
+Used for cohesion and alignment behavior 
+'''
 
 class InfluenceSphere():
   def __init__(self):

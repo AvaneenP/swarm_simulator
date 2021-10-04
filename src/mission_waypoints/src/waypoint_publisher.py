@@ -21,11 +21,13 @@ class WaypointReader():
     self.uav_pos = {}
     self.publisherList = []
     self.waypoint = swarm_gps()
-    
+
 
     # Create the publisher and subscriber
     for i in range(1, self.numUAVs+1):
       self.uav_pos_sub = rospy.Subscriber("uav" + str(i) + "/final_info", swarm_gps, self.uav_pos_info, queue_size = 1)
+
+    self.uav_pos_sub = rospy.Subscriber('JOZI/final_info', swarm_gps, self.uav_pos_info, queue_size = 1)
 
     for i in range(1, self.numUAVs+1):
       self.publisherList.append( rospy.Publisher("uav" + str(i) + "/waypoint", swarm_gps, queue_size = 1) )
