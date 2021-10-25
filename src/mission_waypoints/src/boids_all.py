@@ -10,6 +10,10 @@ import matplotlib.pyplot as plt
 from matplotlib.pyplot import show, plot
 from mission_waypoints.msg import swarm_gps
 
+'''
+Calculates final velocity based on different conditions and values
+'''
+
 class Boids():
   def __init__(self):
 

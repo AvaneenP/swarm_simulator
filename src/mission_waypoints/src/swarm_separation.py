@@ -14,6 +14,15 @@ from matplotlib import pyplot
 from shapely.geometry import LineString, Polygon
 from shapely.figures import SIZE, set_limits, plot_coords, plot_bounds, plot_line_issimple
 
+
+'''
+Calculates a uav's "separation" velocity based on other uavs in it's potential intersection sphere --> subscribed to uavName/intersection
+
+Publishes this new "separation" velocity to uavName/input_unverified_away_velocity
+
+Publishes new "separation" velocity and current position to uavName/sep_info
+'''
+
 class SwarmSeparation():
   def __init__(self):
     

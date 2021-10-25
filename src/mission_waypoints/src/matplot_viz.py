@@ -12,6 +12,9 @@ from matplotlib.pyplot import show, plot
 from mission_waypoints.msg import swarm_gps
 from matplotlib.patches import Circle
 
+'''
+XY and XZ visualization of swarm uavs along with velocity vectors
+'''
 
 class MatplotViz():
   def __init__(self):

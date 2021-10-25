@@ -2,7 +2,7 @@
 <launch>
 
   <!-- Swarm details -->
-  <arg name="numUAVs" default="2" />
+  <arg name="numUAVs" default="3" />
   <arg name="numObs" default="0" />
   <!-- Mission -->
   <arg name="acceptance_range" default="0.25"/>
@@ -53,7 +53,7 @@
     <arg name="goal_v_w" value="$(arg goal_v_w)"/>
   </include> 
 
-  <!-- <include file="$(find flightcontroller)/launch/sim_uav.launch">
+  <include file="$(find flightcontroller)/launch/sim_uav.launch">
     <arg name="droneName" value="uav3" />
     <arg name="numUAVs" value="$(arg numUAVs)" />
     <arg name="influence_radius" value="$(arg influence_radius)" />
@@ -65,7 +65,7 @@
     <arg name="goal_v_w" value="$(arg goal_v_w)"/>
   </include> 
 
-  <include file="$(find flightcontroller)/launch/sim_uav.launch">
+  <!-- <include file="$(find flightcontroller)/launch/sim_uav.launch">
     <arg name="droneName" value="uav4" />
     <arg name="numUAVs" value="$(arg numUAVs)" />
     <arg name="influence_radius" value="$(arg influence_radius)" />
@@ -208,9 +208,9 @@
 
   <!-- <node pkg="mission_waypoints" type="obstacle.py" name="obstacle_node" output="screen"></node> -->
 
-  <include file="$(find flightcontroller)/launch/real_uav.launch">
+  <!-- <include file="$(find flightcontroller)/launch/real_uav.launch">
     <arg name="droneName" value="JOZI" />
-  </include> 
+  </include>  -->
 
   <!-- <include file="$(find flightcontroller)/launch/real_uav.launch">
     <arg name="droneName" value="ELI" />

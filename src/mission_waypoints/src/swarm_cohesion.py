@@ -10,6 +10,14 @@ from geometry_msgs.msg import PoseStamped
 from mission_waypoints.msg import swarm_gps
 from shapely.geometry import Polygon
 
+'''
+Calculates a uav's "cohesion" or "together" velocity based on other uavs in it's sphere of influence --> subscribed to uavName/sphere_of_influence
+
+Publishes this new "cohesion" velocity to uavName/input_unverified_position_velocity
+
+Publishes new "cohesion" velocity and current position to uavName/pos_info
+'''
+
 class PositionCohesion():
   def __init__(self):
 

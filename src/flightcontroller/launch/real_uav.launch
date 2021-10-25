@@ -8,4 +8,13 @@
     <param name="uavName" type="string" value="$(arg droneName)" />
   </node>
 
+  <include file="src/Freyja/freyja_controller.launch" >
+  
+    <arg name="vicon_topic"
+    value="/vicon/$(arg droneName)/$(arg droneName)"/>
+
+    <arg name="thrust_scaler" value="200"/>
+    <arg name="total_mass" value="1.9"/>
+  </include>
+
 </launch>

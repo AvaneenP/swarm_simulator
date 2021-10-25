@@ -27,6 +27,10 @@ class WaypointReader():
     for i in range(1, self.numUAVs+1):
       self.uav_pos_sub = rospy.Subscriber("uav" + str(i) + "/final_info", swarm_gps, self.uav_pos_info, queue_size = 1)
 
+    # start here...
+    '''
+    Next steps are to add the publisher for the real UAV (model it after real_uav_vel.py)
+    '''
     self.uav_pos_sub = rospy.Subscriber('JOZI/final_info', swarm_gps, self.uav_pos_info, queue_size = 1)
 
     for i in range(1, self.numUAVs+1):

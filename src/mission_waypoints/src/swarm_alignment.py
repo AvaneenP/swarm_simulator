@@ -10,6 +10,14 @@ from geometry_msgs.msg import PoseStamped
 from mission_waypoints.msg import swarm_gps
 from shapely.geometry import Polygon
 
+'''
+Calculates a uav's "alignment" velocity based on other uavs in it's sphere of influence --> subscribed to uavName/sphere_of_influence
+
+Publishes this new "alignment" velocity to uavName/input_unverified_align_velocity
+
+Publishes new "alignment" velocity and current position to uavName/align_info
+'''
+
 class SwarmAlignment():
   def __init__(self):
     self.uavName = rospy.get_param(str(rospy.get_name()) + "/uavName", "uav")

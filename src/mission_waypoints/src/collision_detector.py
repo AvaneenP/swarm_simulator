@@ -9,6 +9,13 @@ from geometry_msgs.msg import Vector3
 from geometry_msgs.msg import PoseStamped
 from mission_waypoints.msg import swarm_gps
 
+'''
+Checks if a uav's location is within the same "sphere" as some other uavs
+If so, publishes the names of those uavs to /swarm/intersection
+Also posts rospy.logerr("COLLISION!")
+Used to detect whenever there is a collision 
+'''
+
 class CollisionDetector():
   def __init__(self):
     self.numUAVs = rospy.get_param(str(rospy.get_name()) + "/numUAVs", 3)
