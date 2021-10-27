@@ -29,12 +29,18 @@ class WaypointReader():
 
     # start here...
     '''
-    Next steps are to add the publisher for the real UAV (model it after real_uav_vel.py)
+    Created a subscriber to get the position of real UAV and added it to the subscriber that gets the positions from the simulation UAVs
     '''
     self.uav_pos_sub = rospy.Subscriber('JOZI/final_info', swarm_gps, self.uav_pos_info, queue_size = 1)
 
     for i in range(1, self.numUAVs+1):
       self.publisherList.append( rospy.Publisher("uav" + str(i) + "/waypoint", swarm_gps, queue_size = 1) )
+
+    '''
+    Added a pubblisher JOZI/waypoint to the publisherList
+    '''
+    self.publisherList.append( rospy.Publisher("JOZI/waypoint", swarm_gps, queue_size = 1) )
+
 
     self.file = rospy.get_param("/waypoint_reader_node/file", "mission_waypoints.txt")
 

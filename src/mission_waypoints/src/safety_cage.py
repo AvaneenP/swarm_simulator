@@ -17,7 +17,7 @@ from mission_waypoints.msg import swarm_gps
 Calculates "centering" velocity whenever the uav is outside the virtual cage
 Publishes "centering" velocity to uavName/input/center_vel
 '''
-# Cage -
+# Cage - {8, 8, 6}
 
 class SafetyCage():
   def __init__(self):
