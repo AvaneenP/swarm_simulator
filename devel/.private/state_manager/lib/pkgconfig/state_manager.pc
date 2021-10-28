@@ -1,0 +1,8 @@
+prefix=/home/lesslab5/Documents/simulator_ws/devel/.private/state_manager
+
+Name: state_manager
+Description: Description of state_manager
+Version: 0.1.1
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: message_generation roscpp std_msgs

@@ -1,0 +1,1 @@
+/home/lesslab5/Documents/simulator_ws/devel/.private/lqg_control/lib/pkgconfig/lqg_control.pc

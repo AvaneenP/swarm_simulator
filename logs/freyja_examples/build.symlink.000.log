@@ -1,0 +1,4 @@
+Symlinking /home/lesslab5/Documents/simulator_ws/devel/share/freyja_examples/cmake/freyja_examplesConfig.cmake
+Symlinking /home/lesslab5/Documents/simulator_ws/devel/share/freyja_examples/cmake/freyja_examplesConfig-version.cmake
+Symlinking /home/lesslab5/Documents/simulator_ws/devel/lib/pkgconfig/freyja_examples.pc
+Symlinking /home/lesslab5/Documents/simulator_ws/devel/lib/freyja_examples/temporal_provider_node
