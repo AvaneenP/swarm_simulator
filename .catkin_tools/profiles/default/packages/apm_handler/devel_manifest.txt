@@ -1,6 +1,0 @@
-Freyja/autopilot_handler/apm_handler
-/home/lesslab5/Documents/simulator_ws/devel/.private/apm_handler/cmake.lock /home/lesslab5/Documents/simulator_ws/devel/./cmake.lock
-/home/lesslab5/Documents/simulator_ws/devel/.private/apm_handler/share/apm_handler/cmake/apm_handlerConfig-version.cmake /home/lesslab5/Documents/simulator_ws/devel/share/apm_handler/cmake/apm_handlerConfig-version.cmake
-/home/lesslab5/Documents/simulator_ws/devel/.private/apm_handler/share/apm_handler/cmake/apm_handlerConfig.cmake /home/lesslab5/Documents/simulator_ws/devel/share/apm_handler/cmake/apm_handlerConfig.cmake
-/home/lesslab5/Documents/simulator_ws/devel/.private/apm_handler/lib/apm_handler/apm_handler_node /home/lesslab5/Documents/simulator_ws/devel/lib/apm_handler/apm_handler_node
-/home/lesslab5/Documents/simulator_ws/devel/.private/apm_handler/lib/pkgconfig/apm_handler.pc /home/lesslab5/Documents/simulator_ws/devel/lib/pkgconfig/apm_handler.pc

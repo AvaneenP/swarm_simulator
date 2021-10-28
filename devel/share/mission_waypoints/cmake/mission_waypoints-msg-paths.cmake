@@ -1,1 +1,0 @@
-/home/lesslab5/Documents/simulator_ws/devel/.private/mission_waypoints/share/mission_waypoints/cmake/mission_waypoints-msg-paths.cmake

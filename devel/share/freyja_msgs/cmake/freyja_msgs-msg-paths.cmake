@@ -1,1 +1,0 @@
-/home/lesslab5/Documents/simulator_ws/devel/.private/freyja_msgs/share/freyja_msgs/cmake/freyja_msgs-msg-paths.cmake

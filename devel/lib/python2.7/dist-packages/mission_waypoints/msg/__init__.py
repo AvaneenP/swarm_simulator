@@ -1,1 +1,0 @@
-/home/lesslab5/Documents/simulator_ws/devel/.private/mission_waypoints/lib/python2.7/dist-packages/mission_waypoints/msg/__init__.py

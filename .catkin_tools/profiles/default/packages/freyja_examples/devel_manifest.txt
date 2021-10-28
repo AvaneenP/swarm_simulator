@@ -1,6 +1,0 @@
-Freyja/freyja_examples
-/home/lesslab5/Documents/simulator_ws/devel/.private/freyja_examples/cmake.lock /home/lesslab5/Documents/simulator_ws/devel/./cmake.lock
-/home/lesslab5/Documents/simulator_ws/devel/.private/freyja_examples/share/freyja_examples/cmake/freyja_examplesConfig.cmake /home/lesslab5/Documents/simulator_ws/devel/share/freyja_examples/cmake/freyja_examplesConfig.cmake
-/home/lesslab5/Documents/simulator_ws/devel/.private/freyja_examples/share/freyja_examples/cmake/freyja_examplesConfig-version.cmake /home/lesslab5/Documents/simulator_ws/devel/share/freyja_examples/cmake/freyja_examplesConfig-version.cmake
-/home/lesslab5/Documents/simulator_ws/devel/.private/freyja_examples/lib/pkgconfig/freyja_examples.pc /home/lesslab5/Documents/simulator_ws/devel/lib/pkgconfig/freyja_examples.pc
-/home/lesslab5/Documents/simulator_ws/devel/.private/freyja_examples/lib/freyja_examples/temporal_provider_node /home/lesslab5/Documents/simulator_ws/devel/lib/freyja_examples/temporal_provider_node

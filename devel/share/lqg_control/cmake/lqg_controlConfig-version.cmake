@@ -1,1 +1,0 @@
-/home/lesslab5/Documents/simulator_ws/devel/.private/lqg_control/share/lqg_control/cmake/lqg_controlConfig-version.cmake

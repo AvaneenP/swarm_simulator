@@ -1,1 +1,0 @@
-/home/lesslab5/Documents/simulator_ws/devel/.private/mission_waypoints/lib/pkgconfig/mission_waypoints.pc

@@ -1,8 +1,0 @@
-prefix=/home/lesslab5/Documents/simulator_ws/devel/.private/apm_handler
-
-Name: apm_handler
-Description: Description of apm_handler
-Version: 0.0.0
-Cflags: 
-Libs: -L${prefix}/lib 
-Requires: 

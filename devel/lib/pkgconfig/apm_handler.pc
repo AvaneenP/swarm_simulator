@@ -1,1 +1,0 @@
-/home/lesslab5/Documents/simulator_ws/devel/.private/apm_handler/lib/pkgconfig/apm_handler.pc

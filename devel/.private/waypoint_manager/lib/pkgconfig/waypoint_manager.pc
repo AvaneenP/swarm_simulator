@@ -1,8 +1,0 @@
-prefix=/home/lesslab5/Documents/simulator_ws/devel/.private/waypoint_manager
-
-Name: waypoint_manager
-Description: Description of waypoint_manager
-Version: 0.0.0
-Cflags: 
-Libs: -L${prefix}/lib 
-Requires: 

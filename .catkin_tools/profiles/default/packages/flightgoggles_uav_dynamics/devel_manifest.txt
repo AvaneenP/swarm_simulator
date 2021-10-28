@@ -1,8 +1,0 @@
-flightgoggles/flightgoggles_uav_dynamics
-/home/lesslab5/Documents/simulator_ws/devel/.private/flightgoggles_uav_dynamics/cmake.lock /home/lesslab5/Documents/simulator_ws/devel/./cmake.lock
-/home/lesslab5/Documents/simulator_ws/devel/.private/flightgoggles_uav_dynamics/share/flightgoggles_uav_dynamics/cmake/flightgoggles_uav_dynamicsConfig.cmake /home/lesslab5/Documents/simulator_ws/devel/share/flightgoggles_uav_dynamics/cmake/flightgoggles_uav_dynamicsConfig.cmake
-/home/lesslab5/Documents/simulator_ws/devel/.private/flightgoggles_uav_dynamics/share/flightgoggles_uav_dynamics/cmake/flightgoggles_uav_dynamicsConfig-version.cmake /home/lesslab5/Documents/simulator_ws/devel/share/flightgoggles_uav_dynamics/cmake/flightgoggles_uav_dynamicsConfig-version.cmake
-/home/lesslab5/Documents/simulator_ws/devel/.private/flightgoggles_uav_dynamics/lib/libinertialMeasurementSim.so /home/lesslab5/Documents/simulator_ws/devel/lib/libinertialMeasurementSim.so
-/home/lesslab5/Documents/simulator_ws/devel/.private/flightgoggles_uav_dynamics/lib/libmulticopterDynamicsSim.so /home/lesslab5/Documents/simulator_ws/devel/lib/libmulticopterDynamicsSim.so
-/home/lesslab5/Documents/simulator_ws/devel/.private/flightgoggles_uav_dynamics/lib/pkgconfig/flightgoggles_uav_dynamics.pc /home/lesslab5/Documents/simulator_ws/devel/lib/pkgconfig/flightgoggles_uav_dynamics.pc
-/home/lesslab5/Documents/simulator_ws/devel/.private/flightgoggles_uav_dynamics/lib/flightgoggles_uav_dynamics/node /home/lesslab5/Documents/simulator_ws/devel/lib/flightgoggles_uav_dynamics/node

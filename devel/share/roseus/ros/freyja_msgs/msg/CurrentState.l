@@ -1,1 +1,0 @@
-/home/lesslab5/Documents/simulator_ws/devel/.private/freyja_msgs/share/roseus/ros/freyja_msgs/msg/CurrentState.l
