@@ -53,7 +53,7 @@
     <arg name="goal_v_w" value="$(arg goal_v_w)"/>
   </include> 
 
-  <include file="$(find flightcontroller)/launch/sim_uav.launch">
+  <!-- <include file="$(find flightcontroller)/launch/sim_uav.launch">
     <arg name="droneName" value="uav3" />
     <arg name="numUAVs" value="$(arg numUAVs)" />
     <arg name="influence_radius" value="$(arg influence_radius)" />
@@ -63,7 +63,7 @@
     <arg name="pos_v_w" value="$(arg pos_v_w)" />
     <arg name="sep_v_w" value="$(arg sep_v_w)" />
     <arg name="goal_v_w" value="$(arg goal_v_w)"/>
-  </include> 
+  </include>  -->
 
   <!-- <include file="$(find flightcontroller)/launch/sim_uav.launch">
     <arg name="droneName" value="uav4" />
@@ -208,9 +208,10 @@
 
   <!-- <node pkg="mission_waypoints" type="obstacle.py" name="obstacle_node" output="screen"></node> -->
 
-  <!-- <include file="$(find flightcontroller)/launch/real_uav.launch">
-    <arg name="droneName" value="JOZI" />
-  </include>  -->
+  <include file="$(find flightcontroller)/launch/real_uav.launch">
+    <arg name="droneName" value="uav3" />
+    <arg name="droneNameFreyja" value="JOZI" />
+  </include> 
 
   <!-- <include file="$(find flightcontroller)/launch/real_uav.launch">
     <arg name="droneName" value="ELI" />
