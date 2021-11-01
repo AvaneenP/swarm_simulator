@@ -33,8 +33,10 @@ class Boids():
     # Create the publisher and subscriber
     self.position_sub = rospy.Subscriber(self.uavName + '/sensors/gps', PoseStamped, self.get_pos, queue_size = 1)
 
+    # Publishes straight to uav
     self.final_velocity_pub = rospy.Publisher(self.uavName + '/input/velocity', Vector3, queue_size=1)
 
+    # subscribes to different velocities
     self.goal_velocity_sub = rospy.Subscriber(self.uavName + '/input/unverified_goal_velocity', Vector3, self.get_goal_vec, queue_size=1)
 
     self.position_velocity_sub = rospy.Subscriber(self.uavName + '/input/unverified_position_velocity', Vector3, self.get_pos_vec, queue_size=1)
@@ -45,6 +47,7 @@ class Boids():
 
     self.center_vel_sub = rospy.Subscriber(self.uavName + '/input/center_vel', Vector3, self.get_center_vel, queue_size = 1)
 
+    # Publishes final velocity and position to rostopic
     self.uav_info_pub = rospy.Publisher(self.uavName + "/final_info", swarm_gps, queue_size = 1)
 
     # Call the mainloop of our class

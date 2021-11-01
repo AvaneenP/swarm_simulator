@@ -5,16 +5,38 @@
   <arg name="droneName" default="uav" />
   <arg name="droneNameFreyja" default="uav" />
 
+  <!-- Velocity controller -->
+  <arg name="goal_v_w" default="0.5"/>
+
+  <!-- Subscribes to VICON position and publishes to rostopics -->
   <node pkg="mission_waypoints" type="real_uav.py" name="real_uav_node_$(arg droneName)" output="screen">
     <param name="uavName" type="string" value="$(arg droneName)" />
     <param name="freyjaName" type="string" value="$(arg droneNameFreyja)" />
   </node>
 
-  <node pkg="mission_waypoints" type="real_uav_vel.py" name="real_uav_vel_node_$(arg droneName)" output="screen">
+  <!-- Changes rostopic names to fit Freyja rostopics -->
+  <node pkg="mission_waypoints" type="conversions.py" name="conversions_node_$(arg droneName)" output="screen">
     <param name="uavName" type="string" value="$(arg droneName)" />
     <param name="freyjaName" type="string" value="$(arg droneNameFreyja)" />
   </node>
 
+  <!-- Waypoint Velocity Controller -->
+  <node pkg="mission_waypoints" type="vel_controller.py" name="velocity_pub_node_$(arg droneName)" output="screen">
+    <param name="goal_v_w" type="double" value="$(arg goal_v_w)"/>
+    <param name="uavName" type="string" value="$(arg droneName)" />
+  </node>
+
+  <!-- Virtual Cage and Center Velocity Controller -->
+  <node pkg="mission_waypoints" type="safety_cage.py" name="safety_cage_node_$(arg droneName)" output="screen">
+    <param name="uavName" type="string" value="$(arg droneName)" />
+  </node>    
+
+  <!-- Boids controller -->
+  <node pkg="mission_waypoints" type="boids_all.py" name="boids_vec_node_$(arg droneName)" output="screen">
+      <param name="uavName" type="string" value="$(arg droneName)" />
+  </node>
+
+  <!-- Freyja -->
   <include file="src/Freyja/freyja_controller.launch" >
   
     <arg name="vicon_topic"

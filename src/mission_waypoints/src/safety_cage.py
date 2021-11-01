@@ -17,7 +17,7 @@ from mission_waypoints.msg import swarm_gps
 Calculates "centering" velocity whenever the uav is outside the virtual cage
 Publishes "centering" velocity to uavName/input/center_vel
 '''
-# Cage - {8, 8, 6}
+# Cage - {3, 3, 3}
 
 class SafetyCage():
   def __init__(self):
@@ -53,18 +53,18 @@ class SafetyCage():
     # While ROS is still running
     while not rospy.is_shutdown():
       
-      if self.curr_pos.pose.position.x > 8:
-        self.center_vel.x = (self.curr_pos.pose.position.x - 8) * -2 
-      if self.curr_pos.pose.position.x < -8:
-        self.center_vel.x = (self.curr_pos.pose.position.x + 8) * -2 
+      if self.curr_pos.pose.position.x > 3:
+        self.center_vel.x = (self.curr_pos.pose.position.x - 3) * -2 
+      if self.curr_pos.pose.position.x < -3:
+        self.center_vel.x = (self.curr_pos.pose.position.x + 3) * -2 
 
-      if self.curr_pos.pose.position.y > 8:
-        self.center_vel.y = (self.curr_pos.pose.position.y - 8) * -2 
-      if self.curr_pos.pose.position.y < -8:
-        self.center_vel.y = (self.curr_pos.pose.position.y + 8) * -2
+      if self.curr_pos.pose.position.y > 3:
+        self.center_vel.y = (self.curr_pos.pose.position.y - 3) * -2 
+      if self.curr_pos.pose.position.y < -3:
+        self.center_vel.y = (self.curr_pos.pose.position.y + 3) * -2
 
-      if self.curr_pos.pose.position.z > 6:
-        self.center_vel.z = (self.curr_pos.pose.position.z - 6) * -2 
+      if self.curr_pos.pose.position.z > 3:
+        self.center_vel.z = (self.curr_pos.pose.position.z - 3) * -2 
       if self.curr_pos.pose.position.z < 0:
         self.center_vel.z = (self.curr_pos.pose.position.z) * -2 
 

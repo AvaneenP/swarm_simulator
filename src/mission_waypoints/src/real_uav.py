@@ -19,6 +19,7 @@ class RealUAV():
 
     self.real_uav = swarm_gps()
     self.real_uav.name = self.uavName
+    self.sensors_gps = PoseStamped()
 
     # Create the publisher and subscriber
     self.real_uav_sub = rospy.Subscriber('/vicon/' + self.uavFreyja + '/' + self.uavFreyja, TransformStamped, self.getDronePos, queue_size = 1)
@@ -27,15 +28,19 @@ class RealUAV():
 
     self.real_pub = rospy.Publisher(self.uavName + '/final_info', swarm_gps, queue_size = 1)
 
+    self.sensors_gps_pub = rospy.Publisher(self.uavName + '/sensors/gps', PoseStamped, queue_size = 1)
+
     # Call the mainloop of our class
     self.mainloop()
 
   # Callbacks
   def getDronePos(self, msg):
-    # scaling = 3
     self.real_uav.pos.x = msg.transform.translation.x
     self.real_uav.pos.y = msg.transform.translation.y 
     self.real_uav.pos.z = msg.transform.translation.z 
+    self.sensors_gps.pose.position.x = msg.transform.translation.x
+    self.sensors_gps.pose.position.y = msg.transform.translation.y
+    self.sensors_gps.pose.position.z = msg.transform.translation.z
 
 
   # Main Loop
@@ -49,6 +54,7 @@ class RealUAV():
 
       self.uav_info_pub.publish(self.real_uav)
       self.real_pub.publish(self.real_uav)
+      self.sensors_gps_pub.publish(self.sensors_gps)
 
       # Sleep for the remainder of the loop
       rate.sleep()

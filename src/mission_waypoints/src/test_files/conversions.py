@@ -15,7 +15,7 @@ from mission_waypoints.msg import swarm_gps
 
 from freyja_msgs.msg import ReferenceState
 
-class RealUAVvel():
+class Conversions():
   def __init__(self):
 
     self.uavName = rospy.get_param(str(rospy.get_name()) + "/uavName", "uav")
@@ -40,25 +40,26 @@ class RealUAVvel():
     self.uav_vel.ad = 0.0
     self.uav_vel.header.stamp = rospy.Time.now()
 
-    self.coordinate = [0,0,-1]
-    
-    # Create the publisher and subscriber
-    self.position_sub = rospy.Subscriber('/vicon/' + self.uavFreyja + '/' + self.uavFreyja, TransformStamped, self.getDronePos, queue_size = 1)
 
+    self.final_vel_sub = rospy.Subscriber(self.uavName + '/input/velocity', Vector3, self.getFinalVel, queue_size = 1)
+
+
+    # Create the publisher and subscriber
     self.waypoint_sub = rospy.Subscriber(self.uavName + '/waypoint', swarm_gps, self.getWaypoint, queue_size = 1)
 
     self.vel_pub = rospy.Publisher('/reference_state', ReferenceState, queue_size = 1)
 
-    self.goal_info_pub = rospy.Publisher(self.uavName + '/goal_info', swarm_gps, queue_size = 1)
+    # self.goal_info_pub = rospy.Publisher(self.uavName + '/goal_info', swarm_gps, queue_size = 1)
 
     # Call the mainloop of our class
     self.mainloop()
 
   # Callbacks
-  def getDronePos(self, msg):
-    self.real_uav.pos.x = msg.transform.translation.x
-    self.real_uav.pos.y = msg.transform.translation.y
-    self.real_uav.pos.z = msg.transform.translation.z
+  def getFinalVel(self, msg):
+    self.uav_vel.vn = msg.x
+    self.uav_vel.ve = msg.y
+    self.uav_vel.vd = msg.z * -1
+
 
   def getWaypoint(self, msg):
     self.waypoints = copy.deepcopy(msg)
@@ -76,27 +77,23 @@ class RealUAVvel():
       self.uav_vel.pe = self.waypoints.pos.y
       self.uav_vel.pd = self.waypoints.pos.z * -1
 
-      x_vel = self.waypoints.pos.x - self.uav_vel.pn
-      y_vel = self.waypoints.pos.y - self.uav_vel.pe
-      z_vel = (self.waypoints.pos.z + self.uav_vel.pd) * -1
-
-      self.uav_vel.vn = x_vel / 10
-      self.uav_vel.ve = y_vel / 10
-      self.uav_vel.vd = z_vel / 10
+      self.uav_vel.vn = self.uav_vel.vn / 10
+      self.uav_vel.ve = self.uav_vel.ve / 10
+      self.uav_vel.vd = self.uav_vel.vd / 10
 
       self.vel_pub.publish(self.uav_vel)
 
-      self.real_uav.vel.x = self.uav_vel.vn
-      self.real_uav.vel.y = self.uav_vel.ve
-      self.real_uav.vel.z = self.uav_vel.vd
+      # self.real_uav.vel.x = self.uav_vel.vn
+      # self.real_uav.vel.y = self.uav_vel.ve
+      # self.real_uav.vel.z = self.uav_vel.vd
 
-      self.goal_info_pub.publish(self.real_uav)
+      # self.goal_info_pub.publish(self.real_uav)
 
       # Sleep for the remainder of the loop
       rate.sleep()
 
 if __name__ == '__main__':
-  rospy.init_node('real_uav_vel_node')
+  rospy.init_node('conversions_node')
   try:
     ktp = RealUAVvel()
   except rospy.ROSInterruptException:

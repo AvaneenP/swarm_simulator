@@ -7,3 +7,5 @@
 [7,-7,1.5]
 [9,-9,1.5]
 [1,1,2]
+
+# change coordinates so that all values are within real cage size
