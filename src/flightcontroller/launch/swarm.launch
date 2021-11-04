@@ -211,7 +211,17 @@
   <include file="$(find flightcontroller)/launch/real_uav.launch">
     <arg name="droneName" value="uav3" />
     <arg name="droneNameFreyja" value="JOZI" />
+
+    <arg name="numUAVs" value="$(arg numUAVs)" />
+    
+    <arg name="influence_radius" value="$(arg influence_radius)" />
+    <arg name="separation_radius" value="$(arg separation_radius)" />
+    <arg name="collision_radius" value="$(arg collision_radius)" />
+    <arg name="align_v_w" value="$(arg align_v_w)" />
+    <arg name="pos_v_w" value="$(arg pos_v_w)" />
+    <arg name="sep_v_w" value="$(arg sep_v_w)" />
     <arg name="goal_v_w" value="$(arg goal_v_w)"/>
+
   </include> 
 
   <!-- <include file="$(find flightcontroller)/launch/real_uav.launch">
