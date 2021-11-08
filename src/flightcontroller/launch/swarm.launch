@@ -210,7 +210,7 @@
 
   <include file="$(find flightcontroller)/launch/real_uav.launch">
     <arg name="droneName" value="uav3" />
-    <arg name="droneNameFreyja" value="JOZI" />
+    <arg name="droneNameFreyja" value="JADE" />
 
     <arg name="numUAVs" value="$(arg numUAVs)" />
     

@@ -77,9 +77,9 @@ class Conversions():
       self.uav_vel.pe = self.waypoints.pos.y
       self.uav_vel.pd = self.waypoints.pos.z * -1
 
-      self.uav_vel.vn = self.uav_vel.vn / 10
-      self.uav_vel.ve = self.uav_vel.ve / 10
-      self.uav_vel.vd = self.uav_vel.vd / 10
+      self.uav_vel.vn = self.uav_vel.vn / 5
+      self.uav_vel.ve = self.uav_vel.ve / 5
+      self.uav_vel.vd = self.uav_vel.vd / 5
 
       self.vel_pub.publish(self.uav_vel)
 
@@ -95,6 +95,6 @@ class Conversions():
 if __name__ == '__main__':
   rospy.init_node('conversions_node')
   try:
-    ktp = RealUAVvel()
+    ktp = Conversions()
   except rospy.ROSInterruptException:
     pass
