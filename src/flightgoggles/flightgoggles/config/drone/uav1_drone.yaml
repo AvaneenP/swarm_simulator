@@ -1,5 +1,5 @@
 uav1/flightgoggles_uav_dynamics:
-    init_pose: [5.0, 5.0, 1.5, 0.0, 0.0, 0.0, 1.0]
+    init_pose: [2, 2, 1.5, 0.0, 0.0, 0.0, 1.0]
 
     clockscale: 1.0
     vehicle_mass: 1.0
