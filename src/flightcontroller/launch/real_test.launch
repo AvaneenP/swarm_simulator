@@ -1,9 +1,9 @@
 <launch>
 
-  <node pkg="mission_waypoints" type="real_uav_vel.py" name="real_uav_vel_node" output="screen"> </node>
+  <node pkg="mission_waypoints" type="test_real_uav.py" name="test_real_uav_node" output="screen"> </node>
 
   <include file="src/Freyja/freyja_controller.launch" >
-    <arg name="vicon_topic" value="/vicon/JOZI/JOZI"/>
+    <arg name="vicon_topic" value="/vicon/JADE/JADE"/>
     <arg name="thrust_scaler" value="200"/>
     <arg name="total_mass" value="1.9"/>
   </include>

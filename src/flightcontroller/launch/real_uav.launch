@@ -46,18 +46,18 @@
   </node>    
 
   <!-- Radius detection - Cohesion and alignment -->
-  <!-- <node pkg="mission_waypoints" type="sphere.py" name="sphere_of_influence_node_$(arg droneName)" output="screen">
+  <node pkg="mission_waypoints" type="sphere.py" name="sphere_of_influence_node_$(arg droneName)" output="screen">
     <param name="uavName" type="string" value="$(arg droneName)" />
     <param name="influence_radius" type="double" value="$(arg influence_radius)" />
     <param name="numUAVs" type="int" value="$(arg numUAVs)" />
-  </node> -->
+  </node>
 
   <!-- Cohesion -->
-  <!-- <node pkg="mission_waypoints" type="swarm_cohesion.py" name="cohesion_node_$(arg droneName)" output="screen">
+  <node pkg="mission_waypoints" type="swarm_cohesion.py" name="cohesion_node_$(arg droneName)" output="screen">
     <param name="uavName" type="string" value="$(arg droneName)" />
     <param name="pos_v_w" type="double" value="$(arg pos_v_w)"/>
     <param name="numUAVs" type="int" value="$(arg numUAVs)" />
-  </node> -->
+  </node>
 
   <!-- Aligment -->
   <!-- <node pkg="mission_waypoints" type="swarm_alignment.py" name="alignment_node_$(arg droneName)" output="screen">
